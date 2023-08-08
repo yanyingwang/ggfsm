@@ -23,26 +23,47 @@
 ;; See the current version of the racket style guide here:
 ;; http://docs.racket-lang.org/style/index.html
 
-;; Code here
-
-
-
 (require ming
          ming/number
-
+         "api.rkt"
+         "api-helper.rkt"
+         "add-8gua.rkt"
+         "add-64gua.rkt"
          )
 
+;; (股号 "sh603259") ; 药明康德
+;; sh601006 五粮液
+
+;; (名 H (甲 文))
+;; (攸以量卦 H 顶量 底量)
+
+(名 八卦文
+    (股号 "sh603259")
+    (名 文 (取天文/半年))
+    (名 顶价 (顶价 文))
+    (名 低价 (低价 文))
+    (名 顶量 (顶量 文))
+    (名 底量 (底量 文))
+    (佫 (λ (H) (攸以卦 (攸以量卦 (攸以价卦 H 顶价 底价)
+                                 顶量 底量)))
+        文))
 
 
-(名 顶价
-    (𡊤 􏺗 (佫 (入 (e) (句化米 (􏿰弔 e 'high))) 文)))
-(名 底价
-    (𡊤 􏺘 (佫 (入 (e) (句化米 (􏿰弔 e 'low))) 文)))
 
-(名 顶量
-    (𡊤 􏺗 (佫 (λ (e) (句化米 (􏿰弔 e 'volume))) 文)))
-(名 底量
-    (𡊤 􏺘 (佫 (入 (e) (句化米 (􏿰弔 e 'volume))) 文)))
+
+
+(名 沪市A股 '("600" "601" "603"))
+(名 沪市B股 '("900"))
+
+(名 深市A股 '("000"))
+(名 深市B股 '("200"))
+
+(名 科创板 '("688"))
+(名 创业板 '("300"))
+(名 中小板 '("002"))
+
+(名 早期上市股 '("6006"))
+
 
 
 
@@ -81,19 +102,6 @@
           ,(div-wrap/+img processed/foreign/deathnum/top10 foreign-deathnum.jpeg)
                ))))
 (define xpage/string (xexpr->string xpage))
-
-`
-(名 沪市A股 '("600" "601" "603"))
-(名 沪市B股 '("900"))
-
-(名 深市A股 '("000"))
-(名 深市B股 '("200"))
-
-(名 科创板 '("688"))
-(名 创业板 '("300"))
-(名 中小板 '("002"))
-
-(名 早期上市股 '("6006"))
 
 
 (module+ test
