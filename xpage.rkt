@@ -5,11 +5,12 @@
          gregor
          xml
          racket/format
-         "jscode.rkt"
+         ;; "jscode.rkt"
          )
 
+(provide xpage)
 
-(define xpage
+(define (xpage jscode)
   `(html
     (head
      (title @,~a{八卦走势图 - @(~t (now #:tz "Asia/Shanghai") "yyyy-MM-dd HH:mm")})
@@ -58,11 +59,10 @@
           ))
     ;; (script ([type "text/javascript"]
     ;;          [src "public/myplot.js"]))
-    (script ,(my-plot.jscode xvalues yvalues ttvalues))
+    ;; (script ,(my-plot.jscode x y tt))
+    (script ,jscode)
     )
   )
 
-(with-output-to-file "ggsm.html" #:exists 'replace
-  (lambda () (display (xexpr->string xpage))))
-
-
+;; (with-output-to-file "ggsm.html" #:exists 'replace
+;;   (lambda () (display (xexpr->string xpage))))
