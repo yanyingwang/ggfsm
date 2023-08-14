@@ -25,13 +25,16 @@
      ;; (style "body { background-color: linen; }")
      ;; (script ([type "text/javascript"]
      ;;          [src "https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"]))
+     ;; (script ([type "text/javascript"]
+              ;; [src "styles/js/plotly-latest.min.js"]))
      (script ([type "text/javascript"]
-              [src "https://cdn.plot.ly/plotly-latest.min.js"]))
+              [src "styles/js//plotly-2.25.2.min.js"]
+              [charset "utf-8"]))
      (script ([type "text/javascript"]
-              [src "https://cdn.plot.ly/plotly-locale-zh-cn-latest.js"]))
+              [src "styles/js/plotly-locale-zh-cn-latest.js"]))
      (script "Plotly.setPlotConfig({locale: 'zh-CN'})")
      (script ([type "text/javascript"]
-              [src "https://d3js.org/d3.v3.min.js"]))
+              [src "styles/js/d3.v3.min.js"]))
 
      )
     (body
@@ -57,10 +60,9 @@
                     )
                )
           ))
-    ;; (script ([type "text/javascript"]
-    ;;          [src "public/myplot.js"]))
-    ;; (script ,(my-plot.jscode x y tt))
     (script ,jscode)
+    ;; (script ([type "text/javascript"]
+             ;; [src "public/myplot2.js"]))
     )
   )
 
