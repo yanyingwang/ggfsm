@@ -28,14 +28,12 @@
      ;; (script ([type "text/javascript"]
               ;; [src "styles/js/plotly-latest.min.js"]))
      (script ([type "text/javascript"]
-              [src "styles/js//plotly-2.25.2.min.js"]
-              [charset "utf-8"]))
+              [src "styles/js//plotly-2.25.2.min.js"]))
      (script ([type "text/javascript"]
               [src "styles/js/plotly-locale-zh-cn-latest.js"]))
      (script "Plotly.setPlotConfig({locale: 'zh-CN'})")
      (script ([type "text/javascript"]
               [src "styles/js/d3.v3.min.js"]))
-
      )
     (body
      (div ((class "main"))

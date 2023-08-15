@@ -69,15 +69,22 @@
         ))
 
 
-(名 (gen-trace x y t)
+(名 (gen-trace name x y t [opacity 1] (customdata #f))
+    (名 hovertemplate
+        (若 customdata
+            "%{x}, %{y} <br> 平均：%{text}元 <br> 开收: %{customdata[0]}~%{customdata[1]}元 <br> 顶底：%{customdata[2]}~%{customdata[3]}元"
+            ""))
     (􏿰
-     'name "卦"
-     'mode "markers+lines+text"
-     ;; 'mode "markers+lines"
+     'name name
+     'opacity opacity
+     ;; 'mode "markers+lines+text"
+     'mode "markers+lines"
      'type "scatter"
      'x x
      'y y
      'text t
+     'hovertemplate hovertemplate
+     'customdata customdata
      ;; 'ids textArray
      'hoverinfo "all"
      'textposition "top center"
@@ -93,11 +100,24 @@
         }
     )
 
+
+;;「坐标」用单字表示称之为「􏸷」
+;;坐标值比如(1,2)中的1称为􏸺，2称之为􏸻，因为X是纬线轴，Y是经线轴
+(名 负􏸻
+    (佫 (λ (N)
+          (􏸽  ([(a b) (􏻓和𥺌 N 8)])
+              (~a "-" (􏽊 a) (􏽊 b) (弔 (􏾛 三十二阳卦) N))))
+        (􏼎 32 􏸼)))
+(名 正􏸻
+    (佫 (λ (N)
+          (􏸽  ([(a b) (􏻓和𥺌 N 8)])
+              (~a  (􏽊 a) (􏽊 b) (弔 (􏾛 三十二阴卦) N))))
+        (􏼎 32 􏸼)))
+
 (名 tick-vals
     (􏼏  -32 33))
 (名 tick-text
-    (佫 (λ (S) (勺化句 S))
-        (􏿝 三十二阳卦 '(〇) (􏾛 三十二阴卦))))
+    (􏿝 (􏾛 负􏸻) '("〇") 正􏸻))
 
 (名 config
     (􏿰 ;; 'scrollZoom #t
@@ -108,20 +128,23 @@
 
 (名 layout
     (􏿰
+     ;; 'hovermode "closest"
      'xaxis (􏿰
              'title "时"
              'hoverformat "%Y-%m-%d(%a)"
              'tickformat "%Y-%m-%d"
              ;; 'gridcolor "lightGray"
+             ;; 'ticksuffix "$"
+             ;; 'labelalias (􏿰 '|2023-08-01| "...革::::::")
              'gridwidth 1
              )
      'yaxis (􏿰
              'title "卦"
              'range: '(-32 32)
-             'labelalias (􏿰 '|27革| "27革::::::")
              ;; 'tickmode "linear"
              ;; 'tick0: 0
              ;; 'dtick: 8
+             'ticksuffix "$"
              'tickmode "array"
              'tickvals tick-vals
              'ticktext tick-text
@@ -134,6 +157,7 @@
      ;; 'font (􏿰 'size 12)
      'showlegend #t
      'height 1200
+     'modebar (􏿰 'add (􏿴 "hovercompare" "hoverclosest") )
      ;; 'width 600
      ; calendar "chinese"
      )
