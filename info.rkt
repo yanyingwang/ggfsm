@@ -5,6 +5,7 @@
     "html-parsing"
     "at-exp-lib"
     "gregor-lib"
+    "csv-reading"
     "https://github.com/yanyingwang/smtp.git"
     "https://github.com/yanyingwang/http-client.git"
     "https://github.com/yanyingwang/timable.git"
