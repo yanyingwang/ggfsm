@@ -29,16 +29,16 @@
         文))
 
 (名 data
-    (􏿴 (gen-trace "并" (xs 卦文) (ys/复卦 卦文) (ts/复卦 卦文) #;(ts/复卦数 卦文))
-        (gen-trace "价" (xs 卦文) (ys/价卦 卦文) (ts/均价 卦文) 0.4 (ts/其他价 卦文))
-        (gen-trace "量" (xs 卦文) (ys/量卦 卦文) (ts/量 卦文) 0.2)
+    (􏿴 (gen-trace "量" (xs 卦文) (ys/量卦 卦文) (ts/量 卦文) 1)
+        (gen-trace "价" (xs 卦文) (ys/价卦 卦文) (ts/均价 卦文) 1 (ts/其他价 卦文))
+        (gen-trace "并" (xs 卦文) (ys/复卦 卦文) (ts/复卦 卦文) #;(ts/复卦数 卦文))
         ))
 
 (名 jscode
     (gen-plotly-jscode "myPlot" data))
 
 (parameterize ([current-unescaped-tags html-unescaped-tags])
-  (with-output-to-file "ggsm.html" #:exists 'replace
+  (with-output-to-file "public/ggsm.html" #:exists 'replace
     (lambda () (display (xexpr->string (xpage jscode))))))
 
 

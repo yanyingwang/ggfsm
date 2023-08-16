@@ -7,7 +7,14 @@
          "64gua.rkt"
          )
 
-(provide layout config gen-trace gen-plotly-jscode)
+(provide current-ploty-colorway
+         ;; layout config
+         gen-trace gen-plotly-jscode)
+
+(名 current-ploty-colorway
+    (make-parameter
+     (􏿴 "#ECCEF5" "#CEECF5" "#0101DF")
+     ))
 
 
 (名 (gen-yrect N M C)
@@ -72,7 +79,7 @@
 (名 (gen-trace name x y t [opacity 1] (customdata #f))
     (名 hovertemplate
         (若 customdata
-            "%{x}, %{y} <br> 平均：%{text}元 <br> 开收: %{customdata[0]}~%{customdata[1]}元 <br> 顶底：%{customdata[2]}~%{customdata[3]}元"
+            "%{x}, %{y} <br> <b>%{text}元</b> <br> 顶底：%{customdata[2]}~%{customdata[3]}元  <br> 开收: %{customdata[0]}~%{customdata[1]}元 "
             ""))
     (􏿰
      'name name
@@ -94,8 +101,8 @@
 (名 (gen-plotly-jscode div data)
     @~a{
         const data = @(jsexpr->string data);
-        const layout = @(jsexpr->string layout);
-        const config = @(jsexpr->string config);
+        const layout = @(jsexpr->string (layout));
+        const config = @(jsexpr->string (config));
         Plotly.newPlot(@(~v div), data, layout, config);
         }
     )
@@ -119,14 +126,14 @@
 (名 tick-text
     (􏿝 (􏾛 负􏸻) '("〇") 正􏸻))
 
-(名 config
+(名 (config)
     (􏿰 ;; 'scrollZoom #t
         'responsive #t
         ;;locale "zh-CN"
         ;; 'editable #t
         ))
 
-(名 layout
+(名 (layout)
     (􏿰
      ;; 'hovermode "closest"
      'xaxis (􏿰
@@ -157,6 +164,7 @@
      ;; 'font (􏿰 'size 12)
      'showlegend #t
      'height 1200
+     'colorway (current-ploty-colorway)
      'modebar (􏿰 'add (􏿴 "hovercompare" "hoverclosest") )
      ;; 'width 600
      ; calendar "chinese"

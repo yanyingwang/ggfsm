@@ -21,19 +21,19 @@
      (link ([rel "stylesheet"]
             [type "text/css"]
             [title "default"]
-            [href "public/main.css"]))
+            [href "main.css"]))
      ;; (style "body { background-color: linen; }")
      ;; (script ([type "text/javascript"]
      ;;          [src "https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"]))
      ;; (script ([type "text/javascript"]
               ;; [src "styles/js/plotly-latest.min.js"]))
      (script ([type "text/javascript"]
-              [src "styles/js//plotly-2.25.2.min.js"]))
+              [src "plotly-2.25.2.min.js"]))
      (script ([type "text/javascript"]
-              [src "styles/js/plotly-locale-zh-cn-latest.js"]))
+              [src "plotly-locale-zh-cn-latest.js"]))
      (script "Plotly.setPlotConfig({locale: 'zh-CN'})")
      (script ([type "text/javascript"]
-              [src "styles/js/d3.v3.min.js"]))
+              [src "d3.v3.min.js"]))
      )
     (body
      (div ((class "main"))
@@ -60,7 +60,7 @@
           ))
     (script ,jscode)
     ;; (script ([type "text/javascript"]
-             ;; [src "public/myplot2.js"]))
+             ;; [src "myplot2.js"]))
     )
   )
 
