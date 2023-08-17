@@ -1,5 +1,6 @@
 #lang at-exp racket/base
 
+
 (require ming
          ming/number
          gregor json
@@ -54,6 +55,7 @@
         'x0 0
         'x1 1
         'xref "paper"))
+
 (名 中卦线
     (􏿴 (gen-ylines 32 "aqua")
         (gen-ylines 24 "Chartreuse")
@@ -64,6 +66,7 @@
         (gen-ylines -24 "DarkOrchid")
         (gen-ylines -32 "darkGray")
         ))
+
 (名 八卦线
     (􏿴 (gen-ylines 32 "aqua")
         (gen-ylines 24 "Chartreuse")
@@ -102,8 +105,8 @@
     @~a{
         const data = @(jsexpr->string data);
         const layout = @(jsexpr->string (layout));
-        const config = @(jsexpr->string (config));
-        Plotly.newPlot(@(~v div), data, layout, config);
+        const config = @(jsexpr->string config);
+        Plotly.newPlot(@(~a div), data, layout, config);
         }
     )
 
@@ -126,12 +129,12 @@
 (名 tick-text
     (􏿝 (􏾛 负􏸻) '("〇") 正􏸻))
 
-(名 (config)
+(名 config
     (􏿰 ;; 'scrollZoom #t
-        'responsive #t
-        ;;locale "zh-CN"
-        ;; 'editable #t
-        ))
+     'responsive #t
+     ;;locale "zh-CN"
+     ;; 'editable #t
+     ))
 
 (名 (layout)
     (􏿰
@@ -172,9 +175,9 @@
     )
 
 
-        ;; usage::
-        ;; (名 data
-        ;;     (gen-data (gen-trace x1 y1 t1)
-        ;;               (gen-trace x2 y2 t2)))
+;; usage::
+;; (名 data
+;;     (gen-data (gen-trace x1 y1 t1)
+;;               (gen-trace x2 y2 t2)))
 
-        ;; (gen-plotly-code data)
+;; (gen-plotly-code data)
