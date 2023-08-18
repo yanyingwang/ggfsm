@@ -1,16 +1,16 @@
 
 /* body { background-color: red; } */
 
-.main { width: auto; padding-left: 10px; padding-right: 10px; }
+/* .main { width: auto; padding-left: 10px; padding-right: 10px; } */
 
-.row { padding-top: 10px; }
+.top-padding-10 { padding-top: 10px; }
 
-.text { padding-left: 30px; }
+/* .text { padding-left: 30px; } */
 
-.subtext { padding-left: 30px; font-size: 90%; }
+/* .subtext { padding-left: 30px; font-size: 90%; } */
 
-h2 { margin-bottom: 6px; }
+/* h2 { margin-bottom: 6px; } */
 
-p { margin-top: 6px; }
+/* p { margin-top: 6px; } */
 
-.responsive { width: 100%; height: auto; }
+/* .responsive { width: 100%; height: auto; } */

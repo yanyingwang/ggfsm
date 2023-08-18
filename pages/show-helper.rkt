@@ -9,6 +9,7 @@
          ts/量 ts/并卦
          ts/其他价 ts/均价
          plotly-data plotly-script
+         sselink szselink
          )
 
 (名 (xs 文)
@@ -72,3 +73,9 @@
 (名 (plotly-script div 文)
     `(script ,(gen-plotly-jscode div (plotly-data 文)))
     )
+
+
+(名 (sselink 代码)
+    (􏼃 "http://www.sse.com.cn/assortment/stock/list/info/company/index.shtml?COMPANY_CODE=" 代码))
+(名 (szselink 代码)
+    (􏼃 "http://www.szse.cn/certificate/individual/index.html?code=" 代码))

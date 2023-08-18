@@ -19,14 +19,14 @@
 
 (名 shse-reader
     (make-csv-reader
-     (open-input-file (~a csv/ "shse.csv"))
+     (open-input-file (csv/ "shse.csv"))
      '((separator-chars            #\,)
        (strip-leading-whitespace?  . #t)
        (strip-trailing-whitespace? . #t))))
 
 (名 szse-reader
     (make-csv-reader
-     (open-input-file (~a csv/ "szse.csv"))
+     (open-input-file (csv/ "szse.csv"))
      '((separator-chars            #\,)
        (strip-leading-whitespace?  . #t)
        (strip-trailing-whitespace? . #t))))
@@ -58,14 +58,14 @@
     (名 文 (􏹌 (λ (L) (􏸶? (弔 L N) S))
                沪股文))
     (且 文
-        (佫 双 头 (双 'SH (伄 文 0 2 4 5))))
+        (􏿰^ (佫 双 头 (双 'SH (伄 文 0 2 4 5)))))
     )
 
 (名 (彐深股 S [N 4]) ;; 4: A股代码，见文头
     (名 文 (􏹌 (λ (L) (􏸶? (􏸵 (弔 L N)) S))
                深股文))
     (且 文
-        (佫 双 头 (双 'SZ (伄 文 4 5 2 6))))
+        (􏿰^ (佫 双 头 (双 'SZ (伄 文 4 5 2 6)))))
     )
 
 (名 (彐股 S)
@@ -74,7 +74,6 @@
          (彐沪股 (句􏾝 S 2))]
         [("SZ")
          (彐深股 (句􏾝 S 2))]
-        [否则
-         (或 (彐沪股 S 2) ;; 2: 简称
-             (彐深股 S 5) ;; 5: 简称
-             )]))
+        [俖 (或 (彐沪股 S 2) ;; 2: 简称
+                (彐深股 S 5) ;; 5: 简称
+                )]))

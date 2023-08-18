@@ -2,21 +2,9 @@
 
 (require racket/format
          ming ming/number
-         gregor xml
-         "api.rkt"
-         "api-helper.rkt"
-         "add-gua.rkt"
-         "64gua.rkt"
-         "8gua.rkt"
-         "xpage.rkt"
-         "jscode-helper.rkt"
-         "stkexg.rkt"
+         "pages/show.rkt"
          )
 
-
-;; (股号 "sh603259") ;药明康德
-;; (股号 "sz000858") ;五粮液
-;; (股号 "sz002049") ;紫光国微
 
 
 ;; (名 沪市A股 '("600" "601" "603"))
@@ -30,3 +18,24 @@
 ;; (名 中小板 '("002"))
 
 ;; (名 早期上市股 '("6006"))
+
+
+(名 strs
+    (􏿴 "sh603259" ;药明康德
+        "sz300015" ;艾尔眼科
+        "sh600750" ;江中药业
+        "sh600559" ;老白干
+        "sz000858" ;五粮液
+        "sz000568" ;泸州老窖
+        "sh600519" ;贵州茅台
+        "sz002049" ;紫光国微
+        "sz300750" ;宁德时代
+        "sz002594" ;比亚迪
+        "sz002709" ;天赐材料
+        "sz002460" ; zf锂业
+        "sh600585" ; 海螺水泥
+        "sh600819" ;耀皮玻璃
+        ))
+
+
+(佫 gen-180d.html strs)
