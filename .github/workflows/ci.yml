@@ -1,29 +1,47 @@
-on: [push, pull_request]
-name: CI
+name: bild-ghpage
+on:
+  schedule:
+    - cron: '0 2,6,8 * * *' # this is utc time, it is 20:30 in China.  20:30 <= 12:30 + 8
+  push:
+    branches:
+      - "master"
+
 jobs:
-  build:
-    name: "Build on Racket '${{ matrix.racket-version }}' (${{ matrix.racket-variant }})"
+  main:
     runs-on: ubuntu-latest
-    continue-on-error: ${{ matrix.experimental || false }}
     strategy:
-      fail-fast: false
       matrix:
-        racket-version: ["stable", "current"]
-        racket-variant: ["BC", "CS"]
-        include:
-          - racket-version: current
-            experimental: true
+        racket-version: ["stable"]
+        racket-variant: ["CS"]
+    name: main
     steps:
-      - uses: actions/checkout@v3.1.0
-      - uses: Bogdanp/setup-racket@v1.9.1
+      - uses: actions/checkout@master
+      - uses: szenius/set-timezone@v1.0
+        with:
+          timezoneLinux: "Asia/Shanghai"
+      - uses: Bogdanp/setup-racket@v1.5
         with:
           architecture: x64
-          distribution: full
+          distribution: full # or minimal
           variant: ${{ matrix.racket-variant }}
           version: ${{ matrix.racket-version }}
-      - name: Installing yjstock and its dependencies
-        run: raco pkg install --no-docs --auto --name yjstock
-      - name: Compiling yjstock and building its docs
-        run: raco setup --check-pkg-deps --unused-pkg-deps yjstock
-      - name: Testing yjstock
-        run: raco test -x -p yjstock
+      - name: install chinese lang fonts
+        run: |
+          #sudo apt-get -y install language-pack-zh*
+          #sudo apt-get -y install chinese*
+          sudo apt-get install ttf-wqy-microhei ttf-wqy-zenhei
+
+      - name: install deps
+        run: raco pkg install --auto
+
+      - name: build show.html index.html
+        run: ./main.rkt
+
+      - name: Deploy to GitHub Pages
+        if: success()
+        uses: crazy-max/ghaction-github-pages@v2.1.2
+        with:
+          target_branch: gh-pages
+          build_dir: public
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
