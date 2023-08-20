@@ -103,10 +103,10 @@
 
 (名 (gen-plotly-jscode div data)
     @~a{
-        const data = @(jsexpr->string data);
-        const layout = @(jsexpr->string (layout));
-        const config = @(jsexpr->string config);
-        Plotly.newPlot(@(~a div), data, layout, config);
+        Plotly.newPlot("@|div|",
+                       @(jsexpr->string data),
+                       @(jsexpr->string (layout)),
+                       @(jsexpr->string config))
         }
     )
 
@@ -130,7 +130,8 @@
     (􏿝 (􏾛 负􏸻) '("〇") 正􏸻))
 
 (名 config
-    (􏿰 ;; 'scrollZoom #t
+    (􏿰
+     ;; 'scrollZoom #t
      'responsive #t
      ;;locale "zh-CN"
      ;; 'editable #t
@@ -147,6 +148,24 @@
              ;; 'ticksuffix "$"
              ;; 'labelalias (􏿰 '|2023-08-01| "...革::::::")
              'gridwidth 1
+             ;; 'autorange #t
+             ;; 'range (􏿴 (date->iso8601 (-months (today) 6)) (date->iso8601 (today)))
+             ;; 'rangeselector (􏿰
+             ;;                 'buttons (􏿴 (􏿰
+             ;;                               'count 3
+             ;;                               'label "3月"
+             ;;                               'step "month"
+             ;;                               'stepmode "backward")
+             ;;                              (􏿰
+             ;;                               'count 6
+             ;;                               'label "6月"
+             ;;                               'step "month"
+             ;;                               'stepmode "backward"
+             ;;                               )
+             ;;                              (􏿰 'step "all")
+             ;;                              ))
+             ;; 'rangeslider (􏿴 (date->iso8601 (-years (today) 3)) (date->iso8601 (today)))
+             'type "date"
              )
      'yaxis (􏿰
              'title "卦"
@@ -163,13 +182,13 @@
              ;; 'gridwidth 1
              )
      'shapes 八卦线
-     'title "量价卦势图（日均半年）"
+     'title "卦势图"
      ;; 'font (􏿰 'size 12)
      'showlegend #t
      'height 1200
      'colorway (current-ploty-colorway)
      'modebar (􏿰 'add (􏿴 "hovercompare" "hoverclosest") )
-     ;; 'width 600
+     ;; 'width 900
      ; calendar "chinese"
      )
     )

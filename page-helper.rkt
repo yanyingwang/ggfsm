@@ -30,6 +30,8 @@
       ;; (script ([type "text/javascript"]
       ;; [src "styles/js/plotly-latest.min.js"]))
       (script ([type "text/javascript"]
+               [src ,(styles/js/ "bootstrap.bundle.min.js")]))
+      (script ([type "text/javascript"]
                [src ,(styles/js/ "plotly-2.25.2.min.js")]))
       (script ([type "text/javascript"]
                [src ,(styles/js/ "plotly-locale-zh-cn-latest.js")]))
