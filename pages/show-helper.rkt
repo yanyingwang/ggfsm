@@ -94,9 +94,9 @@
 (名 (thslink 股号)
     (􏼃 "http://basic.10jqka.com.cn/" 股号))
 
-(名 (compinfo 所 股号 英文全称 上市日期)
+(名 (compinfo 所 股号 中文简称 英文全称 上市日期)
     `(div
-      (h1 ,(~a 所 股号))
+      (h1 ,(~a 所 股号 中文简称))
       (div ([class "row justify-content-center"])
            (div ([class "col-12"]) ,(~a "英文全称：" 英文全称))
            (div ([class "col-12"]) ,(~a "公司上市日期：" 上市日期))
@@ -114,7 +114,7 @@
             '1yw "一年/周"
             '2yw "两年/周"
             '3yw "三年/周"))
-    `(ul ([class "nav justify-content-center nav-tabs"])
+    `(ul ([class "nav nav-pills justify-content-center"])
          ,@(佫 (λ (AP)
                  `(li ([class "nav-item"])
                       (a ([class ,(若 (勺=? (阳 AP) active) "nav-link active" "nav-link")]

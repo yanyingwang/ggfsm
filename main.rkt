@@ -53,3 +53,6 @@
 (hs300.html)
 (zz500.html)
 (shows.html "603259")
+(shows.html "002594") ;byd
+(shows.html "000568") ;lzlj
+(shows.html "600750") ;jzyy
