@@ -8,7 +8,8 @@
 
 (provide 沪股文 沪股文头
          深股文 深股文头
-         彐沪股 彐深股 彐股)
+         彐沪股 彐深股
+         彐股 彐股以名)
 
 ;; http://www.szse.cn/market/product/stock/list/index.html
 ;; http://www.szse.cn/certificate/individual/index.html?code=000001
@@ -69,11 +70,7 @@
     )
 
 (名 (彐股 S)
-    (尚 (句􏾝 (􏺔 S) 0 2)
-        [("SH")
-         (彐沪股 (句􏾝 S 2))]
-        [("SZ")
-         (彐深股 (句􏾝 S 2))]
-        [俖 (或 (彐沪股 S 2) ;; 2: 简称
-                (彐深股 S 5) ;; 5: 简称
-                )]))
+    (或 (彐沪股 S) (彐深股 S)))
+
+(名 (彐股以名 S)
+    (或 (彐沪股 S 2) (彐深股 S 5)))  ;; 2,5：简称，见文头

@@ -4,8 +4,9 @@
 
 (require racket/format
          ming ming/number
+         "pages/hs300.rkt"
+         "pages/zz500.rkt"
          "pages/show.rkt"
-         "pages/index.rkt"
          )
 
 
@@ -41,4 +42,14 @@
         ))
 
 (佫 show.html strs)
-(index.html strs)
+
+
+
+(private.html strs)
+
+
+
+
+(hs300.html)
+(zz500.html)
+(shows.html "603259")

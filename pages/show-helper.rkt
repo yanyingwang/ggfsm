@@ -1,7 +1,8 @@
 #lang racket/base
 
 (require racket/format
-         ming ming/number
+         ming ming/number ming/list
+         gregor
          "../64gua.rkt"
          "../plotly-helper.rkt")
 (provide xs
@@ -11,7 +12,7 @@
          plotly-data plotly-script
          sselink szselink suolink
          thslink gstlink
-         compinfo pills-tab
+         compinfo nav-tabs
          )
 
 (名 (xs 文)
@@ -88,74 +89,38 @@
         [俖 ""]
         ))
 
-(名 (gstlink 代码)
-    (􏼃 "https://gushitong.baidu.com/stock/ab-" 代码))
-(名 (thslink 代码)
-    (􏼃 "http://basic.10jqka.com.cn/" 代码))
+(名 (gstlink 股号)
+    (􏼃 "https://gushitong.baidu.com/stock/ab-" 股号))
+(名 (thslink 股号)
+    (􏼃 "http://basic.10jqka.com.cn/" 股号))
 
-(名 (compinfo p1 p2 p3
-              p4hf p4tt
-              p5hf p5tt
-              p6hf p6tt)
-    `(div ([class "row justify-content-start"])
-          (div ([class "col-12"]) ,p1)
-          (div ([class "col-12"]) ,p2)
-          (div ([class "col-12"]) ,p3)
-          (div ([class "col-12 p1-0"])
-               (a ([class "me-2"] [href ,p4hf] [target "_blank"]) ,p4tt)
-               (a ([class "me-2"] [href ,p5hf] [target "_blank"]) ,p5tt)
-               (a ([class "me-2"] [href ,p6hf] [target "_blank"]) ,p6tt)))
-    )
-
-(名 (pills-tab t1 c1 tcs)
+(名 (compinfo 所 股号 英文全称 上市日期)
     `(div
-      (ul
-       ([class "nav nav-pills mb-3 text-center justify-content-md-center"] [id "pills-tab"] [role "tablist"])
-       (li
-        ((class "nav-item") (role "presentation"))
-        (button
-         ((aria-controls "pills-t1")
-          (aria-selected "true")
-          (class "nav-link active")
-          (data-bs-target "#pills-t1")
-          (data-bs-toggle "pill")
-          (id "pills-t1-tab")
-          (role "tab")
-          (type "button"))
-         ,(~a t1)))
-       ,@(佫 (λ (tc)
-               `(li
-                 ((class "nav-item") (role "presentation"))
-                 (button
-                  ((aria-controls ,(~a "pills-" (阳 tc)))
-                   (aria-selected "false")
-                   (class "nav-link")
-                   (data-bs-target ,(~a "#pills-" (阳 tc)))
-                   (data-bs-toggle "pill")
-                   (id ,(~a "pills-" (阳 tc) "-tab"))
-                   (role "tab")
-                   (type "button"))
-                  ,(~a (阳 tc)))))
-             tcs)
-       )
-      (div
-       ((class "tab-content") (id "pills-tabContent"))
-       (div
-        ((aria-labelledby "pills-t1-tab")
-         (class "tab-pane fade show active")
-         (id "pills-t1")
-         (role "tabpanel")
-         (tabindex "0"))
-        ,c1)
-       ,@(佫 (λ (tc)
-               `(div
-                 ((aria-labelledby ,(~a "pills-" (阳 tc) "-tab"))
-                  (class "tab-pane fade")
-                  (id ,(~a "pills-" (阳 tc)))
-                  (role "tabpanel")
-                  (tabindex "0"))
-                 ,(阴 tc)))
-             tcs)
-       )
-      )
+      (h1 ,(~a 所 股号))
+      (div ([class "row justify-content-center"])
+           (div ([class "col-12"]) ,(~a "英文全称：" 英文全称))
+           (div ([class "col-12"]) ,(~a "公司上市日期：" 上市日期))
+           (div ([class "col-12"]) ,(~a "数据更新日期：" (~t (now #:tz "Asia/Shanghai") "yyyy-MM-dd HH:mm")))
+           (div ([class "col-12 p1-0"])
+                (a ([class "me-2"] [href ,(suolink 股号 所)] [target "_blank"]) "交易所")
+                (a ([class "me-2"] [href ,(gstlink 股号)] [target "_blank"]) "股市通")
+                (a ([class "me-2"] [href ,(thslink 股号)] [target "_blank"]) "同花顺F10")))))
+
+(名 (nav-tabs 股号 active)
+    (名 AL (􏿳
+            '3md "三月/日"
+            '6md "六月/日"
+            '1yd "一年/日"
+            '1yw "一年/周"
+            '2yw "两年/周"
+            '3yw "三年/周"))
+    `(ul ([class "nav justify-content-center nav-tabs"])
+         ,@(佫 (λ (AP)
+                 `(li ([class "nav-item"])
+                      (a ([class ,(若 (勺=? (阳 AP) active) "nav-link active" "nav-link")]
+                          ;; [aria-current ,(若 (勺=? (阳 P) active) "true" "false")]
+                          [href ,(~a 股号 "-" (阳 AP) ".html")]) ,(阴 AP)))
+                 )
+               AL)
+         )
     )

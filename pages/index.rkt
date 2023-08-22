@@ -4,7 +4,7 @@
          xml gregor
          ming
          "../paths.rkt"
-         "../stkexg.rkt"
+         "../suo.rkt"
          "../page-helper.rkt"
          )
 

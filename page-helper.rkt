@@ -1,10 +1,12 @@
 #lang at-exp racket/base
 
 (require racket/format
-         gregor
+         gregor xml
          ming ming/number
          "paths.rkt")
 (provide header
+         header0
+         gen-html
          )
 
 
@@ -38,7 +40,26 @@
       (script "Plotly.setPlotConfig({locale: 'zh-CN'})")
       (script ([type "text/javascript"]
                [src ,(styles/js/ "d3.v3.min.js")]))
-
       ))
 
 
+(名 (header0 title)
+    `(head
+      (title @,~a{@title - @(~t (now #:tz "Asia/Shanghai") "yyyy-MM-dd HH:mm")})
+      (meta ([charset "utf-8"]))
+      (meta ([name "viewport"]
+             [content "width=device-width, initial-scale=1"]))
+      (meta ([http-equiv "content-type"]
+             [content "text/html; charset=utf-8"]))
+      (link ([rel "stylesheet"]
+             [type "text/css"]
+             [title "bootstrap"]
+             [href ,(styles/css/ "bootstrap.min.css")]))
+      ))
+
+
+(名 (gen-html name xexpr)
+    (parameterize ([current-unescaped-tags html-unescaped-tags])
+      (with-output-to-file (public/ name ".html") #:exists 'replace
+        (lambda () (display (xexpr->string xexpr)))))
+    )
