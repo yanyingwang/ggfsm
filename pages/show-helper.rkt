@@ -97,22 +97,20 @@
 (名 (compinfo 所 股号 中文简称 英文全称 上市日期)
     `(div ([class "row text-center justify-content-center"])
           (h1 ,(~a 中文简称 "（" 股号 "）"))
-          (div ([class "col-12 mb-2"])
-               (td ,英文全称 ))
-          (div ([class "col-12 mb-2"])
+          (div ([class "col-12 mb-0"]) ,英文全称 )
+          (div ([class "col-12 mb-0"]) ,(~a "数据更新日期：" (~t (now #:tz "Asia/Shanghai") "yyyy-MM-dd HH:mm")))
+          (div ([class "col-12 mb-0"])
                (a ([class "me-2"] [href ,(suolink 股号 所)] [target "_blank"]) "在交易所")
                (a ([class "me-2"] [href ,(gstlink 股号)] [target "_blank"]) "股市通")
                (a ([class "me-2"] [href ,(thslink 股号)] [target "_blank"]) "同花顺F10"))
-          (div ([class "col-md-6 offset-md-2"])
-               (table ([class "table"])
+          (div ([class "col-md-6 offset-md-1"])
+               (table ([class "table text-center"])
                       (tbody
                        (tr (td ,(~a "交易所：" 所))
-                           (td ,(~a "上市日期：" 上市日期)))
-                       (tr (td ,(~a "板块：森森" ))
-                           (td ,(~a "数据更新日期：" (~t (now #:tz "Asia/Shanghai") "yyyy-MM-dd HH:mm")))
-                           )
-                       )
-                      )))
+                           (td ,(~a "上市日期：" 上市日期))))))
+
+          )
+
     )
 
 (名 (nav-tabs 股号 active)
@@ -123,7 +121,7 @@
             '1yw "一年/周"
             '2yw "两年/周"
             '3yw "三年/周"))
-    `(ul ([class "nav nav-underline justify-content-center"])
+    `(ul ([class "nav nav-pills justify-content-center"])
          ,@(佫 (λ (AP)
                  `(li ([class "nav-item"])
                       (a ([class ,(若 (勺=? (阳 AP) active) "nav-link active" "nav-link")]

@@ -2,13 +2,21 @@
 
 (require racket/format
          ming)
-(provide h1 table)
+(provide h1 table table1 table2)
 
-(名 thead
+(名 th1
     '(tr
       (th ((scope "col")) "代码")
       (th ((scope "col")) "名称")
       (th ((scope "col")) "交易所")
+      (th ((scope "col")) "权重(%)")
+      ))
+
+(名 th2
+    '(tr
+      (th ((scope "col")) "代码")
+      (th ((scope "col")) "名称")
+      (th ((scope "col")) "行业")
       (th ((scope "col")) "权重(%)")
       ))
 
@@ -20,11 +28,11 @@
      (hr))
     )
 
-(名 (table t c)
+(名 (table t c th)
     `(div
       (h2 ,t)
       (table ([class "table table-striped table-hover text-center"]) ;; table-borderless table-bordered table-striped table-hover
-             (thead ,thead)
+             (thead ,th)
              (tbody ([class "table-group-divider"])
                     ,@(佫 (λ (L)
                             `(tr #;(th ((scope "row")) "1")
@@ -36,3 +44,9 @@
                           c))
              ))
     )
+
+(名 (table1 t c)
+    (table t c th1))
+
+(名 (table2 t c)
+    (table t c th2))

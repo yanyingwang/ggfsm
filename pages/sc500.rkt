@@ -3,33 +3,35 @@
 (require racket/format
          gregor
          ming
+         "../paths.rkt"
          "../page-helper.rkt"
-         "../zz500.rkt"
+         "../sc500.rkt"
          "index-helper.rkt"
          )
-(provide zz500.html)
+(provide sc500.html)
 
 (define page
   `(html
-    ,(header0 (~a "中证500"))
+    ,(header0 (~a "深成500"))
+
     (body
      (div ([class "container-fluid my-5 text-center"])
-          ,(h1 "中证500" "https://www.csindex.com.cn/zh-CN/indices/index-detail/000905#/indices/family/detail?indexCode=000905")
+          ,(h1 "深成500" "http://www.cnindex.com.cn/module/index-detail.html?act_menu=1&indexCode=399001")
           (div ([class "row mx-5 p-1 row-cols-2.4 justify-content-center"])
                (div ([class "col"])
-                    ,(table1 "1~100" zz1))
+                    ,(table2 "1~100" sc1))
                (div ([class "col"])
-                    ,(table1 "100~200" zz2))
+                    ,(table2 "100~200" sc2))
                (div ([class "col"])
-                    ,(table1 "200~300" zz3))
+                    ,(table2 "200~300" sc3))
                (div ([class "col"])
-                    ,(table1 "300~400" zz4))
+                    ,(table2 "300~400" sc4))
                (div ([class "col"])
-                    ,(table1 "400~500" zz5))
+                    ,(table2 "400~500" sc5))
                ))
      )
     )
   )
 
-(名 (zz500.html)
-    (gen-html "zz500" page))
+(名 (sc500.html)
+    (gen-html "sc500" page))

@@ -6,6 +6,8 @@
          ming ming/number
          "pages/hs300.rkt"
          "pages/zz500.rkt"
+         "pages/sz50.rkt"
+         "pages/zc500.rkt"
          "pages/show.rkt"
          )
 
@@ -50,8 +52,7 @@
 
 
 
-(hs300.html)
-(zz500.html)
+(hs300.html) (zz500.html) (sz50.html) (sc500.html)
 (shows.html "603259")
 (shows.html "002594") ;byd
 (shows.html "000568") ;lzlj
