@@ -6,12 +6,13 @@
          ming ming/number ming/list
          gregor
          "suo.rkt"
+         "pages/index.rkt"
          "pages/hs300.rkt"
          "pages/zz500.rkt"
          "pages/sz50.rkt"
          "pages/sc500.rkt"
-         "pages/shows.rkt"
          "pages/redirects.rkt"
+         "pages/shows.rkt"
          "hs300.rkt"
          "zz500.rkt"
          "sz50.rkt"
@@ -19,7 +20,7 @@
          )
 
 ;; gen indexes
-(hs300.html) (zz500.html) (sz50.html) (sc500.html)
+(index.html) (hs300.html) (zz500.html) (sz50.html) (sc500.html)
 
 
 ;; stock lists

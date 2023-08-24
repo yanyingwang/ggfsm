@@ -20,11 +20,13 @@
       (th ((scope "col")) "权重(%)")
       ))
 
-(名 (h1 t h)
+(名 (h1 t [h #f])
     `(div
      (h1 ([class "pt-3"]) ,t
-         (sup ([class "ms-1"])
-          (a ([class "fs-6 text-reset"] [href ,h] [target "_blank"]) "官网")))
+         ,(若 h
+              `(sup ([class "ms-1"])
+                    (a ([class "fs-6 text-reset"] [href ,h] [target "_blank"]) "官网"))
+             ""))
      (hr))
     )
 
