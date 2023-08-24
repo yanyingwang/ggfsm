@@ -73,7 +73,7 @@
 
 ;; in the case of sina api returning errors for shows.html
 (名 (sleepy-shows.html 股号)
-    (并 (printf "股号：~a~n" 股号) (shows.html 股号) (sleep 3)))
+    (并 (printf "股号：~a~n" 股号) (shows.html 股号) (sleep 2)))
 
 ;; (名 股号 "600819")
 ;; (shows.html "600819")

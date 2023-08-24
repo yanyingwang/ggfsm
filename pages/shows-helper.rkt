@@ -101,9 +101,9 @@
           (div ([class "col-12 mb-0"]) ,英文全称 )
           (div ([class "col-12 mb-0"]) ,(~a "数据更新日期：" (~t (now #:tz "Asia/Shanghai") "yyyy-MM-dd HH:mm")))
           (div ([class "col-12 mb-0"])
-               (a ([class "me-2"] [href ,(suolink 股号 所)] [target "_blank"]) "在交易所")
-               (a ([class "me-2"] [href ,(gstlink 股号)] [target "_blank"]) "股市通")
-               (a ([class "me-2"] [href ,(thslink 股号)] [target "_blank"]) "同花顺F10"))
+               (a ([class "me-3"] [href ,(suolink 股号 所)] [target "_blank"]) "在交易所")
+               (a ([class "me-3"] [href ,(gstlink 股号)] [target "_blank"]) "股市通")
+               (a ([class "me-3"] [href ,(thslink 股号)] [target "_blank"]) "同花顺F10"))
           (div ([class "col-md-6"])
                (table ([class "table text-center"])
                       (tbody

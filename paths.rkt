@@ -10,6 +10,8 @@
 (define-runtime-path public-path "public/")
 (define-runtime-path styles-path "styles/")
 
+(并 (getenv "CI_BUILDING")
+    (set! styles-path "styles/"))
 
 (名 (csv/ S)
     (~a csv-path S)

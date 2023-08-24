@@ -34,8 +34,10 @@ jobs:
       - name: install deps
         run: raco pkg install --auto
 
-      - name: build show.html index.html
-        run: ./main.rkt
+      - name: build *.html
+        run: cp -a styles public && ./main.rkt
+        env:
+          CI_BUILDING: "true"
 
       - name: Deploy to GitHub Pages
         if: success()
