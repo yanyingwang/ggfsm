@@ -11,23 +11,19 @@
          "../page-helper.rkt"
          "shows-helper.rkt"
          )
-(provide shows.html)
+(provide shows.html
+         sleepy-shows.html)
 
 (require "../gu-helper.rkt")
 
 (名 (pages 股号)
-    (printf "====> 股号：~a~n" 股号)
     (名 企文 (彐股 股号)) ; 企：企业
-    (printf "====> 企文：~a~n" 企文)
-    (printf "====> 股指：~a~n" (股指 股号))
-
     (名 所 (􏿰弔 企文 '所))
     (名 所号 (~a (􏿰弔 企文 '所) (􏿰弔 企文 '代码)))
     (名 代码 (􏿰弔 企文 '代码))
     (名 简称 (􏿰弔 企文 '简称))
     (名 英文全称 (􏿰弔 企文 '英文全称))
     (名 上市日期 (􏿰弔 企文 '上市日期))
-    (printf "====> \"~a\" ;; ~a(~a) ~n" 股号 简称 (股指 股号))
 
     ;; 云：未处理的数据
     ;; 文：规整的数据，加工过的数据
@@ -70,11 +66,14 @@
     )
 
 
-
 (名 (shows.html 股号)
-    (各 (λ (AL) (gen-html (@~a (􏿰弔 (彐股 股号) '简称) "-" (阳 AL)) (阴 AL)))
+    (各 (λ (AL) (gen-html (~a 股号 "-" (阳 AL)) (阴 AL)))
         (pages 股号))
     )
+
+;; in the case of sina api returning errors for shows.html
+(名 (sleepy-shows.html 股号)
+    (并 (printf "股号：~a~n" 股号) (shows.html 股号) (sleep 3)))
 
 ;; (名 股号 "600819")
 ;; (shows.html "600819")

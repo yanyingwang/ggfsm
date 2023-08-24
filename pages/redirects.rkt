@@ -11,13 +11,12 @@
     (名 股名
         (􏿰弔 (彐股 股号) '简称))
     (名 URL
-        (~a 股名 "-3md.html"))
+        (~a 股号 "-3md.html"))
     (名 page
         `(html
           (head
            (meta ([http-equiv "Refresh"]  [content ,(~a "0; URL=" URL)])))
-          (body
-           (div ,(~a "将重定向至：" URL)))))
+          (body)))
     (gen-html (~a 股号) page)
     (gen-html (~a 股名) page)
     )

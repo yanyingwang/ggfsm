@@ -104,7 +104,7 @@
                (a ([class "me-2"] [href ,(suolink 股号 所)] [target "_blank"]) "在交易所")
                (a ([class "me-2"] [href ,(gstlink 股号)] [target "_blank"]) "股市通")
                (a ([class "me-2"] [href ,(thslink 股号)] [target "_blank"]) "同花顺F10"))
-          (div ([class "col-md-6 offset-md-1"])
+          (div ([class "col-md-6"])
                (table ([class "table text-center"])
                       (tbody
                        (tr (td ,(~a "交易所：" 所))
@@ -112,9 +112,7 @@
                        (tr (td ,(~a "板块：" (板块 股号)))
                            (td ,(~a "股指：" (􏼪 (股指 股号) "/")))
                            ))))
-
           )
-
     )
 
 (名 (nav-tabs 股号 active)
