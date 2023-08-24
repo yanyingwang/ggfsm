@@ -4,7 +4,8 @@
          ming ming/number ming/list
          gregor
          "../64gua.rkt"
-         "../plotly-helper.rkt")
+         "../plotly-helper.rkt"
+         "../gu-helper.rkt")
 (provide xs
          ys/价卦 ys/并卦 ys/量卦
          ts/量 ts/并卦
@@ -107,7 +108,10 @@
                (table ([class "table text-center"])
                       (tbody
                        (tr (td ,(~a "交易所：" 所))
-                           (td ,(~a "上市日期：" 上市日期))))))
+                           (td ,(~a "上市日期：" 上市日期)))
+                       (tr (td ,(~a "板块：" (板块 股号)))
+                           (td ,(~a "股指：" (􏼪 (股指 股号) "/")))
+                           ))))
 
           )
 

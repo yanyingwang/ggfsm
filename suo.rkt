@@ -9,7 +9,8 @@
 (provide 沪股文 沪股文头
          深股文 深股文头
          彐沪股 彐深股
-         彐股 彐股以名)
+         彐股 彐股以名
+         )
 
 ;; http://www.szse.cn/market/product/stock/list/index.html
 ;; http://www.szse.cn/certificate/individual/index.html?code=000001
@@ -17,6 +18,11 @@
 ;; http://www.sse.com.cn/assortment/stock/list/share/
 ;; http://www.sse.com.cn/assortment/stock/list/info/company/index.shtml?COMPANY_CODE=600000
 ;; http://www.sse.com.cn/market/stockdata/activity/main/
+;; -- wiki
+;; https://zh.wikipedia.org/zh-hans/Category:%E4%B8%8A%E5%B8%82%E5%85%AC%E5%8F%B8%E5%88%97%E8%A1%A8
+;; https://zh.wikipedia.org/zh-hans/%E4%B8%8A%E6%B5%B7%E8%AF%81%E5%88%B8%E4%BA%A4%E6%98%93%E6%89%80%E4%B8%BB%E6%9D%BF%E4%B8%8A%E5%B8%82%E5%85%AC%E5%8F%B8%E5%88%97%E8%A1%A8
+;; https://zh.wikipedia.org/zh-hans/%E6%B7%B1%E5%9C%B3%E8%AF%81%E5%88%B8%E4%BA%A4%E6%98%93%E6%89%80%E4%B8%BB%E6%9D%BF%E4%B8%8A%E5%B8%82%E5%85%AC%E5%8F%B8%E5%88%97%E8%A1%A8
+;; https://zh.wikipedia.org/zh-hans/Category:%E4%B8%AD%E5%8D%8E%E4%BA%BA%E6%B0%91%E5%85%B1%E5%92%8C%E5%9B%BD%E4%BC%81%E4%B8%9A%E5%88%97%E8%A1%A8
 
 (名 shse-reader
     (make-csv-reader
@@ -58,14 +64,14 @@
 (名 (彐沪股 S [N 0]) ;; 0: A股代码，见文头
     (名 文 (􏹌 (λ (L) (􏸶? (弔 L N) S))
                沪股文))
-    (且 文
+    (并 文
         (􏿰^ (佫 双 头 (双 'SH (伄 文 0 2 4 5)))))
     )
 
 (名 (彐深股 S [N 4]) ;; 4: A股代码，见文头
     (名 文 (􏹌 (λ (L) (􏸶? (􏸵 (弔 L N)) S))
                深股文))
-    (且 文
+    (并 文
         (􏿰^ (佫 双 头 (双 'SZ (伄 文 4 5 2 6)))))
     )
 
@@ -74,3 +80,5 @@
 
 (名 (彐股以名 S)
     (或 (彐沪股 S 2) (彐深股 S 5)))  ;; 2,5：简称，见文头
+
+
