@@ -21,25 +21,25 @@
       (link ([rel "stylesheet"]
              [type "text/css"]
              [title "bootstrap"]
-             [href ,(styles/css/ "bootstrap.min.css")]))
+             [href ,(css/ "bootstrap.min.css")]))
       (link ([rel "stylesheet"]
              [type "text/css"]
              [title "default"]
-             [href ,(styles/css/ "main.css")]))
+             [href ,(css/ "main.css")]))
       ;; (style "body { background-color: linen; }")
       ;; (script ([type "text/javascript"]
       ;;          [src "https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"]))
       ;; (script ([type "text/javascript"]
       ;; [src "styles/js/plotly-latest.min.js"]))
       (script ([type "text/javascript"]
-               [src ,(styles/js/ "bootstrap.bundle.min.js")]))
+               [src ,(js/ "bootstrap.bundle.min.js")]))
       (script ([type "text/javascript"]
-               [src ,(styles/js/ "plotly-2.25.2.min.js")]))
+               [src ,(js/ "plotly-2.25.2.min.js")]))
       (script ([type "text/javascript"]
-               [src ,(styles/js/ "plotly-locale-zh-cn-latest.js")]))
+               [src ,(js/ "plotly-locale-zh-cn-latest.js")]))
       (script "Plotly.setPlotConfig({locale: 'zh-CN'})")
       (script ([type "text/javascript"]
-               [src ,(styles/js/ "d3.v3.min.js")]))
+               [src ,(js/ "d3.v3.min.js")]))
       ))
 
 
@@ -54,7 +54,7 @@
       (link ([rel "stylesheet"]
              [type "text/css"]
              [title "bootstrap"]
-             [href ,(styles/css/ "bootstrap.min.css")]))
+             [href ,(css/ "bootstrap.min.css")]))
       ))
 
 

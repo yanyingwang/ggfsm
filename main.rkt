@@ -2,9 +2,7 @@
 
 #lang racket/base
 
-(require racket/format
-         ming ming/number ming/list
-         gregor
+(require ming ming/list
          "suo.rkt"
          "pages/index.rkt"
          "pages/hs300.rkt"
@@ -22,7 +20,6 @@
 ;; gen indexes
 (index.html) (hs300.html) (zz500.html) (sz50.html) (sc500.html)
 
-
 ;; stock lists
 (名 云股 ;; 云：杂乱未处理的数据
     (𠝤 (􏺈 (􏿝 zz500 sz50 sc500 hs300))))
@@ -32,5 +29,4 @@
 
 ;; gen shows
 (各 redirects.html 文股)
-(各 sleepy-shows.html 文股)
-
+(各 sleepy-shows.html (􏾝 文股 0 1))

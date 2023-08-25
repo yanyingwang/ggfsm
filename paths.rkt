@@ -2,16 +2,14 @@
 
 (require racket/runtime-path racket/format
          ming)
-(provide csv-path public-path styles-path
-         csv/ public/
-         styles/ styles/css/ styles/js/)
+(provide csv/ public/ css/ js/)
 
 (define-runtime-path csv-path "csv/")
 (define-runtime-path public-path "public/")
 (define-runtime-path styles-path "styles/")
 
 (并 (getenv "CI_BUILDING")
-    (set! styles-path "styles/"))
+    (set! styles-path ""))
 
 (名 (csv/ S)
     (~a csv-path S)
@@ -25,10 +23,10 @@
     (~a styles-path S)
     )
 
-(名 (styles/css/ S)
+(名 (css/ S)
     (~a styles-path "css/" S)
     )
 
-(名 (styles/js/ S)
+(名 (js/ S)
     (~a styles-path "js/" S)
     )

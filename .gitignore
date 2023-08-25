@@ -6,4 +6,5 @@ compiled/
 /doc/
 
 /public/*
-!/public/styles
+!/public/.keep
+!/public/styles/.keep
