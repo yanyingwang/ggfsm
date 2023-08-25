@@ -5,6 +5,7 @@
 (require ming ming/list
          "suo.rkt"
          "pages/index.rkt"
+         "pages/about.rkt"
          "pages/hs300.rkt"
          "pages/zz500.rkt"
          "pages/sz50.rkt"
@@ -18,7 +19,8 @@
          )
 
 ;; gen indexes
-(index.html) (hs300.html) (zz500.html) (sz50.html) (sc500.html)
+(index.html) (about.html)
+(hs300.html) (zz500.html) (sz50.html) (sc500.html)
 
 ;; stock lists
 (名 云股 ;; 云：杂乱未处理的数据

@@ -2,7 +2,7 @@
 
 (require racket/runtime-path racket/format
          ming ming/string)
-(provide csv/ public/ css/ js/)
+(provide csv/ public/ styles/ css/ js/)
 
 (define-runtime-path csv-path "csv/")
 (define-runtime-path public-path "public/")

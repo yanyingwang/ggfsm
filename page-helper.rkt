@@ -43,7 +43,7 @@
       ))
 
 (名 topnavs
-    `(nav ((class "navbar bg-primary bg-gradient navbar-expand-lg bg-body-tertiary"))
+    `(nav ((class "navbar bg-primary-subtle bg-gradient navbar-expand-lg bg-body-tertiary"))
           (div ((class "container"))
                (a ((class "navbar-brand") (href "index.html")) "GGFSM")
                (button ((aria-controls "navbarSupportedContent") (aria-expanded "false") (aria-label "Toggle navigation")
@@ -68,16 +68,16 @@
                                 (li (a ((class "dropdown-item") (href "sz50.html")) "上证50"))
                                 (li (a ((class "dropdown-item") (href "sc500.html")) "深成500"))))
                         (li ((class "nav-item"))
-                            (a ((class "nav-link text-black-50") (href "https://github.com/yanyingwang/ggfsm/")) "关于/源码"))
+                            (a ((class "nav-link text-black-50") (href "about.html")) "关于"))
                         )
                     (form
-                     ((class "d-flex") (role "search"))
+                     ((class "d-flex mb-0") (role "search"))
                      (input
                       ((aria-label "Search")
                        (class "form-control me-2")
-                       (placeholder "Search")
+                       (placeholder "输入股票代码或简称")
                        (type "search")))
-                     (button ((class "btn btn-outline-success") (type "submit")) "Search")
+                     (button ((class "btn btn-outline-success") (type "submit")) "转至")
                      )
                     )
                ))
