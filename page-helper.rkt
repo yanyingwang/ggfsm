@@ -5,10 +5,10 @@
          ming ming/number
          "paths.rkt")
 (provide header
-         header0
+         topnavs
          gen-html
+         wrapped
          )
-
 
 (名 (header title)
     `(head
@@ -42,21 +42,56 @@
                [src ,(js/ "d3.v3.min.js")]))
       ))
 
+(名 topnavs
+    `(nav ((class "navbar bg-primary bg-gradient navbar-expand-lg bg-body-tertiary"))
+          (div ((class "container"))
+               (a ((class "navbar-brand") (href "index.html")) "GGFSM")
+               (button ((aria-controls "navbarSupportedContent") (aria-expanded "false") (aria-label "Toggle navigation")
+                        (data-bs-target "#navbarSupportedContent") (data-bs-toggle "collapse")
+                        (class "navbar-toggler") (type "button"))
+                       (span ((class "navbar-toggler-icon"))))
+               (div ((class "collapse navbar-collapse") (id "navbarSupportedContent"))
+                    (ul ((class "navbar-nav me-auto mb-2 mb-lg-0"))
+                        (li ((class "nav-item"))
+                            (a ((aria-current "page") (class "nav-link active") (href "index.html")) "自选"))
+                        (li ((class "nav-item dropdown"))
+                            (a ((aria-expanded "false")
+                                (class "nav-link dropdown-toggle")
+                                (data-bs-toggle "dropdown")
+                                (href "#")
+                                (role "button"))
+                               "索引")
+                            (ul ((class "dropdown-menu"))
+                                (li (a ((class "dropdown-item") (href "hs300.html")) "沪深300"))
+                                (li (a ((class "dropdown-item") (href "zz500.html")) "中证500"))
+                                (li (hr ((class "dropdown-divider"))))
+                                (li (a ((class "dropdown-item") (href "sz50.html")) "上证50"))
+                                (li (a ((class "dropdown-item") (href "sc500.html")) "深成500"))))
+                        (li ((class "nav-item"))
+                            (a ((class "nav-link text-black-50") (href "https://github.com/yanyingwang/ggfsm/")) "关于/源码"))
+                        )
+                    (form
+                     ((class "d-flex") (role "search"))
+                     (input
+                      ((aria-label "Search")
+                       (class "form-control me-2")
+                       (placeholder "Search")
+                       (type "search")))
+                     (button ((class "btn btn-outline-success") (type "submit")) "Search")
+                     )
+                    )
+               ))
+    )
 
-(名 (header0 title)
-    `(head
-      (title @,~a{@title - @(~t (now #:tz "Asia/Shanghai") "yyyy-MM-dd HH:mm")})
-      (meta ([charset "utf-8"]))
-      (meta ([name "viewport"]
-             [content "width=device-width, initial-scale=1"]))
-      (meta ([http-equiv "content-type"]
-             [content "text/html; charset=utf-8"]))
-      (link ([rel "stylesheet"]
-             [type "text/css"]
-             [title "bootstrap"]
-             [href ,(css/ "bootstrap.min.css")]))
-      ))
-
+(名 (wrapped title . xexprs)
+    `(html
+      ,(header (~a title))
+      (body
+       ,topnavs
+       ,@xexprs
+       )
+      )
+    )
 
 (名 (gen-html name xexpr)
     (parameterize ([current-unescaped-tags html-unescaped-tags])

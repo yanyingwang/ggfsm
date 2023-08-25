@@ -21,34 +21,31 @@
     `(td (a ([href ,(~a (阳 L) ".html")]) ,(~a (阴 L)))))
 
 (名 page
-  `(html
-    ,(header0 (~a "索引"))
-    (body
-     (div ([class "container my-5 text-center"])
-          ,(h1 "索引")
-          (div ([class "row justify-content-center"])
-               (div ([class "col-4"])
-                    (table ([class "table text-center"])
-                           (tbody
-                            (tr
-                             (td (a ([href "hs300.html"]) "沪深300"))
-                             (td (a ([href "zz500.html"]) "中证500"))
-                             (td (a ([href "sz50.html"]) "上证50"))
-                             (td (a ([href "sc500.html"]) "深成500"))
-                             )
-                            )))
-               (div ([class "width-100"]))
-               (div ([class "col-8"])
-                    (table ([class "table text-center"])
-                           (tbody
-                            (tr ,@(佫 tda AL1))
-                            (tr ,@(佫 tda AL2))
-                            )))
-               )
-          )
-     )
+    (wrapped
+     "索引"
+     `(div ([class "container my-5 text-center"])
+           ,(h1 "索引")
+           (div ([class "row justify-content-center"])
+                (div ([class "col-4"])
+                     (table ([class "table text-center"])
+                            (tbody
+                             (tr
+                              (td (a ([href "hs300.html"]) "沪深300"))
+                              (td (a ([href "zz500.html"]) "中证500"))
+                              (td (a ([href "sz50.html"]) "上证50"))
+                              (td (a ([href "sc500.html"]) "深成500"))
+                              )
+                             )))
+                (div ([class "width-100"]))
+                (div ([class "col-8"])
+                     (table ([class "table text-center"])
+                            (tbody
+                             (tr ,@(佫 tda AL1))
+                             (tr ,@(佫 tda AL2))
+                             )))
+                )
+           ))
     )
-  )
 
 (名 (index.html)
     (gen-html "index" page))

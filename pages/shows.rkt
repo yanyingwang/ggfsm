@@ -43,18 +43,15 @@
     (名 周文/一年 (攸以卦 周云/一年))
 
     (名 (html 标 文)
-        `(html
-          ,(header (~a "量价卦势图" "-" 代码 简称))
-          (body
-           (div ([class "container mt-5"])
-                ,(compinfo 所 代码 简称 英文全称 上市日期))
-           (div ([class "container-fluid mt-3"])
-                ,(nav-tabs 代码 标)
-                (div ([id ,(~a 标)])))
-           )
-          ,(plotly-script 标 文)
-          ;; (script ([type "text/javascript"] [src "myplot2.js"]))
-          )
+        (wrapped
+         (~a "量价卦势图" "-" 代码 简称)
+         `(div ([class "container mt-5"])
+               ,(compinfo 所 代码 简称 英文全称 上市日期))
+         `(div ([class "container-fluid mt-3"])
+               ,(nav-tabs 代码 标)
+               (div ([id ,(~a 标)])))
+         (plotly-script 标 文)
+         )
         )
     (􏿳 '3md (html '3md 日文/三月)
         '6md (html '6md 日文/六月)

@@ -11,21 +11,17 @@
 (provide hs300.html)
 
 (define page
-  `(html
-    ,(header0 (~a "沪深300"))
-
-    (body
-     (div ([class "container my-5 text-center"])
-          ,(h1 "沪深300" "https://www.csindex.com.cn/en/indices/index-detail/000300#/indices/family/detail?indexCode=000300")
-          (div ([class "row row-cols-4 justify-content-center"])
-               (div ([class "col"])
-                    ,(table1 "1~100" hs1))
-               (div ([class "col"])
-                    ,(table1 "100~200" hs2))
-               (div ([class "col"])
-                    ,(table1 "200~300" hs3))))
-     )
-    )
+  (wrapped
+   "沪深300"
+   `(div ([class "container my-5 text-center"])
+         ,(h1 "沪深300" "https://www.csindex.com.cn/en/indices/index-detail/000300#/indices/family/detail?indexCode=000300")
+         (div ([class "row row-cols-4 justify-content-center"])
+              (div ([class "col"])
+                   ,(table1 "1~100" hs1))
+              (div ([class "col"])
+                   ,(table1 "100~200" hs2))
+              (div ([class "col"])
+                   ,(table1 "200~300" hs3)))))
   )
 
 (名 (hs300.html)
