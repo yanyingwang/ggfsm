@@ -3,7 +3,11 @@
 (require racket/format
          gregor xml
          ming ming/number
-         "paths.rkt")
+         "paths.rkt"
+         "hs300.rkt"
+         "zz500.rkt"
+         "sz50.rkt"
+         "sc500.rkt")
 (provide header
          topnavs
          gen-html
@@ -42,13 +46,19 @@
                [src ,(js/ "d3.v3.min.js")]))
       ))
 
+(名 topbar-input-options
+    `(datalist ([id "topbar-input-options"])
+               ,@(佫 (λ (S) `(option ([value ,(~a S)])))
+                     (􏿝 (𠝤 (佫 甲 (􏿝 zz500 sz50 sc500 hs300)))
+                         (𠝤 (佫 乙 (􏿝 zz500 sz50 sc500 hs300))))))
+    )
 (名 topnavs
     `(nav ((class "navbar bg-primary-subtle bg-gradient navbar-expand-lg bg-body-tertiary"))
           (div ((class "container"))
                (a ((class "navbar-brand") (href "index.html")) "GGFSM")
                (button ((aria-controls "navbarSupportedContent") (aria-expanded "false") (aria-label "Toggle navigation")
-                        (data-bs-target "#navbarSupportedContent") (data-bs-toggle "collapse")
-                        (class "navbar-toggler") (type "button"))
+                                                                 (data-bs-target "#navbarSupportedContent") (data-bs-toggle "collapse")
+                                                                 (class "navbar-toggler") (type "button"))
                        (span ((class "navbar-toggler-icon"))))
                (div ((class "collapse navbar-collapse") (id "navbarSupportedContent"))
                     (ul ((class "navbar-nav me-auto mb-2 mb-lg-0"))
@@ -68,17 +78,17 @@
                                 (li (a ((class "dropdown-item") (href "sz50.html")) "上证50"))
                                 (li (a ((class "dropdown-item") (href "sc500.html")) "深成500"))))
                         (li ((class "nav-item"))
-                            (a ((class "nav-link text-black-50") (href "about.html")) "关于"))
-                        )
-                    (form
-                     ((class "d-flex mb-0") (role "search"))
-                     (input
-                      ((aria-label "Search")
-                       (class "form-control me-2")
-                       (placeholder "输入股票代码或简称")
-                       (type "search")))
-                     (button ((class "btn btn-outline-success") (type "submit")) "转至")
-                     )
+                            (a ((class "nav-link text-black-50") (href "about.html")) "关于")))
+                    (div ([class "d-flex mb-0"]  [method "get"])
+                         (input ([class "form-control me-2"]
+                                 [id "topbar-input-jsoc"]
+                                 [name "url"] [type "text"]
+                                 [placeholder "输入股票代码或简称"]
+                                 [list "topbar-input-options"]))
+                         ,topbar-input-options
+                         (button ([onclick "window.location.href = document.getElementById('topbar-input-jsoc').value + '.html'"]
+                                  [class "btn btn-outline-success"]) "入")
+                         )
                     )
                ))
     )
@@ -98,3 +108,4 @@
       (with-output-to-file (public/ name ".html") #:exists 'replace
         (lambda () (display (xexpr->string xexpr)))))
     )
+
