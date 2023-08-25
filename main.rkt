@@ -29,4 +29,4 @@
 
 ;; gen shows
 (各 redirects.html 文股)
-(各 sleepy-shows.html (􏾝 文股 0 1))
+(各 sleepy-shows.html 文股)

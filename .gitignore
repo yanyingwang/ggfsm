@@ -7,4 +7,3 @@ compiled/
 
 /public/*
 !/public/.keep
-!/public/styles/.keep
