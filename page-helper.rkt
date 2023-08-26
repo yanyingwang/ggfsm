@@ -53,7 +53,7 @@
                              (􏿝 zz500 sz50 sc500 hs300)))))
     )
 (名 topnavs
-    `(nav ((class "navbar bg-primary-subtle bg-gradient navbar-expand-lg bg-body-tertiary"))
+    `(nav ((class "navbar bg-primary-subtle navbar-expand-lg bg-body-tertiary"))
           (div ((class "container"))
                (a ((class "navbar-brand") (href "index.html")) "GGFSM")
                (button ((aria-controls "navbarSupportedContent") (aria-expanded "false") (aria-label "Toggle navigation")

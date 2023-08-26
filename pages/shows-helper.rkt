@@ -120,9 +120,9 @@
             '3md "三月/日"
             '6md "六月/日"
             '1yd "一年/日"
-            '1yw "一年/周"
             '2yw "两年/周"
-            '3yw "三年/周"))
+            '3yw "三年/周"
+            '5yw "五年/周"))
     `(ul ([class "nav nav-pills justify-content-center"])
          ,@(佫 (λ (AP)
                  `(li ([class "nav-item"])
