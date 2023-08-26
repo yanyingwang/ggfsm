@@ -49,8 +49,8 @@
 (名 topbar-input-options
     `(datalist ([id "topbar-input-options"])
                ,@(佫 (λ (S) `(option ([value ,(~a S)])))
-                     (􏿝 (𠝤 (佫 甲 (􏿝 zz500 sz50 sc500 hs300)))
-                         (𠝤 (佫 乙 (􏿝 zz500 sz50 sc500 hs300))))))
+                     (𠝤 (佫 (λ (L) (~a (乙 L) "（"  (甲 L) "）"))
+                             (􏿝 zz500 sz50 sc500 hs300)))))
     )
 (名 topnavs
     `(nav ((class "navbar bg-primary-subtle bg-gradient navbar-expand-lg bg-body-tertiary"))
@@ -86,7 +86,7 @@
                                  [placeholder "输入股票代码或简称"]
                                  [list "topbar-input-options"]))
                          ,topbar-input-options
-                         (button ([onclick "window.location.href = document.getElementById('topbar-input-jsoc').value + '.html'"]
+                         (button ([onclick "window.location.href = document.getElementById('topbar-input-jsoc').value.split('（').shift() + '.html'"]
                                   [class "btn btn-outline-success"]) "入")
                          )
                     )

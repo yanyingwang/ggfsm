@@ -14,7 +14,7 @@
    "中证500"
    `(div ([class "container-fluid my-5 text-center"])
          ,(h1 "中证500" "https://www.csindex.com.cn/zh-CN/indices/index-detail/000905#/indices/family/detail?indexCode=000905")
-         (div ([class "row mx-5 p-1 row-cols-2.4 justify-content-center"])
+         (div ([class "row"])
               (div ([class "col"])
                    ,(table1 "1~100" zz1))
               (div ([class "col"])

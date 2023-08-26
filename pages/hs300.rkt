@@ -15,7 +15,7 @@
    "沪深300"
    `(div ([class "container my-5 text-center"])
          ,(h1 "沪深300" "https://www.csindex.com.cn/en/indices/index-detail/000300#/indices/family/detail?indexCode=000300")
-         (div ([class "row row-cols-4 justify-content-center"])
+         (div ([class "row"])
               (div ([class "col"])
                    ,(table1 "1~100" hs1))
               (div ([class "col"])

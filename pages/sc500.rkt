@@ -15,7 +15,7 @@
    "深成500"
    `(div ([class "container-fluid my-5 text-center"])
          ,(h1 "深成500" "http://www.cnindex.com.cn/module/index-detail.html?act_menu=1&indexCode=399001")
-         (div ([class "row mx-5 p-1 row-cols-2.4 justify-content-center"])
+         (div ([class "row"])
               (div ([class "col"])
                    ,(table2 "1~100" sc1))
               (div ([class "col"])
