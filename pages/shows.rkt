@@ -44,13 +44,15 @@
 
     (名 (html 标 文)
         (wrapped
-         (~a "量价卦势图" "-" 代码 简称)
+         (~a "量价卦势图" "-" 简称 代码)
          `(div ([class "container mt-5"])
                ,(compinfo 所 代码 简称 英文全称 上市日期))
          `(div ([class "container-fluid mt-3"])
                ,(nav-tabs 代码 标)
                (div ([id ,(~a 标)])))
-         (plotly-script 标 文)))
+         (plotly-script 标 文)
+         `(script ([type "text/javascript"] [src ,(js/ "zixuan.js")]))
+         `(script "zixuanShow()")))
     (􏿳 '3md (html '3md 日文/三月)
         '6md (html '6md 日文/六月)
         '1yd (html '1yd 日文/一年)

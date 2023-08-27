@@ -97,7 +97,14 @@
 
 (名 (compinfo 所 股号 中文简称 英文全称 上市日期)
     `(div ([class "row text-center justify-content-center"])
-          (h1 ,(~a 中文简称 "（" 股号 "）"))
+          (h1 ([id "stock-name-code"])
+              ,(~a 中文简称 "（" 股号 "）")
+              (button ([type "button"]
+                       [id "zixuan-add-item-button"]
+                       [class "btn btn-info"]
+                       [onclick "zixuanAddItem()"])
+                      "加自选")
+              )
           (div ([class "col-12 mb-0"]) ,英文全称 )
           (div ([class "col-12 mb-0"]) ,(~a "数据更新日期：" (~t (now #:tz "Asia/Shanghai") "yyyy-MM-dd HH:mm")))
           (div ([class "col-12 mb-0"])

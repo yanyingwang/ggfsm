@@ -42,13 +42,19 @@
                 (div ([class "col-2 py-2 border-bottom"])
                      (a ([class " link-underline-light"] [href "sc500.html"]) "深成500")))
            (div ((class "mt-5 border"))
-                (h2 ((class "py-2 border-bottom")) "自选1")
-                (div ([class "row justify-content-center"])
+                (h2 ([class "py-2 border-bottom"]) "自选1")
+                (div ([class "row justify-content-center"]
+                      [onload "popDataToZixuan()"]
+                      [id "zixuan"])
                      (div ([class "col-2 my-2"])
                           (a ([class "link-underline-light"] [href "#"]) "请添加自选"))
-                     ))
+                     )
+                )
            ,(自选 "自选2")
-           ))
+           )
+     `(script ([type "text/javascript"] [src ,(js/ "zixuan.js")]))
+     `(script "zixuanIndex()")
+     )
     )
 
 (名 (index.html)
