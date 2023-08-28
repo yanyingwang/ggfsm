@@ -101,7 +101,7 @@
               ,(~a 中文简称 "（" 股号 "）")
               (button ([type "button"]
                        [id "zixuan-add-item-button"]
-                       [class "btn btn-info"]
+                       [class "btn btn-success"]
                        [onclick "zixuanAddItem()"])
                       "加自选")
               )
