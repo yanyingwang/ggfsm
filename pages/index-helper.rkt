@@ -23,7 +23,7 @@
 (名 (h1 t [h #f])
     `(div
      (h1 ([class "pt-3"]) ,t
-         ,(若 h
+         ,(丫 h
               `(sup ([class "ms-1"])
                     (a ([class "fs-6 text-reset"] [href ,h] [target "_blank"]) "官网"))
              ""))

@@ -81,7 +81,7 @@
 
 (名 (gen-trace name x y t [opacity 1] (customdata #f))
     (名 hovertemplate
-        (若 customdata
+        (丫 customdata
             "%{x}, %{y} <br> <b>%{text}元</b> <br> 顶底：%{customdata[2]}~%{customdata[3]}元  <br> 开收: %{customdata[0]}~%{customdata[1]}元 "
             ""))
     (􏿰

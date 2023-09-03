@@ -2,7 +2,7 @@
 
 (require racket/format
          gregor xml
-         ming ming/number
+         ming ming/kernel ming/number
          "paths.rkt"
          "hs300.rkt"
          "zz500.rkt"
@@ -106,6 +106,8 @@
 (名 (gen-html name xexpr)
     (parameterize ([current-unescaped-tags html-unescaped-tags])
       (with-output-to-file (public/ name ".html") #:exists 'replace
-        (lambda () (display (xexpr->string xexpr)))))
+        (􏸧 (display (xexpr->string xexpr)))))
     )
+
+
 

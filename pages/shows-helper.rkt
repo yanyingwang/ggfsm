@@ -21,7 +21,7 @@
 
 (名 (n-to-y n)
     (名 n1 (- n 32))
-    (若 (􏺡? n1)
+    (丫 (􏺡? n1)
         (􏽊 n1)
         n1))
 
@@ -84,10 +84,10 @@
 (名 (szselink 代码)
     (􏼃 "http://www.szse.cn/certificate/individual/index.html?code=" 代码))
 (名 (suolink 代码 所)
-    (尚 所
+    (肖 所
         [(SH) (sselink 代码)]
         [(SZ) (szselink 代码)]
-        [俖 ""]
+        [夬 ""]
         ))
 
 (名 (gstlink 股号)
@@ -133,8 +133,8 @@
     `(ul ([class "nav nav-pills justify-content-center"])
          ,@(佫 (λ (AP)
                  `(li ([class "nav-item"])
-                      (a ([class ,(若 (勺=? (阳 AP) active) "nav-link active" "nav-link")]
-                          ;; [aria-current ,(若 (勺=? (阳 P) active) "true" "false")]
+                      (a ([class ,(丫 (勺=? (阳 AP) active) "nav-link active" "nav-link")]
+                          ;; [aria-current ,(丫 (勺=? (阳 P) active) "true" "false")]
                           [href ,(~a 股号 "-" (阳 AP) ".html")]) ,(阴 AP)))
                  )
                AL)
