@@ -22,12 +22,14 @@
 (index.html) (about.html)
 (hs300.html) (zz500.html) (sz50.html) (sc500.html)
 
+(名 zixuan0 (􏿴 "600819"))
+
 ;; stock lists
 (名 云股 ;; 云：杂乱未处理的数据
     (𠝤 (􏺈 (􏿝 zz500 sz50 sc500 hs300))))
 (名 文股 ;; 文：已处理的数据，选出csv文件中存在的
     (􏹈  (λ (S) (彐股 S))
-         (𠝤 (􏺈 (􏿝 zz500 sz50 sc500 hs300)))))
+         (𠝤 (􏺈 (􏿝 zixuan0 zz500 sz50 sc500 hs300)))))
 
 ;; gen shows
 (各 redirects.html 文股)
