@@ -22,7 +22,7 @@
 (index.html) (about.html)
 (hs300.html) (zz500.html) (sz50.html) (sc500.html)
 
-(名 zixuan0 (􏿴 "600819"))
+(名 zixuan0 '(("600819")))
 
 ;; stock lists
 (名 云股 ;; 云：杂乱未处理的数据
