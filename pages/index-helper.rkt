@@ -1,6 +1,6 @@
 #lang racket/base
 
-(require racket/format
+(require racket/format racket/list
          ming)
 (provide h1 table table1 table2)
 
@@ -23,7 +23,7 @@
 (define (h1 t [h #f])
     `(div
      (h1 ([class "pt-3"]) ,t
-         ,(丫 h
+         ,(if h
               `(sup ([class "ms-1"])
                     (a ([class "fs-6 text-reset"] [href ,h] [target "_blank"]) "官网"))
              ""))
@@ -36,13 +36,13 @@
       (table ([class "table table-striped table-hover text-center"]) ;; table-borderless table-bordered table-striped table-hover
              (thead ,th)
              (tbody ([class "table-group-divider"])
-                    ,@(佫 (λ (L)
+                    ,@(map (λ (L)
                             `(tr #;(th ((scope "row")) "1")
-                                 (td ,(~a (甲 L)))
-                                 (td (a ([href ,(~a (乙 L) ".html")])
-                                        ,(~a (乙 L))))
-                                 (td ,(~a (丙 L)))
-                                 (td ,(~a (丁 L)))))
+                                 (td ,(~a (first L)))
+                                 (td (a ([href ,(~a (second L) ".html")])
+                                        ,(~a (second L))))
+                                 (td ,(~a (third L)))
+                                 (td ,(~a (fourth L)))))
                           c))
              ))
     )

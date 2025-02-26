@@ -1,6 +1,6 @@
 #lang racket/base
 
-(require ming ming/list)
+(require ming ming/list racket/list)
 (provide sz50 sz1 sz2)
 
 

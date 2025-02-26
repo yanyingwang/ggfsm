@@ -1,6 +1,6 @@
 #lang racket/base
 
-(require ming ming/list)
+(require ming ming/list racket/list)
 (provide sc1 sc2 sc3 sc4 sc5 sc500)
 
 

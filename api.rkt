@@ -35,7 +35,7 @@
 (define (取文 [分 5] [量 49] [号 (股号)])
     (http-response-body
      (http-get sina-api
-               #:data (􏿰 'symbol 号
+               #:data (hash 'symbol 号
                           'scale 分
                           'ma 分
                           'datalen 量))))
@@ -84,19 +84,19 @@
 
 
 
-;; ;; (define 昨日收盘时间 (􏼃 (~t (-days (now) 1) "YYYY-MM-dd") " " "15:00:00"))
+;; ;; (define 昨日收盘时间 (string-append (~t (-days (now) 1) "YYYY-MM-dd") " " "15:00:00"))
 ;; (define 近今收盘材元
-;;     (􏹌 (λ (e) (且 (􏼣? (􏿰弔 e 'day) "15:00:00")
-;;                   (非 (􏼤? (􏿰弔 e 'day) (~t (now) "YYYY-MM-dd")))))
+;;     (findf (λ (e) (且 (􏼣? (hash-ref e 'day) "15:00:00")
+;;                   (非 (􏼤? (hash-ref e 'day) (~t (now) "YYYY-MM-dd")))))
 ;;         今材))
 
-;; (􏹌 (λ (e) (且 (􏼣? (􏿰弔 e 'day) "15:00:00")
-;;               (非 (􏼤? (􏿰弔 e 'day) (~t (now) "YYYY-MM-dd")))))
+;; (findf (λ (e) (且 (􏼣? (hash-ref e 'day) "15:00:00")
+;;               (非 (􏼤? (hash-ref e 'day) (~t (now) "YYYY-MM-dd")))))
 ;;     今日材)
 
 
 ;; (define 今日前收盘价
-;;     (句化米 (􏿰弔 今日前收盘数据 'close)))
+;;     (string->number (hash-ref 今日前收盘数据 'close)))
 ;; (define 今日最高价
 ;;     (􏹔 (* 今日前收盘价 1.1)))
 ;; (define 今日最低价
@@ -104,7 +104,7 @@
 
 
 ;; (define 今日卦象数据
-;;     (佫 (λ (e) (􏿰攸 e )
+;;     (map (λ (e) (hash-set e )
 ;;          今日数据)) )
 
 

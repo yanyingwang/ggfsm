@@ -1,7 +1,7 @@
 #lang at-exp racket/base
 
 (require racket/runtime-path racket/format
-         ming ming/string)
+         ming ming/string racket/string)
 (provide csv/ public/ styles/ css/ js/)
 
 (define-runtime-path csv-path "csv/")
@@ -16,7 +16,7 @@
     )
 
 (define (public/ . Ss)
-    (􏸵 (𡊤 ~a (双 public-path Ss)))
+    (􏸵 (apply ~a (cons public-path Ss)))
     )
 
 (define (styles/ S)

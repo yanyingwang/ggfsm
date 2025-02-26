@@ -2,7 +2,7 @@
 
 (require racket/format
          gregor xml
-         ming ming/kernel ming/number
+         ming ming/kernel ming/number racket/list
          "paths.rkt"
          "hs300.rkt"
          "zz500.rkt"
@@ -50,8 +50,8 @@
 
 (define topbar-input-options
     `(datalist ([id "topbar-input-options"])
-               ,@(佫 (λ (S) `(option ([value ,(~a S)])))
-                     (𠝤 (佫 (λ (L) (~a (乙 L) "（"  (甲 L) "）"))
+               ,@(map (λ (S) `(option ([value ,(~a S)])))
+                     (remove-duplicates (map (λ (L) (~a (second L) "（"  (first L) "）"))
                              (􏿝 zixuan zz500 sz50 sc500 hs300)))))
     )
 (define topnavs

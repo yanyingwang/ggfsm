@@ -1,7 +1,7 @@
 #lang racket/base
 
 (require racket/format
-         ming ming/list
+         ming ming/list racket/list
          "../paths.rkt"
          "../page-helper.rkt"
          )

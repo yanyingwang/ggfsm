@@ -1,7 +1,7 @@
 #lang racket/base
 
 (require racket/format
-         ming ming/list ming/number
+         ming ming/list racket/list ming/number
          "../suo.rkt"
          "../page-helper.rkt"
          )
@@ -9,7 +9,7 @@
 
 (define (redirects.html 股号)
     (define 股名
-        (􏿰弔 (彐股 股号) '简称))
+        (hash-ref (彐股 股号) '简称))
     (define URL
         (~a 股号 "-3md.html"))
     (define page

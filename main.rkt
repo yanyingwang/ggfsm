@@ -2,7 +2,7 @@
 
 #lang racket/base
 
-(require ming ming/list
+(require ming ming/list racket/list
          "suo.rkt"
          "pages/index.rkt"
          "pages/about.rkt"
@@ -27,14 +27,14 @@
 
 ;; stock lists
 (define 云股 ;; 云：杂乱未处理的数据
-    (𠝤 (􏺈 (􏿝 zz500 sz50 sc500 hs300))))
+    (remove-duplicates (􏺈 (􏿝 zz500 sz50 sc500 hs300))))
 (define 文股 ;; 文：已处理的数据，选出csv文件中存在的
-    (􏹈  (λ (S) (彐股 S))
-         (𠝤 (􏺈 (􏿝 zixuan zz500 sz50 sc500 hs300)))))
+    (filter (λ (S) (彐股 S))
+         (remove-duplicates (􏺈 (􏿝 zixuan zz500 sz50 sc500 hs300)))))
 
 ;; gen shows
-(各 redirects.html 文股)
-(各 sleepy-shows.html 文股) #;(shows.html "000858")
+(for-each redirects.html 文股)
+(for-each sleepy-shows.html 文股) #;(shows.html "000858")
 
 
 ;; localStorage需要一个域define网站才能使用自选功能，在本地文件通过浏览器打开，不同页面会被认为是不同域define而不能共享自选。

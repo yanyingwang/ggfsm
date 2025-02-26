@@ -5,7 +5,7 @@
          "sz50.rkt"
          "sc500.rkt"
          racket/format
-         ming ming/number ming/string ming/list
+         ming ming/number ming/string racket/string ming/list racket/list
          )
 
 (provide 板块 股指)
@@ -13,7 +13,7 @@
 
 
 (名 (板块 号)
-    (肖 (句􏾝 号 0 3)
+    (case (substring 号 0 3)
         [("600" "601" "603") '沪市A股]
         [("900") '沪市B股]
         [("000") '深市A股]
@@ -27,11 +27,11 @@
 
 (define (股指 号)
     (􏺈
-     (􏹈 (λ (P)
-           (􏹋 号 (阴 P)))
-         (􏿳 "沪深300" (佫 甲 hs300)
-             "中证500" (佫 甲 zz500)
-             "上证50" (佫 甲 sz50)
-             "深成500" (佫 甲 sc500))))
+     (filter (λ (P)
+           (member 号 (cdr P)))
+         (􏿳 "沪深300" (map first hs300)
+             "中证500" (map first zz500)
+             "上证50" (map first sz50)
+             "深成500" (map first sc500))))
 
     )

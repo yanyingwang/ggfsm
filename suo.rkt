@@ -1,7 +1,7 @@
 #lang at-exp racket/base
 
 (require racket/runtime-path racket/format
-         ming ming/number ming/string ming/list
+         ming ming/number ming/string racket/string ming/list racket/list
          csv-reading
          "paths.rkt"
          )
@@ -62,21 +62,21 @@
     (csv->list szse-reader))
 
 (define (彐沪股 S [N 0]) ;; 0: A股代码，见文头
-    (define 文 (􏹌 (λ (L) (􏸶? (弔 L N) S))
+    (define 文 (findf (λ (L) (string-contains? (list-ref L N) S))
                沪股文))
     (and 文
-        (􏿰^ (佫 双 头 (双 'SH (伄 文 0 2 4 5)))))
+        (make-hash (map cons 头 (cons 'SH (伄 文 0 2 4 5)))))
     )
 
 (define (彐深股 S [N 4]) ;; 4: A股代码，见文头
-    (define 文 (􏹌 (λ (L) (􏸶? (􏸵 (弔 L N)) S))
+    (define 文 (findf (λ (L) (string-contains? (string-replace (list-ref L N) " " "") S))
                深股文))
     (and 文
-        (􏿰^ (佫 双 头 (双 'SZ (伄 文 4 5 2 6)))))
+        (make-hash (map cons 头 (cons 'SZ (伄 文 4 5 2 6)))))
     )
 
 (define (彐股 S)
-    (戈 (彐沪股 S) (彐深股 S)))
+    (or (彐沪股 S) (彐深股 S)))
 
 (define (彐股以名 S)
-    (戈 (彐沪股 S 2) (彐深股 S 5)))  ;; 2,5：简称，见文头
+    (or (彐沪股 S 2) (彐深股 S 5)))  ;; 2,5：简称，见文头

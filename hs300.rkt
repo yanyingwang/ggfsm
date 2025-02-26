@@ -1,6 +1,6 @@
 #lang racket/base
 
-(require ming ming/list)
+(require ming ming/list racket/list)
 (provide hs1 hs2 hs3 hs300)
 
 
