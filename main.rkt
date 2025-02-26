@@ -33,8 +33,8 @@
          (𠝤 (􏺈 (􏿝 zixuan zz500 sz50 sc500 hs300)))))
 
 ;; gen shows
-(各 redirects.html 文股)
-(各 sleepy-shows.html 文股) #;(shows.html "000858")
+(􏷒 redirects.html 文股)
+(􏷒 sleepy-shows.html 文股) #;(shows.html "000858")
 
 
 ;; localStorage需要一个域名网站才能使用自选功能，在本地文件通过浏览器打开，不同页面会被认为是不同域名而不能共享自选。

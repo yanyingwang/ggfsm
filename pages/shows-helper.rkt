@@ -17,7 +17,7 @@
          )
 
 (名 (xs 文)
-    (佫 (λ (e) (􏿰弔 e 'day)) 文))
+    (􏷑 (λ (e) (􏿰弔 e 'day)) 文))
 
 (名 (n-to-y n)
     (名 n1 (- n 32))
@@ -26,22 +26,22 @@
         n1))
 
 (名 (ys/并卦 文)
-    (佫 (λ (H)
+    (􏷑 (λ (H)
           (n-to-y (弓 六十四卦 (􏿰弔 H 'bgua))))
         文))
 
 (名 (ys/价卦 文)
-    (佫 (λ (H)
+    (􏷑 (λ (H)
           (n-to-y (弓 六十四卦 (􏿰弔 H 'jgua))))
         文))
 
 (名 (ys/量卦 文)
-    (佫 (λ (H)
+    (􏷑 (λ (H)
           (n-to-y (弓 六十四卦 (􏿰弔 H 'lgua))))
         文))
 
 (名 (ts/其他价 文)
-    (佫 (λ (H)
+    (􏷑 (λ (H)
           (􏿴
            (􏹔 (句化米 (􏿰弔 H 'open)))
            (􏹔 (句化米 (􏿰弔 H 'close)))
@@ -51,16 +51,16 @@
         文))
 
 (名 (ts/均价 文)
-    (佫 (λ (H)
+    (􏷑 (λ (H)
           (􏹔 (􏿰弔 H 'avg-price)))
         文))
 
 (名 (ts/量 文)
-    (佫 (λ (H) (~a (􏹓 (/ (句化米 (􏿰弔 H 'volume)) 10000)) "万手"))
+    (􏷑 (λ (H) (~a (􏹓 (/ (句化米 (􏿰弔 H 'volume)) 10000)) "万手"))
         文))
 
 (名 (ts/并卦 文)
-    (佫 (λ (H)
+    (􏷑 (λ (H)
           (~a (􏹔 (􏿰弔 H 'avg-price)) "元"
               "/"
               (􏹓 (/ (句化米 (􏿰弔 H 'volume)) 10000)) "万手"
@@ -117,7 +117,7 @@
                        (tr (td ,(~a "交易所：" 所))
                            (td ,(~a "上市日期：" 上市日期)))
                        (tr (td ,(~a "板块：" (板块 股号)))
-                           (td ,(~a "股指：" (􏼪 (股指 股号) "/")))
+                           (td ,(~a "股指：" (􏿴􏵷句 (股指 股号) "/")))
                            ))))
           )
     )
@@ -131,10 +131,10 @@
             '3yw "三年/周"
             '5yw "五年/周"))
     `(ul ([class "nav nav-pills justify-content-center"])
-         ,@(佫 (λ (AP)
+         ,@(􏷑 (λ (AP)
                  `(li ([class "nav-item"])
-                      (a ([class ,(丫 (勺=? (阳 AP) active) "nav-link active" "nav-link")]
-                          ;; [aria-current ,(丫 (勺=? (阳 P) active) "true" "false")]
+                      (a ([class ,(丫 (􏷂=? (阳 AP) active) "nav-link active" "nav-link")]
+                          ;; [aria-current ,(丫 (􏷂=? (阳 P) active) "true" "false")]
                           [href ,(~a 股号 "-" (阳 AP) ".html")]) ,(阴 AP)))
                  )
                AL)

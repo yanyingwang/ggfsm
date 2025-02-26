@@ -50,8 +50,8 @@
 
 (名 topbar-input-options
     `(datalist ([id "topbar-input-options"])
-               ,@(佫 (λ (S) `(option ([value ,(~a S)])))
-                     (𠝤 (佫 (λ (L) (~a (乙 L) "（"  (甲 L) "）"))
+               ,@(􏷑 (λ (S) `(option ([value ,(~a S)])))
+                     (𠝤 (􏷑 (λ (L) (~a (􏷛 L) "（"  (􏷜 L) "）"))
                              (􏿝 zixuan zz500 sz50 sc500 hs300)))))
     )
 (名 topnavs

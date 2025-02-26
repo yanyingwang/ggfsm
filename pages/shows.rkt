@@ -64,7 +64,7 @@
 
 
 (名 (shows.html 股号)
-    (各 (λ (AL) (gen-html (~a 股号 "-" (阳 AL)) (阴 AL)))
+    (􏷒 (λ (AL) (gen-html (~a 股号 "-" (阳 AL)) (阴 AL)))
         (pages 股号))
     )
 
