@@ -70,7 +70,7 @@
 
 ;; in the case of sina api returning errors for shows.html
 (define (sleepy-shows.html 股号)
-    (并 (printf "股号：~a~n" 股号) (shows.html 股号) (sleep 2)))
+    (and (printf "股号：~a~n" 股号) (shows.html 股号) (sleep 2)))
 
 ;; (define 股号 "600819")
 ;; (shows.html "600819")
