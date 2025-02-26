@@ -16,31 +16,31 @@
          compinfo nav-tabs
          )
 
-(名 (xs 文)
+(define (xs 文)
     (佫 (λ (e) (􏿰弔 e 'day)) 文))
 
-(名 (n-to-y n)
-    (名 n1 (- n 32))
+(define (n-to-y n)
+    (define n1 (- n 32))
     (丫 (􏺡? n1)
         (􏽊 n1)
         n1))
 
-(名 (ys/并卦 文)
+(define (ys/并卦 文)
     (佫 (λ (H)
           (n-to-y (弓 六十四卦 (􏿰弔 H 'bgua))))
         文))
 
-(名 (ys/价卦 文)
+(define (ys/价卦 文)
     (佫 (λ (H)
           (n-to-y (弓 六十四卦 (􏿰弔 H 'jgua))))
         文))
 
-(名 (ys/量卦 文)
+(define (ys/量卦 文)
     (佫 (λ (H)
           (n-to-y (弓 六十四卦 (􏿰弔 H 'lgua))))
         文))
 
-(名 (ts/其他价 文)
+(define (ts/其他价 文)
     (佫 (λ (H)
           (􏿴
            (􏹔 (句化米 (􏿰弔 H 'open)))
@@ -50,16 +50,16 @@
            ))
         文))
 
-(名 (ts/均价 文)
+(define (ts/均价 文)
     (佫 (λ (H)
           (􏹔 (􏿰弔 H 'avg-price)))
         文))
 
-(名 (ts/量 文)
+(define (ts/量 文)
     (佫 (λ (H) (~a (􏹓 (/ (句化米 (􏿰弔 H 'volume)) 10000)) "万手"))
         文))
 
-(名 (ts/并卦 文)
+(define (ts/并卦 文)
     (佫 (λ (H)
           (~a (􏹔 (􏿰弔 H 'avg-price)) "元"
               "/"
@@ -68,34 +68,34 @@
         文))
 
 
-(名 (plotly-data 文)
+(define (plotly-data 文)
     (􏿴 (gen-trace "量" (xs 文) (ys/量卦 文) (ts/量 文) 1)
         (gen-trace "价" (xs 文) (ys/价卦 文) (ts/均价 文) 1 (ts/其他价 文))
         (gen-trace "并" (xs 文) (ys/并卦 文) (ts/并卦 文) #;(ts/复卦数 文))
         ))
 
-(名 (plotly-script div 文)
+(define (plotly-script div 文)
     `(script ,(gen-plotly-jscode (~a div) (plotly-data 文)))
     )
 
 
-(名 (sselink 代码)
+(define (sselink 代码)
     (􏼃 "http://www.sse.com.cn/assortment/stock/list/info/company/index.shtml?COMPANY_CODE=" 代码))
-(名 (szselink 代码)
+(define (szselink 代码)
     (􏼃 "http://www.szse.cn/certificate/individual/index.html?code=" 代码))
-(名 (suolink 代码 所)
+(define (suolink 代码 所)
     (肖 所
         [(SH) (sselink 代码)]
         [(SZ) (szselink 代码)]
         [夬 ""]
         ))
 
-(名 (gstlink 股号)
+(define (gstlink 股号)
     (􏼃 "https://gushitong.baidu.com/stock/ab-" 股号))
-(名 (thslink 股号)
+(define (thslink 股号)
     (􏼃 "http://basic.10jqka.com.cn/" 股号))
 
-(名 (compinfo 所 股号 中文简称 英文全称 上市日期)
+(define (compinfo 所 股号 中文简称 英文全称 上市日期)
     `(div ([class "row text-center justify-content-center"])
           (h1 ([id "stock-name-code"])
               ,(~a 中文简称 "（" 股号 "）")
@@ -122,8 +122,8 @@
           )
     )
 
-(名 (nav-tabs 股号 active)
-    (名 AL (􏿳
+(define (nav-tabs 股号 active)
+    (define AL (􏿳
             '3md "三月/日"
             '6md "六月/日"
             '1yd "一年/日"

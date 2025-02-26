@@ -6,7 +6,7 @@
 
 
 ;; https://zh.wikipedia.org/zh-cn/%E6%B7%B1%E5%9C%B3%E8%AF%81%E5%88%B8%E4%BA%A4%E6%98%93%E6%89%80%E6%88%90%E4%BB%BD%E8%82%A1%E4%BB%B7%E6%8C%87%E6%95%B0
-(名 sc500
+(define sc500
     ;; 代码 简称 行业 权重（%）
     '(
       ("000858" 五粮液 主要消费 4.24)
@@ -513,13 +513,13 @@
     )
 
 
-(名 sc1
+(define sc1
     (􏾝 sc500 0 99))
-(名 sc2
+(define sc2
     (􏾝 sc500 100 199))
-(名 sc3
+(define sc3
     (􏾝 sc500 200 299))
-(名 sc4
+(define sc4
     (􏾝 sc500 300 399))
-(名 sc5
+(define sc5
     (􏾝 sc500 400 499))

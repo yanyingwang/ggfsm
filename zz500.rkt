@@ -6,7 +6,7 @@
 
 
 ;; https://zh.wikipedia.org/zh-cn/%E4%B8%AD%E8%AF%81500%E6%8C%87%E6%95%B0
-(名 zz500
+(define zz500
     '(
       ;; 代码 名称 交易所 权重(%)
       ("002340" 格林美 深圳 0.704)
@@ -512,13 +512,13 @@
       )
     )
 
-(名 zz1
+(define zz1
     (􏾝 zz500 0 99))
-(名 zz2
+(define zz2
     (􏾝 zz500 100 199))
-(名 zz3
+(define zz3
     (􏾝 zz500 200 299))
-(名 zz4
+(define zz4
     (􏾝 zz500 300 399))
-(名 zz5
+(define zz5
     (􏾝 zz500 400 499))

@@ -10,7 +10,7 @@
          )
 (provide sz50.html)
 
-(名 page
+(define page
     (wrapped
      "上证50"
      `(div ([class "container my-5 text-center"])
@@ -24,5 +24,5 @@
      )
     )
 
-(名 (sz50.html)
+(define (sz50.html)
     (gen-html "sz50" page))

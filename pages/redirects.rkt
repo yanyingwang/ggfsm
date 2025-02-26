@@ -7,12 +7,12 @@
          )
 (provide redirects.html)
 
-(名 (redirects.html 股号)
-    (名 股名
+(define (redirects.html 股号)
+    (define 股名
         (􏿰弔 (彐股 股号) '简称))
-    (名 URL
+    (define URL
         (~a 股号 "-3md.html"))
-    (名 page
+    (define page
         `(html
           (head
            (meta ([http-equiv "Refresh"]  [content ,(~a "0; URL=" URL)])))
@@ -21,5 +21,5 @@
     (gen-html (~a 股名) page)
     )
 
-;; (名 股号 "002049") ;紫光国微
+;; (define 股号 "002049") ;紫光国微
 ;; (redirects.html "002049") ;紫光国微

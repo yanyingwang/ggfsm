@@ -24,5 +24,5 @@
                    ,(table1 "200~300" hs3)))))
   )
 
-(名 (hs300.html)
+(define (hs300.html)
     (gen-html "hs300" page))

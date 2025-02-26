@@ -29,5 +29,5 @@
               )))
   )
 
-(名 (sc500.html)
+(define (sc500.html)
     (gen-html "sc500" page))

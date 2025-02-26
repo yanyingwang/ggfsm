@@ -16,7 +16,7 @@
          wrapped
          )
 
-(名 (header title)
+(define (header title)
     `(head
       (title @,~a{@title - @(~t (now #:tz "Asia/Shanghai") "yyyy-MM-dd HH:mm")})
       (meta ([charset "utf-8"]))
@@ -48,13 +48,13 @@
                [src ,(js/ "d3.v3.min.js")]))
       ))
 
-(名 topbar-input-options
+(define topbar-input-options
     `(datalist ([id "topbar-input-options"])
                ,@(佫 (λ (S) `(option ([value ,(~a S)])))
                      (𠝤 (佫 (λ (L) (~a (乙 L) "（"  (甲 L) "）"))
                              (􏿝 zixuan zz500 sz50 sc500 hs300)))))
     )
-(名 topnavs
+(define topnavs
     `(nav ((class "navbar bg-primary-subtle navbar-expand-lg bg-body-tertiary"))
           (div ((class "container"))
                (a ((class "navbar-brand") (href "index.html")) "GGFSM")
@@ -95,7 +95,7 @@
                ))
     )
 
-(名 (wrapped title . xexprs)
+(define (wrapped title . xexprs)
     `(html
       ,(header (~a title))
       (body
@@ -105,7 +105,7 @@
       )
     )
 
-(名 (gen-html name xexpr)
+(define (gen-html name xexpr)
     (parameterize ([current-unescaped-tags html-unescaped-tags])
       (with-output-to-file (public/ name ".html") #:exists 'replace
         (􏸧 (display (xexpr->string xexpr)))))

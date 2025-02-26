@@ -4,7 +4,7 @@
          ming)
 (provide h1 table table1 table2)
 
-(名 th1
+(define th1
     '(tr
       (th ((scope "col")) "代码")
       (th ((scope "col")) "名称")
@@ -12,7 +12,7 @@
       (th ((scope "col")) "权重(%)")
       ))
 
-(名 th2
+(define th2
     '(tr
       (th ((scope "col")) "代码")
       (th ((scope "col")) "名称")
@@ -20,7 +20,7 @@
       (th ((scope "col")) "权重(%)")
       ))
 
-(名 (h1 t [h #f])
+(define (h1 t [h #f])
     `(div
      (h1 ([class "pt-3"]) ,t
          ,(丫 h
@@ -30,7 +30,7 @@
      (hr))
     )
 
-(名 (table t c th)
+(define (table t c th)
     `(div
       (h2 ,t)
       (table ([class "table table-striped table-hover text-center"]) ;; table-borderless table-bordered table-striped table-hover
@@ -47,8 +47,8 @@
              ))
     )
 
-(名 (table1 t c)
+(define (table1 t c)
     (table t c th1))
 
-(名 (table2 t c)
+(define (table2 t c)
     (table t c th2))

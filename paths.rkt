@@ -11,22 +11,22 @@
 (并 (getenv "CI_BUILDING")
     (set! styles-path ""))
 
-(名 (csv/ S)
+(define (csv/ S)
     (~a csv-path S)
     )
 
-(名 (public/ . Ss)
+(define (public/ . Ss)
     (􏸵 (𡊤 ~a (双 public-path Ss)))
     )
 
-(名 (styles/ S)
+(define (styles/ S)
     (~a styles-path S)
     )
 
-(名 (css/ S)
+(define (css/ S)
     (~a styles-path "css/" S)
     )
 
-(名 (js/ S)
+(define (js/ S)
     (~a styles-path "js/" S)
     )

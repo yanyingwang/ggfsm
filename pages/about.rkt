@@ -8,7 +8,7 @@
 (provide about.html)
 
 
-(名 page
+(define page
     (wrapped
      "关于"
      `(div ([class "container my-5"])
@@ -28,5 +28,5 @@
      )
     )
 
-(名 (about.html)
+(define (about.html)
     (gen-html "about" page))

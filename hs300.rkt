@@ -6,7 +6,7 @@
 
 
 ;; https://zh.wikipedia.org/zh-cn/%E6%B2%AA%E6%B7%B1300
-(名 hs300
+(define hs300
     '(
       ;; 代码 名称 交易所 权重(%)
       ("600519" 贵州茅台 上海 6.04)
@@ -311,9 +311,9 @@
       )
     )
 
-(名 hs1
+(define hs1
     (􏾝 hs300 0 99))
-(名 hs2
+(define hs2
     (􏾝 hs300 100 199))
-(名 hs3
+(define hs3
     (􏾝 hs300 200 299))

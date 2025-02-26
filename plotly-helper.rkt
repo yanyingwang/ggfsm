@@ -12,13 +12,13 @@
          ;; layout config
          gen-trace gen-plotly-jscode)
 
-(名 current-ploty-colorway
+(define current-ploty-colorway
     (make-parameter
      (􏿴 "#ECCEF5" "#CEECF5" "#0101DF")
      ))
 
 
-(名 (gen-yrect N M C)
+(define (gen-yrect N M C)
     (􏿰 'fillcolor C
         'line (􏿰 'width 0)
         'opacity 0.2
@@ -31,7 +31,7 @@
         'x1 1
         'xref "paper"))
 
-(名 八卦条
+(define 八卦条
     (􏿴 (gen-yrect 24 32 "aqua")
         (gen-yrect 16 24 "Chartreuse")
         (gen-yrect 8 16 "darkOrange")
@@ -42,7 +42,7 @@
         (gen-yrect -32 -24 "darkGray")
         ))
 
-(名 (gen-ylines N C)
+(define (gen-ylines N C)
     (􏿰 'fillcolor C
         'line (􏿰 'color C
                   'dash "dot"
@@ -56,7 +56,7 @@
         'x1 1
         'xref "paper"))
 
-(名 中卦线
+(define 中卦线
     (􏿴 (gen-ylines 32 "aqua")
         (gen-ylines 24 "Chartreuse")
         (gen-ylines 16 "darkOrange")
@@ -67,7 +67,7 @@
         (gen-ylines -32 "darkGray")
         ))
 
-(名 八卦线
+(define 八卦线
     (􏿴 (gen-ylines 32 "aqua")
         (gen-ylines 24 "Chartreuse")
         (gen-ylines 16 "darkOrange")
@@ -79,8 +79,8 @@
         ))
 
 
-(名 (gen-trace name x y t [opacity 1] (customdata #f))
-    (名 hovertemplate
+(define (gen-trace name x y t [opacity 1] (customdata #f))
+    (define hovertemplate
         (丫 customdata
             "%{x}, %{y} <br> <b>%{text}元</b> <br> 顶底：%{customdata[2]}~%{customdata[3]}元  <br> 开收: %{customdata[0]}~%{customdata[1]}元 "
             ""))
@@ -101,7 +101,7 @@
      )
     )
 
-(名 (gen-plotly-jscode div data)
+(define (gen-plotly-jscode div data)
     @~a{
         Plotly.newPlot("@|div|",
                        @(jsexpr->string data),
@@ -113,23 +113,23 @@
 
 ;;「坐标」用单字表示称之为「􏸷」
 ;;坐标值比如(1,2)中的1称为􏸺，2称之为􏸻，因为X是纬线轴，Y是经线轴
-(名 负􏸻
+(define 负􏸻
     (佫 (λ (N)
           (􏸽  ([(a b) (􏻓和𥺌 N 8)])
               (~a "-" (􏽊 a) (􏽊 b) (弔 (􏾛 三十二阳卦) N))))
         (􏼎 32 並)))
-(名 正􏸻
+(define 正􏸻
     (佫 (λ (N)
           (􏸽  ([(a b) (􏻓和𥺌 N 8)])
               (~a  (􏽊 a) (􏽊 b) (弔 (􏾛 三十二阴卦) N))))
         (􏼎 32 並)))
 
-(名 tick-vals
+(define tick-vals
     (􏼏  -32 33))
-(名 tick-text
+(define tick-text
     (􏿝 (􏾛 负􏸻) '("〇") 正􏸻))
 
-(名 config
+(define config
     (􏿰
      ;; 'scrollZoom #t
      'responsive #t
@@ -137,7 +137,7 @@
      ;; 'editable #t
      ))
 
-(名 (layout)
+(define (layout)
     (􏿰
      ;; 'hovermode "closest"
      'xaxis (􏿰
@@ -195,7 +195,7 @@
 
 
 ;; usage::
-;; (名 data
+;; (define data
 ;;     (gen-data (gen-trace x1 y1 t1)
 ;;               (gen-trace x2 y2 t2)))
 

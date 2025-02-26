@@ -10,13 +10,13 @@
 (provide index.html)
 
 
-(名 AL
+(define AL
     (􏿳 "603259" '药明康德 "300015" '艾尔眼科 "600750" '江中药业 "600559" '老白干 "000858" '五粮液 "000568" '泸州老窖
         "600519" '贵州茅台 "002049" '紫光国微 "300750" '宁德时代 "002594" '比亚迪 "002709" '天赐材料 "002460" '赣锋锂业
         ))
 
 
-(名 (自选 t)
+(define (自选 t)
     `(div ((class "mt-5 border"))
       (h2 ((class "py-2 border-bottom")) ,t)
           (div ([class "row justify-content-center"])
@@ -27,7 +27,7 @@
                ))
     )
 
-(名 page
+(define page
     (wrapped
      "索引"
      `(div ([class "container my-5 text-center"])
@@ -57,5 +57,5 @@
      )
     )
 
-(名 (index.html)
+(define (index.html)
     (gen-html "index" page))
