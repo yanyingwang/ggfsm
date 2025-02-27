@@ -14,7 +14,9 @@
 (provide shows.html
          sleepy-shows.html)
 
-(require "../gu-helper.rkt")
+(require "../gu-helper.rkt"
+         "../gua-helper.rkt"
+         "../analysis-helper.rkt")
 
 (名 (pages 股号)
     (名 企文 (彐股 股号)) ; 企：企业
@@ -28,10 +30,12 @@
     ;; 云：未处理的数据
     ;; 文：规整的数据，加工过的数据
     (名 日云/一年 (取日文/一年 所号)) ;; 250
-
+    (名 日云/三年 (取日文/三年 所号)) ;; 750
     (名 日云/六月 (􏾝 (􏾛 日云/一年) 0 125))
     (名 日云/三月 (􏾝 (􏾛 日云/一年) 0 65))
+
     (名 日文/一年 (攸以卦 日云/一年))
+    (名 日文/三年 (攸以卦 日云/三年))
     (名 日文/六月 (攸以卦 日云/六月))
     (名 日文/三月 (攸以卦 日云/三月))
 
@@ -50,6 +54,22 @@
          `(div ([class "container-fluid mt-3"])
                ,(nav-tabs 代码 标)
                (div ([id ,(~a 标)])))
+         `(div ([class "container mt-4"])
+               (div
+                    (div ([class "row text-center justify-content-center"])
+                         (h2 "今日解析")
+                     (p "当日卦象：" ,(卦象解析 (􏿰弔 (末 文) 'bgua)))
+                     (p "当日卦象所反应出的量价关系：" ,(量价解析 (末 文))))
+                    (div ([class "row text-center justify-content-center"])
+                     (h2 "历史回顾")
+                     (p "超量超价(多方买入)：" ,@(􏷑 (入 (d) `(a ((href "this.html")) ,d)) (get-days 超量超价? 文)))
+                     (p "天价地量(风险信号)：" ,@(􏷑 (入 (d) `(a ((href "this.html")) ,d)) (get-days 天价地量? 文)))
+                     (p "天量地价(超强买入)：" ,@(􏷑 (入 (d) `(a ((href "this.html")) ,d)) (get-days 天量地价? 文)))
+                     (p "高价缩量(卖出信号)：" ,@(􏷑 (入 (d) `(a ((href "this.html")) ,d)) (get-days 高价缩量? 文)))
+                     (p "低价起量(买入信号)：" ,@(􏷑 (入 (d) `(a ((href "this.html")) ,d)) (get-days 低价起量? 文)))
+                     (p "低价低量(市场低靡)：" ,@(􏷑 (入 (d) `(a ((href "this.html")) ,d)) (get-days 低价低量? 文)))
+                     )
+                    ))
          (plotly-script 标 文)
          `(script ([type "text/javascript"] [src ,(js/ "zixuan.js")]))
          `(script "zixuanShow()")))
@@ -72,5 +92,8 @@
 (名 (sleepy-shows.html 股号)
     (并 (printf "股号：~a~n" 股号) (shows.html 股号) (sleep 2)))
 
-;; (名 股号 "600819")
+;; (名 股号 "600819") "002238"
 ;; (shows.html "600819")
+
+
+

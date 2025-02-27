@@ -1,6 +1,7 @@
-#lang racket/base
+#lang at-exp racket/base
 
 (require ming
+         racket/format
          "8gua.rkt"
          "64gua.rkt")
 (provide 复卦 单卦 上单卦 下单卦)
@@ -29,3 +30,4 @@
     (􏸾 (M N) (􏻓和𥺌 X 8))
     (弔 八卦 M)
     )
+

@@ -48,6 +48,18 @@
                [src ,(js/ "d3.v3.min.js")]))
       ))
 
+
+(名 footer
+    `(footer ([class "d-flex flex-wrap justify-content-between align-items-center mt-4 py-3 my-4 border-top"] [style "width: 100%; overflow: hidden;"]) ; "panel-footer"
+             (div ([class "container-fluid"])
+                  (div ([class "row footer-top"] [style "text-align: center;"]))
+                  (div ([class "row text-center justify-content-center"])
+                       (div ([class "col-sm-3 col-md-3 col-lg-3"])
+                            (p ([style "color: gray;"]) "© wwww.yanying.wang. All rights reserved."))))))
+
+
+
+
 (名 topbar-input-options
     `(datalist ([id "topbar-input-options"])
                ,@(􏷑 (λ (S) `(option ([value ,(~a S)])))
@@ -101,6 +113,8 @@
       (body
        ,topnavs
        ,@xexprs
+       (br) (br)(br)(br)
+       ,footer
        )
       )
     )
