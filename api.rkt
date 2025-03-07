@@ -13,13 +13,9 @@
 
 ;; https://gu.qq.com/sz000858
 ;; F10 http://basic.10jqka.com.cn/sz000858
-
 ;; http://money.finance.sina.com.cn/quotes_service/api/json_v2.php/CN_MarketData.getKLineData?symbol=sz000858&scale=240&ma=5&datalen=64
 ;; http://hq.sinajs.cn/list=sh601006
 ;;; ma_price: moving average price
-
-;; (define 文 '())
-;; (define 重载API? (make-parameter #f))
 
 (define 股号 (make-parameter #f))
 
@@ -40,9 +36,7 @@
                           'ma 分
                           'datalen 量))))
 
-;; 最小值5分钟
-;; 每天开盘4小时=240分
-;; ÷5分=每天开盘48个5分。
+;; 最小值5分钟 ;; 每天开盘4小时=240分 ;; ÷5分=每天开盘48个5分。
 (define (取分文 [量 49] [号 (股号)])
     (取文 5 量  号))
 
@@ -51,8 +45,7 @@
 (define (取分文/半年 [号 (股号)])
     (取分文 (* 48 25 6) 号))
 
-;; 每天开盘4小时=240分
-;; 每月开盘约25天
+;; 每天开盘4小时=240分 ;; 每月开盘约25天
 (define (取日文 [量 25] [号 (股号)]) ;一月
     (取文 240 量 号))
 
@@ -66,11 +59,7 @@
     (取日文 750 号))
 
 
-;; 每周开盘约5天=240*5=1200分
-;; 每月开盘约5周
-;; 半年25周
-;; 一年50周
-;; 三年150周
+;; 每周开盘约5天=240*5=1200分 ;; 每月开盘约5周 ;; 半年25周 ;; 一年50周 ;; 三年150周
 (define (取周文 [量 50] [号 (股号)])
     (取文 1200 量 号))
 
@@ -103,8 +92,13 @@
 ;;     (􏹔 (* 今日前收盘价 0.9)))
 
 
+<<<<<<< HEAD
 ;; (define 今日卦象数据
 ;;     (map (λ (e) (hash-set e )
+=======
+;; (名 今日卦象数据
+;;     (􏷑 (λ (e) (􏿰攸 e )
+>>>>>>> master
 ;;          今日数据)) )
 
 

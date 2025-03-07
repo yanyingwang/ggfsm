@@ -19,6 +19,9 @@
 (define (xs 文)
     (map (λ (e) (hash-ref e 'day)) 文))
 
+(名 (xs 文)
+    (􏷑 (λ (e) (􏿰弔 e 'day)) 文))
+
 (define (n-to-y n)
     (define n1 (- n 32))
     (if (exact-nonnegative-integer? n1)
@@ -62,6 +65,44 @@
 (define (ts/并卦 文)
     (map (λ (H)
           (~a (􏹔 (hash-ref H 'avg-price)) "元"
+
+(名 (ys/并卦 文)
+    (􏷑 (λ (H)
+          (n-to-y (弓 六十四卦 (􏿰弔 H 'bgua))))
+        文))
+
+(名 (ys/价卦 文)
+    (􏷑 (λ (H)
+          (n-to-y (弓 六十四卦 (􏿰弔 H 'jgua))))
+        文))
+
+(名 (ys/量卦 文)
+    (􏷑 (λ (H)
+          (n-to-y (弓 六十四卦 (􏿰弔 H 'lgua))))
+        文))
+
+(名 (ts/其他价 文)
+    (􏷑 (λ (H)
+          (􏿴
+           (􏹔 (句化米 (􏿰弔 H 'open)))
+           (􏹔 (句化米 (􏿰弔 H 'close)))
+           (􏹔 (句化米 (􏿰弔 H 'high)))
+           (􏹔 (句化米 (􏿰弔 H 'low)))
+           ))
+        文))
+
+(名 (ts/均价 文)
+    (􏷑 (λ (H)
+          (􏹔 (􏿰弔 H 'avg-price)))
+        文))
+
+(名 (ts/量 文)
+    (􏷑 (λ (H) (~a (􏹓 (/ (句化米 (􏿰弔 H 'volume)) 10000)) "万手"))
+        文))
+
+(名 (ts/并卦 文)
+    (􏷑 (λ (H)
+          (~a (􏹔 (􏿰弔 H 'avg-price)) "元"
               "/"
               (round (/ (string->number (hash-ref H 'volume)) 10000)) "万手"
               ))
@@ -118,6 +159,7 @@
                            (td ,(~a "上市日期：" 上市日期)))
                        (tr (td ,(~a "板块：" (板块 股号)))
                            (td ,(~a "股指：" (string-join (股指 股号) "/")))
+                           (td ,(~a "股指：" (􏿴􏵷句 (股指 股号) "/")))
                            ))))
           )
     )
@@ -136,7 +178,12 @@
                       (a ([class ,(if (symbol=?? (car AP) active) "nav-link active" "nav-link")]
                           ;; [aria-current ,(if (symbol=?? (car P) active) "true" "false")]
                           [href ,(~a 股号 "-" (car AP) ".html")]) ,(cdr AP)))
-                 )
+                  ,@(􏷑 (λ (AP)
+                 `(li ([class "nav-item"])
+                      (a ([class ,(丫 (􏷂=? (阳 AP) active) "nav-link active" "nav-link")]
+                          ;; [aria-current ,(丫 (􏷂=? (阳 P) active) "true" "false")]
+                          [href ,(~a 股号 "-" (阳 AP) ".html")]) ,(阴 AP)))
+                         )
                AL)
          )
     )

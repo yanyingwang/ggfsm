@@ -36,6 +36,7 @@
       (table ([class "table table-striped table-hover text-center"]) ;; table-borderless table-bordered table-striped table-hover
              (thead ,th)
              (tbody ([class "table-group-divider"])
+<<<<<<< HEAD
                     ,@(map (λ (L)
                             `(tr #;(th ((scope "row")) "1")
                                  (td ,(~a (first L)))
@@ -43,6 +44,15 @@
                                         ,(~a (second L))))
                                  (td ,(~a (third L)))
                                  (td ,(~a (fourth L)))))
+=======
+                    ,@(􏷑 (λ (L)
+                            `(tr #;(th ((scope "row")) "1")
+                                 (td ,(~a (􏷜 L)))
+                                 (td (a ([href ,(~a (􏷛 L) ".html")])
+                                        ,(~a (􏷛 L))))
+                                 (td ,(~a (􏷚 L)))
+                                 (td ,(~a (􏷙 L)))))
+>>>>>>> master
                           c))
              ))
     )

@@ -5,7 +5,7 @@
     "at-exp-lib"
     "gregor-lib"
     "csv-reading"
-    "https://github.com/yanyingwang/ming.git"
+    "https://github.com/yanyingwang/ming.git#98c959f8fa8043b8879cc877f821e54c9cc9ea5e"
     "https://github.com/yanyingwang/smtp.git"
     "https://github.com/yanyingwang/http-client.git"
     ))

@@ -52,7 +52,22 @@
     `(datalist ([id "topbar-input-options"])
                ,@(map (λ (S) `(option ([value ,(~a S)])))
                      (remove-duplicates (map (λ (L) (~a (second L) "（"  (first L) "）"))
-                             (􏿝 zixuan zz500 sz50 sc500 hs300)))))
+                                             (名 footer
+    `(footer ([class "d-flex flex-wrap justify-content-between align-items-center mt-4 py-3 my-4 border-top"] [style "width: 100%; overflow: hidden;"]) ; "panel-footer"
+             (div ([class "container-fluid"])
+                  (div ([class "row footer-top"] [style "text-align: center;"]))
+                  (div ([class "row text-center justify-content-center"])
+                       (div ([class "col-sm-3 col-md-3 col-lg-3"])
+                            (p ([style "color: gray;"]) "© wwww.yanying.wang. All rights reserved."))))))
+
+
+
+
+(define topbar-input-options
+    `(datalist ([id "topbar-input-options"])
+               ,@(􏷑 (λ (S) `(option ([value ,(~a S)])))
+                     (𠝤 (􏷑 (λ (L) (~a (􏷛 L) "（"  (􏷜 L) "）"))
+                            (􏿝 zixuan zz500 sz50 sc500 hs300)))))
     )
 (define topnavs
     `(nav ((class "navbar bg-primary-subtle navbar-expand-lg bg-body-tertiary"))
@@ -101,6 +116,8 @@
       (body
        ,topnavs
        ,@xexprs
+       (br) (br)(br)(br)
+       ,footer
        )
       )
     )
@@ -109,7 +126,4 @@
     (parameterize ([current-unescaped-tags html-unescaped-tags])
       (with-output-to-file (public/ name ".html") #:exists 'replace
         (􏸧 (display (xexpr->string xexpr)))))
-    )
-
-
-
+  )

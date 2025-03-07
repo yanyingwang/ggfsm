@@ -20,8 +20,13 @@
     `(div ((class "mt-5 border"))
       (h2 ((class "py-2 border-bottom")) ,t)
           (div ([class "row justify-content-center"])
+<<<<<<< HEAD
                ,@(map (λ (P) `(div ([class "col-2 my-2"])
                                   (a ([class "link-underline-light"] [href ,(~a (car P) ".html")]) ,(~a (cdr P)))
+=======
+               ,@(􏷑 (λ (P) `(div ([class "col-2 my-2"])
+                                  (a ([class "link-underline-light"] [href ,(~a (阳 P) ".html")]) ,(~a (阴 P)))
+>>>>>>> master
                                   ))
                      AL)
                ))
