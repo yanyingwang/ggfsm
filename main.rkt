@@ -27,10 +27,10 @@
 
 ;; stock lists
 (名 云股 ;; 云：杂乱未处理的数据
-    (𠝤 (􏺈 (􏿝 zz500 sz50 sc500 hs300))))
+    (𠝤 (􏺈 (􏿝 sc500 hs300)))) ;; zz500  sz50
 (名 文股 ;; 文：已处理的数据，选出csv文件中存在的
     (􏹈  (λ (S) (彐股 S))
-         (𠝤 (􏺈 (􏿝 zixuan zz500 sz50 sc500 hs300)))))
+         (𠝤 (􏺈 (􏿝 zixuan sc500 hs300))))) ;;  zz500 sz50
 
 ;; gen shows
 (􏷒 redirects.html 文股)

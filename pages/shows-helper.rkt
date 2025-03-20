@@ -14,6 +14,7 @@
          sselink szselink suolink
          thslink gstlink
          compinfo nav-tabs
+         history-links
          )
 
 (名 (xs 文)
@@ -139,4 +140,8 @@
                  )
                AL)
          )
+    )
+
+(名 (history-links 股号 days)
+    (𰂋 (􏷑 (入 (d) `(a ((href ,(􏼃 股号 "-" d ".html"))) d)) days) " / ")
     )
