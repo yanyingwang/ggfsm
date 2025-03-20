@@ -54,7 +54,7 @@
          `(div ([class "container-fluid mt-3"])
                ,(if (string? 标)
                     `(div ([class "row text-center justify-content-center"])
-                         (p ,标))
+                         (h2 ,标))
                     (nav-tabs 代码 标))
                (div ([id ,(~a 标)])))
          `(div ([class "container mt-4"])
