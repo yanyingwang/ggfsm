@@ -55,7 +55,7 @@
                   (div ([class "row footer-top"] [style "text-align: center;"]))
                   (div ([class "row text-center justify-content-center"])
                        (div ([class "col-sm-3 col-md-3 col-lg-3"])
-                            (p ([style "color: gray;"]) "© wwww.yanying.wang. All rights reserved."))))))
+                            (p ([style "color: gray;"]) "© wwww.yanying.wang 王彦迎. All rights reserved 版权所有."))))))
 
 
 
@@ -69,7 +69,7 @@
 (名 topnavs
     `(nav ((class "navbar bg-primary-subtle navbar-expand-lg bg-body-tertiary"))
           (div ((class "container"))
-               (a ((class "navbar-brand") (href "index.html")) "GGFSM")
+               (a ((class "navbar-brand") (href "index.html")) "西方财富卦势图趋势平台")
                (button ((aria-controls "navbarSupportedContent") (aria-expanded "false") (aria-label "Toggle navigation")
                                                                  (data-bs-target "#navbarSupportedContent") (data-bs-toggle "collapse")
                                                                  (class "navbar-toggler") (type "button"))
