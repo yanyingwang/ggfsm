@@ -16,7 +16,7 @@
     )
 
 (define (public/ . Ss)
-    (􏸵 (apply ~a (cons public-path Ss)))
+    (string-simplify-spaces (apply ~a (cons public-path Ss)))
     )
 
 (define (styles/ S)

@@ -5,10 +5,10 @@
          http-client
          )
 
-(provide #;股号 取文
-         取分文 取分文/三月 取分文/半年
-         取日文 取日文/三月 取日文/半年 取日文/一年 取日文/三年
-         取周文 取周文/两年 取周文/三年 取周文/五年
+(provide stock-code get-data
+         get-minutes-data get-minutes-data/three-months get-minutes-data/half-year
+         get-day-data get-day-data/three-months get-day-data/half-year get-day-data/one-year get-day-data/three-years
+         get-week-data get-week-data/two-years get-week-data/three-years get-week-datafive-years
          )
 
 ;; https://gu.qq.com/sz000858
@@ -17,89 +17,81 @@
 ;; http://hq.sinajs.cn/list=sh601006
 ;;; ma_price: moving average price
 
-(define 股号 (make-parameter #f))
+(define stock-code (make-parameter #f))
 
 (define sina-api
     (http-connection "http://money.finance.sina.com.cn/quotes_service/api/json_v2.php/CN_MarketData.getKLineData"
                      (hasheq 'Content-Type "application/xml")
                      (hasheq)))
 
-;; 文：response/result，api返回的内容
-;; 号：symbol，股票代号
-;; 分：scale，每个点的时长大小(sina api约定最小值为5)；api定义单位是（分）
-;; 量：length，共计多少。默认5分钟为一度，共计返回49个。;每天开盘4小时=240分，÷5分=48，+1=49
-(define (取文 [分 5] [量 49] [号 (股号)])
+;; data：response/result，api返回的内容
+;; code：symbol，股票代号
+;; minute：scale，每个点的时长大小(sina api约定最小值为5)；api定义单位是（分）
+;; volume：length，共计多少。默认5分钟为一度，共计返回49个。;每天开盘4小时=240分，÷5分=48，+1=49
+(define (get-data [minute 5] [volume 49] [code (stock-code)])
     (http-response-body
      (http-get sina-api
-               #:data (hash 'symbol 号
-                          'scale 分
-                          'ma 分
-                          'datalen 量))))
+               #:data (hash 'symbol code
+                          'scale minutes
+                          'ma minutes
+                          'datalen volume))))
 
-;; 最小值5分钟 ;; 每天开盘4小时=240分 ;; ÷5分=每天开盘48个5分。
-(define (取分文 [量 49] [号 (股号)])
-    (取文 5 量  号))
+;; 最小值5分钟 ;; 每天开盘4小时=240minute ;; ÷5分=每天开盘48个5分。
+(define (get-minutes-data [volume 49] [code (stock-code)])
+    (get-data 5 volume code))
 
-(define (取分文/三月 [号 (股号)])
-    (取分文 (* 48 25 3) 号))
-(define (取分文/半年 [号 (股号)])
-    (取分文 (* 48 25 6) 号))
+(define (get-minutes-data/three-months [code (stock-code)])
+    (get-minutes-data (* 48 25 3) code))
+(define (get-minutes-data/half-year [code (stock-code)])
+    (get-minutes-data (* 48 25 6) code))
 
-;; 每天开盘4小时=240分 ;; 每月开盘约25天
-(define (取日文 [量 25] [号 (股号)]) ;一月
-    (取文 240 量 号))
+;; 每天开盘4小时=240minute ;; 每月开盘约25天
+(define (get-day-data [volume 25] [code (stock-code)]) ;一月
+    (get-data 240 volume code))
 
-(define (取日文/三月 [号 (股号)])
-    (取日文 75 号))
-(define (取日文/半年 [号 (股号)])
-    (取日文 130 号))
-(define (取日文/一年 [号 (股号)])
-    (取日文 250 号))
-(define (取日文/三年 [号 (股号)])
-    (取日文 750 号))
-
-
-;; 每周开盘约5天=240*5=1200分 ;; 每月开盘约5周 ;; 半年25周 ;; 一年50周 ;; 三年150周
-(define (取周文 [量 50] [号 (股号)])
-    (取文 1200 量 号))
-
-(define (取周文/两年 [号 (股号)])
-    (取周文 110 号))
-
-(define (取周文/三年 [号 (股号)])
-    (取周文 160 号))
-(define (取周文/五年 [号 (股号)])
-    (取周文 280 号))
+(define (get-day-data/three-months [code (stock-code)])
+    (get-day-data 75 code))
+(define (get-day-data/half-year [code (stock-code)])
+    (get-day-data 130 code))
+(define (get-day-data/one-year [code (stock-code)])
+    (get-day-data 250 code))
+(define (get-day-data/three-years [code (stock-code)])
+    (get-day-data 750 code))
 
 
+;; 每周开盘约5天=240*5=1200minute ;; 每月开盘约5周 ;; 半年25周 ;; 一年50周 ;; 三年150周
+(define (get-week-data [volume 50] [code (stock-code)])
+    (get-data 1200 volume code))
 
-;; ;; (define 昨日收盘时间 (string-append (~t (-days (now) 1) "YYYY-MM-dd") " " "15:00:00"))
-;; (define 近今收盘材元
-;;     (findf (λ (e) (且 (􏼣? (hash-ref e 'day) "15:00:00")
-;;                   (非 (􏼤? (hash-ref e 'day) (~t (now) "YYYY-MM-dd")))))
-;;         今材))
+(define (get-week-data/two-years [code (stock-code)])
+    (get-week-data 110 code))
 
-;; (findf (λ (e) (且 (􏼣? (hash-ref e 'day) "15:00:00")
-;;               (非 (􏼤? (hash-ref e 'day) (~t (now) "YYYY-MM-dd")))))
-;;     今日材)
-
-
-;; (define 今日前收盘价
-;;     (string->number (hash-ref 今日前收盘数据 'close)))
-;; (define 今日最高价
-;;     (􏹔 (* 今日前收盘价 1.1)))
-;; (define 今日最低价
-;;     (􏹔 (* 今日前收盘价 0.9)))
+(define (get-week-data/three-years [code (stock-code)])
+    (get-week-data 160 code))
+(define (get-week-datafive-years [code (stock-code)])
+    (get-week-data 280 code))
 
 
-<<<<<<< HEAD
-;; (define 今日卦象数据
-;;     (map (λ (e) (hash-set e )
-=======
-;; (名 今日卦象数据
-;;     (􏷑 (λ (e) (􏿰攸 e )
->>>>>>> master
-;;          今日数据)) )
+
+(define yesterday-colse-time (string-append (~t (-days (now) 1) "YYYY-MM-dd") " " "15:00:00"))
+(define closest-close-raw-data
+  (findf (λ (e) (and (string-suffix? (hash-ref e 'day) "15:00:00")
+                     (not (string-prefix? (hash-ref e 'day) (~t (now) "YYYY-MM-dd")))))
+         raw-day-today))
+(findf (λ (e) (and (string-suffix? (hash-ref e 'day) "15:00:00")
+                   (not (string-prefix? (hash-ref e 'day) (~t (now) "YYYY-MM-dd")))))
+       raw-day-today)
+
+
+(define last-close-price
+    (string->number (hash-ref yesterday-colse-time 'close)))
+(define top-price-of-today
+  (round (* last-colse-price 1.1)))
+(define bottom-price-of-today
+  (round (* last-close-price 0.9)))
+
+(define gua-data-of-today
+    (map (λ (e) (hash-set e )
 
 
 ;; 卄卄卅卅卌卌

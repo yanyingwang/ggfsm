@@ -3,18 +3,18 @@
 (require ming
          "8gua.rkt")
 
-(provide 六十四卦 三十二阴卦 三十二阳卦 六十四卦字符表)
-(provide 八卦 八卦字符表 八卦字二表)
+(provide gua64 32gua-of-the-first-half 32gua-of-the-second-half gua64-with-icons)
+(provide gua8 gua8-with-icons gua8-with-chars)
 ;; 乾☰   兑☱   离☲  震☳     巽☴    坎☵    艮☶   坤☷
 ;; 111   011   101  001     110    010    100   000
 ;; 7     3     5    1       6      2      4     0
-(define 八卦 (list '坤 '艮 '坎 '巽 '震 '离 '兑 '乾))
+(define gua8 (list '坤 '艮 '坎 '巽 '震 '离 '兑 '乾))
 
-(define 八卦字符表 ;汉字和符号对应表
+(define gua8-with-icons ;汉字和符号对应表
     (hash '乾 '☰ '兑 '☱ '离 '☲ '震 '☳ '巽 '☴ '坎 '☵ '艮 '☶ '坤 '☷
         ))
 
-(define 八卦字二表 ;汉字和二进制对应表
+(define gua8-with-chars ;汉字和二进制对应表
     (hash '乾 111 ;7
         '兑 110 ;6
         '离 101 ;5
@@ -25,19 +25,19 @@
         '坤 000 ;0
         ))
 
-(define 三十二阴卦 ;阳生阴
+(define 32gua-of-the-first-half ;阳生阴
     (list '乾 #;8 '夬     '大有   '大壮   '小畜  '需   '大畜 '泰
         '履     '兑 #;8 '睽     '归妹   '中孚  '节   '损   '临
         '同人   '革     '离 #;8 '丰     '家人  '既济 '贲   '明夷
         '无妄   '随     '噬嗑   '震 #;8 '益    '屯   '颐   '复))
 
-(define 三十二阳卦 ;阴生阳
+(define 32gua-of-the-second-half ;阴生阳
     (list '坤 #;8 '剥     '比     '观     '豫   '晋   '萃   '否
         '谦     '艮 #;8 '蹇     '渐     '小过 '旅   '咸   '遁
         '师     '蒙     '坎 #;8 '涣     '解   '未济 '困   '讼
         '升     '蛊     '井     '巽 #;8 '恒   '鼎   '大过 '姤))
 
-(define 六十四卦
+(define gua64
     '(坤 剥 比 观 豫 晋 萃 否 谦 艮 蹇 渐 小过 旅 咸 遁 师 蒙 坎 涣 解 未济 困 讼 升 蛊 井 巽 恒 鼎 大过 姤
       复 颐 屯 益 震 噬嗑 随 无妄 明夷 贲 既济 家人 丰 离 革 同人 临 损 节 中孚 归妹 睽 兑 履 泰 大畜 需 小畜 大壮 大有 夬 乾))
 
@@ -45,7 +45,7 @@
 ; https://zh.wikipedia.org/zh-cn/%E5%85%AD%E5%8D%81%E5%9B%9B%E5%8D%A6
 
 
-(define 六十四卦字符表
+(define gua64-with-icons
     (hash '乾 '䷀
         '坤   '䷁
         '屯   '䷂

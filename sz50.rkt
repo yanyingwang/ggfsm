@@ -61,6 +61,6 @@
     )
 
 (define sz1
-    (􏾝 sz50 0 25))
+    (member-of sz50 0 25))
 (define sz2
-    (􏾝 sz50 25 50))
+    (member-of sz50 25 50))

@@ -6,70 +6,69 @@
          "gua-helper.rkt"
          "8gua.rkt"
          "64gua.rkt")
-(provide 天价地量? 天量地价? 高价缩量? 低价起量? 低价低量? 超量超价?
-         get-days 卦象解析 量价解析)
+(provide top-price-bottom-volume? top-volume-bottom-price? high-price-shrinked-volume? low-price-voting-volume? low-price-low-volume? top-price-top-volume?
+         get-days analysis-gua analysis-relationship-of-volume-price)
 
-(define (超量超价? d)
+(define (top-price-top-volume? d)
   (or (> (hash-ref d 'jgua-n) 5)
       (> (hash-ref d 'lgua-n) 5)))
 
-(define (天价地量? d)
+(define (top-price-bottom-volume? d)
   (or (> (hash-ref d 'jgua-n) 5)
       (< (hash-ref d 'lgua-n) 2)))
 
-(define (天量地价? d)
+(define (top-volume-bottom-price? d)
   (or (< (hash-ref d 'jgua-n) 2)
       (> (hash-ref d 'lgua-n) 5)))
 
-(define (高价缩量? d)
+(define (high-price-shrinked-volume? d)
   (or (> (hash-ref d 'jgua-n) 5)
       (or (> (hash-ref d 'lgua-n) 2)
           (< (hash-ref d 'lgua-n) 5))))
 
-(define (低价起量? d)
+(define (low-price-voting-volume? d)
   (or (> (hash-ref d 'jgua-n) 5)
       (or (> (hash-ref d 'lgua-n) 2)
           (< (hash-ref d 'lgua-n) 5))))
 
-(define (低价低量? d)
+(define (low-price-low-volume? d)
   (or (< (hash-ref d 'jgua-n) 2)
       (< (hash-ref d 'lgua-n) 2)))
 
-(define (买入信号? dn) ; 连续三日低价起量
-  (andmap 低价起量? dn))
+(define (single-of-buy-in? dn) ; three days of voting on volumes
+  (andmap low-price-voting-volume? dn))
 
-(define (卖出信号? dn) ; 连续三日高价缩量
-  (andmap 高价缩量? dn))
+(define (single-of-sell-out? dn) ; three consecutive days of shrinking volumes
+  (andmap high-price-shrinked-volume? dn))
 
-(define (超买信号? d)
-    (天量地价? d))
+(define (single-of-great-buy-in? d)
+    (top-volume-bottom-price? d))
 
-(define (风险信号? d)
-    (天价地量? d))
+(define (single-of-risking? d)
+    (top-price-bottom-volume? d))
 
 (define (get-days proced dn)
   (map  (lambda (d) (hash-ref d 'day))
         (filter proced dn)))
 
-(define (卦象解析 复卦)
-  @~a{最近一个交易日卦象（复卦）为: @|复卦|，序号为：@(list-ref 六十四卦 复卦)。拆解后，其上单卦（量卦）为： @(上单卦 复卦)，序号是：@(list-ref 八卦 (上单卦 复卦))；其下单卦（价卦）为： @(下单卦 复卦)，序号是：@(list-ref 八卦 (下单卦 复卦))。})
+(define (analysis-gua overlapped-gua)
+  @~a{最近一个交易日卦象（overlapped-gua）为: @|overlapped-gua|，序号为：@(list-ref gua64 overlapped-gua)。拆解后，其single-up-gua（量卦）为： @(single-up-gua overlapped-gua)，序号是：@(list-ref gua8 (single-up-gua overlapped-gua))；其single-down-gua（价卦）为： @(single-down-gua overlapped-gua)，序号是：@(list-ref gua8 (single-down-gua overlapped-gua))。})
 
-(define (量价解析 d)
-    (define (置 data key)
-      (肖 (hash-ref data key)
+(define (analysis-relationship-of-volume-price d)
+    (define (converting data key)
+      (case (hash-ref data key)
             [(5 6 7) "高"]
             [(3 4) "中"]
             [(0 1 2) "低"]
-            [夬 #f]))
-    (define (风险 d)
+            [else #f]))
+  (define (risk d)
         (cond
-         [(超量超价? d) "风险提示：超量超价(多方买入)。"]
-         [(天量地价? d) "买入信号：天量地价(超强买入)，可以入场。"]
-         [(天价地量? d) "风险提示：天价地量，需密切关注，如已购入，建议减仓。"]
-         [(高价缩量? d) "卖出信号：高价缩量(卖出信号)。"]
-         [(低价起量? d) "买入信号：低价起量(一般买入)。"]
-         [(低价低量? d) "观望市场：低价低量(市场低靡), 不建议操作。"]
-
+         [(top-price-top-volume? d) "风险提示：超量超价(多方买入)。"]
+         [(top-volume-bottom-price? d) "买入信号：天量地价(超强买入)，可以入场。"]
+         [(top-price-bottom-volume? d) "风险提示：天价地量，需密切关注，如已购入，建议减仓。"]
+         [(high-price-shrinked-volume? d) "卖出信号：高价缩量(卖出信号)。"]
+         [(low-price-voting-volume? d) "买入信号：低价起量(一般买入)。"]
+         [(low-price-low-volume? d) "观望市场：低价低量(市场低靡), 不建议操作。"]
          [else "无异常，观望市场。"])
         )
-    @~a{@(hash-ref d 'day)当日，本股交易量位于@(置 d 'lgua-n)位，价格位于@(置 d 'jgua-n)位。@(风险 d)})
+  @~a{@(hash-ref d 'day)当日，本股交易量位于@(converting d 'lgua-n)位，价格位于@(converting d 'jgua-n)位。@(risk d)})

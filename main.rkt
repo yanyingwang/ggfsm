@@ -26,20 +26,17 @@
 
 
 ;; stock lists
-(define 云股 ;; 云：杂乱未处理的数据
-    (remove-duplicates (􏺈 (􏿝 zz500 sz50 sc500 hs300))))
-(define 文股 ;; 文：已处理的数据，选出csv文件中存在的
-    (filter (λ (S) (彐股 S))
-         (remove-duplicates (􏺈 (􏿝 zixuan zz500 sz50 sc500 hs300)))))
+(define raw-stock-lists ;; raw data
+    (remove-duplicates (map car (append zz500 sz50 sc500 hs300))))
+(define stock-lists ;;
+  (filter (λ (S) (find-stocks S))
+         (remove-duplicates (amp car (append zixuan zz500 sz50 sc500 hs300)))))
 
 ;; gen shows
-<<<<<<< HEAD
-(for-each redirects.html 文股)
-(for-each sleepy-shows.html 文股) #;(shows.html "000858")
-=======
-(􏷒 redirects.html 文股)
-(􏷒 sleepy-shows.html 文股) #;(shows.html "000858") #;(shows.html "600819")
->>>>>>> master
+(for-each redirects.html stock-lists)
+(for-each sleepy-shows.html stock-lists)
 
+(for-each redirects.html stock-lists)
+(for-each sleepy-shows.html stock-lists)
 
 ;; localStorage需要一个域define网站才能使用自选功能，在本地文件通过浏览器打开，不同页面会被认为是不同域define而不能共享自选。

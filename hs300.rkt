@@ -312,8 +312,8 @@
     )
 
 (define hs1
-    (􏾝 hs300 0 99))
+    (member-of hs300 0 99))
 (define hs2
-    (􏾝 hs300 100 199))
+    (member-of hs300 100 199))
 (define hs3
-    (􏾝 hs300 200 299))
+    (member-of hs300 200 299))

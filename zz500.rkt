@@ -513,12 +513,12 @@
     )
 
 (define zz1
-    (􏾝 zz500 0 99))
+    (member-of zz500 0 99))
 (define zz2
-    (􏾝 zz500 100 199))
+    (member-of zz500 100 199))
 (define zz3
-    (􏾝 zz500 200 299))
+    (member-of zz500 200 299))
 (define zz4
-    (􏾝 zz500 300 399))
+    (member-of zz500 300 399))
 (define zz5
-    (􏾝 zz500 400 499))
+    (member-of zz500 400 499))

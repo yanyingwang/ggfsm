@@ -3,7 +3,7 @@
 (require racket/runtime-path racket/format
          ming ming/number ming/string racket/string ming/list racket/list csv-reading "paths.rkt")
 
-(provide 沪股文 沪股文头 深股文 深股文头 彐沪股 彐深股 彐股 彐股以define)
+(provide shanghai-stock-data shanghai-sotck-data-header shenzheng-stock-data shenzheng-stock-data-header find-sh-stock find-sz-stock find-stock find-stock以define)
 
 ;; http://www.szse.cn/market/product/stock/list/index.html
 ;; http://www.szse.cn/certificate/individual/index.html?code=000001
@@ -28,46 +28,46 @@
      '((separator-chars            #\,)
        (strip-leading-whitespace?  . #t)
        (strip-trailing-whitespace? . #t))))
-(define 沪股文头
+(define shanghai-stock-data-headers
     '(A股代码 B股代码 证券简称 扩位证券简称 公司英文全称 上市日期) ;; (shse-reader)
     )
-(define 深股文头
+(define shenzheng-stock-data-header
     '(板块 公司全称 英文define称 注册地址 A股代码 A股简称 A股上市日期 A股总股本 A股流通股本 B股代码
       B股简称 B股上市日期 B股总股本 B股流通股本 地区 省份 城市 所属行业 公司网址 未盈利 具有表决权差异安排 具有协议控制架构
       ) ;; (szse-reader)
     )
-(define 头 '(所 代码 简称 英文全称 上市日期))
-(define 沪股文 (csv->list shse-reader))
-(define 深股文 (csv->list szse-reader))
-(define (彐沪股 S [N 0]) ;; 0: A股代码，见文头
-    (define 文 (findf (λ (L) (string-contains? (list-ref L N) S))
-               沪股文))
-    (and 文
-        (make-hash (map cons 头 (cons 'SH (伄 文 0 2 4 5)))))
+(define header '(所 代码 简称 英文全称 上市日期))
+(define shanghai-stock-data (csv->list shse-reader))
+(define shenzheng-stock-data (csv->list szse-reader))
+(define (find-sh-stock S [N 0]) ;; 0: A股代码，见文header
+    (define data (findf (λ (L) (string-contains? (list-ref L N) S))
+               shanghai-stock-data))
+    (and data
+        (make-hash (map cons header (cons 'SH (list-ref data 0 2 4 5)))))
     )
 
-(define (彐深股 S [N 4]) ;; 4: A股代码，见文头
-    (define 文 (findf (λ (L) (string-contains? (string-replace (list-ref L N) " " "") S))
-               深股文))
-    (and 文
-        (make-hash (map cons 头 (cons 'SZ (伄 文 4 5 2 6)))))
+(define (find-sz-stock S [N 4]) ;; 4: A股代码，见文header
+    (define data (findf (λ (L) (string-contains? (string-replace (list-ref L N) " " "") S))
+               shenzheng-stock-data))
+    (and data
+        (make-hash (map cons header (cons 'SZ (list-ref data 4 5 2 6)))))
 
-(define (彐沪股 S [N 0]) ;; 0: A股代码，见文头
-    (define 文 (􏹌 (λ (L) (邭? (弔 L N) S))
-               沪股文))
-    (并 文
-        (􏿰^ (􏷑 双 头 (双 'SH (伄 文 0 2 4 5)))))
+(define (find-sh-stock S [N 0]) ;; 0: A股代码，见文header
+    (define data (findf (λ (L) (substring? (list-index L N) S))
+               shanghai-stock-data))
+    (or data
+        (mke-hash (map cons header (cons 'SH (list-ref data 0 2 4 5)))))
     )
 
-(define (彐深股 S [N 4]) ;; 4: A股代码，见文头
-    (define 文 (􏹌 (λ (L) (邭? (􏸵 (弔 L N)) S))
-               深股文))
-    (并 文
-        (􏿰^ (􏷑 双 头 (双 'SZ (伄 文 4 5 2 6)))))
+(define (find-sz-stock S [N 4]) ;; 4: A股代码，见文header
+    (define data (findf (λ (L) (substring? (string-simplify-spaces (list-index L N)) S))
+               shenzheng-stock-data))
+    (or data
+        (mke-hash (map cons header (cons 'SZ (list-ref data 4 5 2 6)))))
 
     )
-  (define (彐股 S)
-    (or (彐沪股 S) (彐深股 S)))
+  (define (find-stock S)
+    (or (find-sh-stock S) (find-sz-stock S)))
 
-(define (彐股以define S)
-    (or (彐沪股 S 2) (彐深股 S 5)))  ;; 2,5：简称，见文头
+(define (find-stock以define S)
+    (or (find-sh-stock S 2) (find-sz-stock S 5)))  ;; 2,5：简称，见文header

@@ -1,36 +1,36 @@
 #lang at-exp racket/base
 
 (require ming racket/list
-
-(require ming
          racket/format
-
          "8gua.rkt"
          "64gua.rkt")
-(provide 复卦 单卦 上单卦 下单卦)
+(provide overlapped-gua single-gua single-up-gua single-down-gua)
 
+;; overlapped-gua overlapped gua
+;; single-gua single gua
+;; single-up-gua single up gua
+;; single-down-gua signle down gua
 
-(define (复卦 上卦 下卦)
-    (define N (index-of 八卦 上卦))
-    (define M (index-of 八卦 下卦))
-    (define X (+ (* M 8) N)) ; 62卦是下八卦的每一序卦都依次排布上八卦
-    (list-ref 六十四卦 X)
-    )
+(define (overlapped-gua up-gua down-gua)
+  (define N (index-of gua8 up-gua))
+  (define M (index-of gua8 down-gua))
+  (define X (+ (* M 8) N)) ; gua64是下gua8的每一序卦都依次排布上gua8
+  (list-ref gua64 X)
+  )
 
-(define (单卦 复卦)
-    (define X (index-of 六十四卦 复卦))
-    (􏸾 (M N) (􏻓和𥺌 X 8))
-    (並 (list-ref 八卦 N)
-        (list-ref 八卦 M)))
+(define (single-gua overlapped-gua)
+  (define X (index-of gua64 overlapped-gua))
+  (define-values (M N) (quotient/remainder X 8))
+  (value (list-ref gua8 N)
+         (list-ref gua8 M)))
 
-(define (上单卦 复卦)
-    (define X (index-of 六十四卦 复卦))
-    (􏸾 (M N) (􏻓和𥺌 X 8))
-     (list-ref 八卦 N))
+(define (single-up-gua overlapped-gua)
+  (define X (index-of gua64 overlapped-gua))
+  (define-values (M N) (quotient/remainder X 8))
+  (list-ref gua8 N))
 
-(define (下单卦 复卦)
-    (define X (index-of 六十四卦 复卦))
-    (􏸾 (M N) (􏻓和𥺌 X 8))
-    (list-ref 八卦 M)
-    )
-
+(define (single-down-gua overlapped-gua)
+  (define X (index-of gua64 overlapped-gua))
+  (define-values (M N) (quotient/remainder X 8))
+  (list-ref gua8 M)
+  )

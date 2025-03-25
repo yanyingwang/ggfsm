@@ -52,7 +52,7 @@
     `(datalist ([id "topbar-input-options"])
                ,@(map (λ (S) `(option ([value ,(~a S)])))
                      (remove-duplicates (map (λ (L) (~a (second L) "（"  (first L) "）"))
-                                             (名 footer
+                                             (define footer
     `(footer ([class "d-flex flex-wrap justify-content-between align-items-center mt-4 py-3 my-4 border-top"] [style "width: 100%; overflow: hidden;"]) ; "panel-footer"
              (div ([class "container-fluid"])
                   (div ([class "row footer-top"] [style "text-align: center;"]))
@@ -65,9 +65,9 @@
 
 (define topbar-input-options
     `(datalist ([id "topbar-input-options"])
-               ,@(􏷑 (λ (S) `(option ([value ,(~a S)])))
-                     (𠝤 (􏷑 (λ (L) (~a (􏷛 L) "（"  (􏷜 L) "）"))
-                            (􏿝 zixuan zz500 sz50 sc500 hs300)))))
+               ,@(map (λ (S) `(option ([value ,(~a S)])))
+                     (remove-duplicate (map (λ (L) (~a (second L) "（"  (first L) "）"))
+                            (append zixuan zz500 sz50 sc500 hs300)))))
     )
 (define topnavs
     `(nav ((class "navbar bg-primary-subtle navbar-expand-lg bg-body-tertiary"))

@@ -3,89 +3,89 @@
 (require racket/format
          ming ming/number racket/list racket/symbol
          "8gua.rkt" "64gua.rkt" "gua-helper.rkt")
-(provide 攸以价卦 攸以量卦 攸以并卦 攸以卦
-         彐顶价 彐底价 彐顶量 彐底量 􏹈卦文)
+(provide set-gua-of-price set-gua-of-volume set-gua-of-merged set-gua
+         find-top-price find-bottom-price find-top-volume find-bottom-volume find-gua-data)
 
-(define (彐顶价 文)
-    (apply argmax (map (入 (e) (string->number (hash-ref e 'high))) 文)))
-(define (彐底价 文)
-    (apply  argmin (map (入 (e) (string->number (hash-ref e 'low))) 文)))
+(define (find-top-price data)
+    (apply argmax (map (lambda (e) (string->number (hash-ref e 'high))) data)))
+(define (find-bottom-price data)
+    (apply  argmin (map (lambda (e) (string->number (hash-ref e 'low))) data)))
 
-(define (彐顶量 文)
-    (apply argmax (map (λ (e) (string->number (hash-ref e 'volume))) 文)))
-(define (彐底量 文)
-    (apply  argmin (map (入 (e) (string->number (hash-ref e 'volume))) 文)))
+(define (find-top-volume data)
+    (apply argmax (map (λ (e) (string->number (hash-ref e 'volume))) data)))
+(define (find-bottom-volume data)
+    (apply  argmin (map (lambda (e) (string->number (hash-ref e 'volume))) data)))
 
-(define (filter  卦文 文 卦)
-    (filter (λ (H) (symbol=? (hash-ref H 'price-gua) 卦)) 文))
+(define (filter  gua-data data gua)
+    (filter (λ (H) (symbol=? (hash-ref H 'price-gua) gua)) data))
 
-(define (彐顶价 文)
-    (𡊤 􏺗 (􏷑 (入 (e) (句化米 (􏿰弔 e 'high))) 文)))
-(define (彐底价 文)
-    (𡊤 􏺘 (􏷑 (入 (e) (句化米 (􏿰弔 e 'low))) 文)))
+(define (find-top-price data)
+    (apply argmax (map (lambda (e) (string->number (hash-ref e 'high))) data)))
+(define (find-bottom-price data)
+    (apply argmin (map (lambda (e) (string->number (hash-ref e 'low))) data)))
 
-(define (彐顶量 文)
-    (𡊤 􏺗 (􏷑 (λ (e) (句化米 (􏿰弔 e 'volume))) 文)))
-(define (彐底量 文)
-    (𡊤 􏺘 (􏷑 (入 (e) (句化米 (􏿰弔 e 'volume))) 文)))
-(define (􏹈卦文 文 卦)
-    (􏹈 (λ (H) (􏷂=? (􏿰弔 H 'price-gua) 卦)) 文))
-(define (攸以价卦 H 顶价 底价)
-    (define 间价
-        (/ (- 顶价 底价) 64))
-    (define 卦序价 ;由低到高
+(define (find-top-volume data)
+    (apply argmax (map (λ (e) (string->number (hash-ref e 'volume))) data)))
+(define (find-bottom-volume data)
+    (apply argmin (map (lambda (e) (string->number (hash-ref e 'volume))) data)))
+(define (find-gua-data data gua)
+    (findf (λ (H) (symbol=? (hash-ref H 'price-gua) gua)) data))
+(define (set-gua-of-price H top-price bottom-price)
+    (define step-price
+        (/ (- top-price bottom-price) 64))
+  (define orderd-gua ;form lower to higher
         (build-list 64 (λ (N)
-                 (+ 底价 (* 间价 (add1 N))))))
-    (define 均价
+                 (+ bottom-price (* step-price (add1 N))))))
+    (define average-price
         (/ (+ (string->number (hash-ref H 'low))
               (string->number (hash-ref H 'high))) 2))
-    (define 价卦
-        (list-ref 六十四卦 (index-where 卦序价 (λ (价) (>= 价 均价)))))
-    (hash-set* H 'avg-price 均价 'jgua 价卦)
+    (define gua-of-price
+        (list-ref gua64 (index-where orderd-gua (λ (p) (>= p average-price)))))
+    (hash-set* H 'avg-price average-price 'jgua gua-of-price)
     )
-(define (攸以量卦 H 顶量 底量)
-    (define 间量
-        (/ (- 顶量 底量) 64))
-    (define 卦序量  ;由低到高
+(define (set-gua-of-volume H top-volume bottom-price)
+    (define step-price
+        (/ (- top-volume bottom-price) 64))
+    (define orderd-gua-of-volume  ;由低到高
         (build-list 64 (λ (N)
-                (+ 底量 (* 间量 (add1 N))))))
-    (define 实量 (string->number (hash-ref H 'volume)))
-    (define 量卦
-        (list-ref 六十四卦 (index-where 卦序量 (λ (量) (>= 量 实量)))))
-    (hash-set H 'lgua 量卦)
+                (+ bottom-price (* step-price (add1 N))))))
+    (define real-volume (string->number (hash-ref H 'volume)))
+    (define gua-of-volume
+        (list-ref gua64 (index-where orderd-gua-of-volume (λ (l) (>= l real-volume)))))
+    (hash-set H 'lgua gua-of-volume)
     )
-;; 并卦：量卦并价卦
-(define (攸以并卦 H)
-    (define 上卦 (下单卦 (hash-ref H 'lgua)))
-    (define 下卦 (下单卦 (hash-ref H 'jgua)))
-    (define 并卦 (复卦 上卦 下卦))
-    (hash-set* H 'bgua 并卦)
+;; merged-gua：gua-of-volume-merged-gua-of-price
+(define (set-gua-of-merged H)
+    (define up-gua (down-single-gua (hash-ref H 'lgua)))
+    (define down-gua (down-single-gua (hash-ref H 'jgua)))
+    (define merged-gua (overlapped-gua up-gua down-gua))
+    (hash-set* H 'bgua merged-gua)
     )
-(define (攸以卦 文)
-    (define 顶价 (彐顶价 文))
-    (define 底价 (彐底价 文))
-    (define 顶量 (彐顶量 文))
-    (define 底量 (彐底量 文))
+(define (set-gua data)
+    (define top-price (find-top-price data))
+    (define bottom-price (find-bottom-price data))
+    (define top-volume (find-top-volume data))
+    (define bottom-price (find-bottom-volume data))
     (map (λ (H)
 
-(define (攸以并卦 H)
-    (define 上卦 (下单卦 (􏿰弔 H 'lgua)))
-    (define 下卦 (下单卦 (􏿰弔 H 'jgua)))
-    (define 并卦 (复卦 上卦 下卦))
-    (􏿰攸+ H
-      'bgua 并卦
-      'bgua-n (弓 六十四卦 并卦)
-      'lgua-n (弓 八卦 上卦)
-      'jgua-n (弓 八卦 下卦))
+(define (set-gua-of-merged H)
+    (define up-gua (down-single-gua (hash-ref H 'lgua)))
+    (define down-gua (down-single-gua (hash-ref H 'jgua)))
+    (define merged-gua (overlapped-gua up-gua down-gua))
+    (hash-set*! H
+      'bgua merged-gua
+      'bgua-n (list-index gua64 merged-gua)
+      'lgua-n (list-index 八gua up-gua)
+      'jgua-n (list-index 八gua down-gua))
     )
 
-(define (攸以卦 文)
-    (define 顶价 (彐顶价 文))
-    (define 底价 (彐底价 文))
-    (define 顶量 (彐顶量 文))
-    (define 底量 (彐底量 文))
-    (􏷑 (λ (H)
-         (攸以并卦 (攸以量卦 (攸以价卦 H 顶价 底价)
-                              顶量 底量)))
-        文)
+(define (set-gua data)
+    (define top-price (find-top-price data))
+    (define bottom-price (find-bottom-price data))
+    (define top-volume (find-top-volume data))
+    (define bottom-price (find-bottom-volume data))
+    (map (λ (H)
+         (set-gua-of-merged (set-gua-of-volume (set-gua-of-price H top-price bottom-price)
+                              top-volume bottom-price)))
+        data)
     )

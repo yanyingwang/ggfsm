@@ -1,7 +1,7 @@
 #lang racket/base
 
 (require ming)
-(provide 八卦 八卦字符表 八卦字二表)
+(provide gua8 gua8-with-icons gua8-with-chars)
 
 
 ;; 乾☰   兑☱   离☲  震☳     巽☴    坎☵    艮☶   坤☷
@@ -9,10 +9,10 @@
 ;; 7     3     5    1       6      2      4     0
 
 
-(define 八卦
+(define gua8
     (list '坤 '艮 '坎 '巽 '震 '离 '兑 '乾))
 
-(define 八卦字符表 ;汉字和符号对应表
+(define gua8-with-icons ;汉字和符号对应表
     (hash '乾 '☰
         '兑 '☱
         '离 '☲
@@ -23,7 +23,7 @@
         '坤 '☷
         ))
 
-(define 八卦字二表 ;汉字和二进制对应表
+(define gua8-with-chars ;汉字和二进制对应表
     (hash '乾 111 ;7
         '兑 110 ;6
         '离 101 ;5

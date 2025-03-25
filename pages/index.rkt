@@ -11,7 +11,7 @@
 
 
 (define AL
-    (􏿳 "603259" '药明康德 "300015" '艾尔眼科 "600750" '江中药业 "600559" '老白干 "000858" '五粮液 "000568" '泸州老窖
+    (association-list "603259" '药明康德 "300015" '艾尔眼科 "600750" '江中药业 "600559" '老白干 "000858" '五粮液 "000568" '泸州老窖
         "600519" '贵州茅台 "002049" '紫光国微 "300750" '宁德时代 "002594" '比亚迪 "002709" '天赐材料 "002460" '赣锋锂业
         ))
 
@@ -20,13 +20,10 @@
     `(div ((class "mt-5 border"))
       (h2 ((class "py-2 border-bottom")) ,t)
           (div ([class "row justify-content-center"])
-<<<<<<< HEAD
                ,@(map (λ (P) `(div ([class "col-2 my-2"])
                                   (a ([class "link-underline-light"] [href ,(~a (car P) ".html")]) ,(~a (cdr P)))
-=======
-               ,@(􏷑 (λ (P) `(div ([class "col-2 my-2"])
-                                  (a ([class "link-underline-light"] [href ,(~a (阳 P) ".html")]) ,(~a (阴 P)))
->>>>>>> master
+                                  ,@(map (λ (P) `(div ([class "col-2 my-2"])
+                                  (a ([class "link-underline-light"] [href ,(~a (car P) ".html")]) ,(~a (cdr P)))
                                   ))
                      AL)
                ))

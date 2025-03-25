@@ -514,12 +514,12 @@
 
 
 (define sc1
-    (􏾝 sc500 0 99))
+    (member-of sc500 0 99))
 (define sc2
-    (􏾝 sc500 100 199))
+    (member-of sc500 100 199))
 (define sc3
-    (􏾝 sc500 200 299))
+    (member-of sc500 200 299))
 (define sc4
-    (􏾝 sc500 300 399))
+    (member-of sc500 300 399))
 (define sc5
-    (􏾝 sc500 400 499))
+    (member-of sc500 400 499))
