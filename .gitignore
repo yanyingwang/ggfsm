@@ -7,3 +7,4 @@ compiled/
 
 /public/*
 !/public/.keep
+.projectile-cache.eld
