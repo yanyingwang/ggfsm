@@ -1,9 +1,8 @@
 #lang at-exp racket/base
 
-(require racket/runtime-path racket/format
-         ming ming/number ming/string racket/string ming/list racket/list csv-reading "paths.rkt")
+(require racket/cmdline racket/format racket/string racket/list racket/hash json csv-reading "paths.rkt")
 
-(provide shanghai-stock-data shanghai-sotck-data-header shenzheng-stock-data shenzheng-stock-data-header find-sh-stock find-sz-stock find-stock find-stock以define)
+(provide shanghai-stock-data shanghai-sotck-data-header shenzheng-stock-data shenzheng-stock-data-header find-sh-stock find-sz-stock find-stock find-stock-from)
 
 ;; http://www.szse.cn/market/product/stock/list/index.html
 ;; http://www.szse.cn/certificate/individual/index.html?code=000001
@@ -16,58 +15,69 @@
 ;; https://zh.wikipedia.org/zh-hans/%E4%B8%8A%E6%B5%B7%E8%AF%81%E5%88%B8%E4%BA%A4%E6%98%93%E6%89%80%E4%B8%BB%E6%9D%BF%E4%B8%8A%E5%B8%82%E5%85%AC%E5%8F%B8%E5%88%97%E8%A1%A8
 ;; https://zh.wikipedia.org/zh-hans/%E6%B7%B1%E5%9C%B3%E8%AF%81%E5%88%B8%E4%BA%A4%E6%98%93%E6%89%80%E4%B8%BB%E6%9D%BF%E4%B8%8A%E5%B8%82%E5%85%AC%E5%8F%B8%E5%88%97%E8%A1%A8
 ;; https://zh.wikipedia.org/zh-hans/Category:%E4%B8%AD%E5%8D%8E%E4%BA%BA%E6%B0%91%E5%85%B1%E5%92%8C%E5%9B%BD%E4%BC%81%E4%B8%9A%E5%88%97%E8%A1%A8
-(define shse-reader
-    (make-csv-reader
-     (open-input-file (csv/ "shse.csv"))
-     '((separator-chars            #\,)
-       (strip-leading-whitespace?  . #t)
-       (strip-trailing-whitespace? . #t))))
-(define szse-reader
-    (make-csv-reader
-     (open-input-file (csv/ "szse.csv"))
-     '((separator-chars            #\,)
-       (strip-leading-whitespace?  . #t)
-       (strip-trailing-whitespace? . #t))))
-(define shanghai-stock-data-headers
-    '(A股代码 B股代码 证券简称 扩位证券简称 公司英文全称 上市日期) ;; (shse-reader)
-    )
-(define shenzheng-stock-data-header
-    '(板块 公司全称 英文define称 注册地址 A股代码 A股简称 A股上市日期 A股总股本 A股流通股本 B股代码
-      B股简称 B股上市日期 B股总股本 B股流通股本 地区 省份 城市 所属行业 公司网址 未盈利 具有表决权差异安排 具有协议控制架构
-      ) ;; (szse-reader)
-    )
-(define header '(所 代码 简称 英文全称 上市日期))
-(define shanghai-stock-data (csv->list shse-reader))
-(define shenzheng-stock-data (csv->list szse-reader))
-(define (find-sh-stock S [N 0]) ;; 0: A股代码，见文header
-    (define data (findf (λ (L) (string-contains? (list-ref L N) S))
-               shanghai-stock-data))
-    (and data
-        (make-hash (map cons header (cons 'SH (list-ref data 0 2 4 5)))))
-    )
 
-(define (find-sz-stock S [N 4]) ;; 4: A股代码，见文header
-    (define data (findf (λ (L) (string-contains? (string-replace (list-ref L N) " " "") S))
-               shenzheng-stock-data))
-    (and data
-        (make-hash (map cons header (cons 'SZ (list-ref data 4 5 2 6)))))
+;; 读取 CSV 文件的封装函数
+(define (read-csv file-path)
+  (call-with-input-file file-path
+    (lambda (in)
+      (read-csv/tsv in #:separator #\, #:strip-leading-whitespace? #t #:strip-trailing-whitespace? #t))))
 
-(define (find-sh-stock S [N 0]) ;; 0: A股代码，见文header
-    (define data (findf (λ (L) (substring? (list-index L N) S))
-               shanghai-stock-data))
-    (or data
-        (mke-hash (map cons header (cons 'SH (list-ref data 0 2 4 5)))))
-    )
+;; 定义 CSV 文件路径
+(define SHSE_FILE (csv/ "shse.csv"))
+(define SZSE_FILE (csv/ "szse.csv"))
 
-(define (find-sz-stock S [N 4]) ;; 4: A股代码，见文header
-    (define data (findf (λ (L) (substring? (string-simplify-spaces (list-index L N)) S))
-               shenzheng-stock-data))
-    (or data
-        (mke-hash (map cons header (cons 'SZ (list-ref data 4 5 2 6)))))
+;; 读取数据
+(define shanghai-stock-data (read-csv SHSE_FILE))
+(define shenzhen-stock-data (read-csv SZSE_FILE))
 
-    )
-  (define (find-stock S)
-    (or (find-sh-stock S) (find-sz-stock S)))
+;; 定义表头信息
+(define header '(市场 代码 简称 英文全称 上市日期))
+(define shanghai-header '(A股代码 B股代码 证券简称 扩位证券简称 公司英文全称 上市日期))
+(define shenzhen-header '(板块 公司全称 英文全称 注册地址 A股代码 A股简称 A股上市日期 A股总股本 A股流通股本 B股代码
+                          B股简称 B股上市日期 B股总股本 B股流通股本 地区 省份 城市 所属行业 公司网址 未盈利 具有表决权差异安排 具有协议控制架构))
 
-(define (find-stock以define S)
-    (or (find-sh-stock S 2) (find-sz-stock S 5)))  ;; 2,5：简称，见文header
+;; 股票查找函数（上海）
+(define (find-sh-stock code [index 0])
+  (define data (findf (lambda (row) (string-contains? (list-ref row index) code)) shanghai-stock-data))
+  (if data
+      (hash '市场 "SH"
+            '代码 (list-ref data 0)
+            '简称 (list-ref data 2)
+            '英文全称 (list-ref data 4)
+            '上市日期 (list-ref data 5))
+      #f))
+
+;; 股票查找函数（深圳）
+(define (find-sz-stock code [index 4])
+  (define data (findf (lambda (row) (string-contains? (string-replace (list-ref row index) " " "" ) code)) shenzhen-stock-data))
+  (if data
+      (hash '市场 "SZ"
+            '代码 (list-ref data 4)
+            '简称 (list-ref data 5)
+            '英文全称 (list-ref data 2)
+            '上市日期 (list-ref data 6))
+      #f))
+
+;; 统一查找股票
+(define (find-stock code)
+  (or (find-sh-stock code) (find-sz-stock code)))
+
+;; 通过简称查找股票
+(define (find-stock-from name)
+  (or (find-sh-stock name 2) (find-sz-stock name 5)))
+
+
+;; 命令行处理
+(define stock-code
+  (command-line
+   #:args (code)
+   code))
+
+(define result (find-stock stock-code))
+
+;; 输出 JSON
+(if result
+    (displayln (jsexpr->string result))
+    (displayln (jsexpr->string (hash 'error "未找到股票信息"))))
+;; result example:
+;; {"市场":"SH","代码":"600519","简称":"贵州茅台","英文全称":"Kweichow Moutai Co., Ltd.","上市日期":"2001-08-27"}
