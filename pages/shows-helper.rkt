@@ -1,7 +1,7 @@
 #lang racket/base
 
 (require racket/format
-         ming ming/number ming/list racket/list
+         racket/list
          gregor
          "../64gua.rkt"
          "../plotly-helper.rkt"

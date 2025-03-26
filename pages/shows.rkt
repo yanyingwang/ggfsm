@@ -2,7 +2,7 @@
 
 (require racket/format
          xml gregor
-         ming ming/list racket/list
+         racket/list
          "../paths.rkt"
          "../api.rkt"
          "../api-helper.rkt"
