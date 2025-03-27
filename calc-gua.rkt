@@ -98,8 +98,8 @@
     (hash-set*! H
       'bgua merged-gua
       'bgua-n (list-index gua64 merged-gua)
-      'lgua-n (list-index 八gua up-gua)
-      'jgua-n (list-index 八gua down-gua))))
+      'lgua-n (list-index 8gua up-gua)
+      'jgua-n (list-index 8gua down-gua))))
 
 ;; 批量计算数据的八卦信息
 (define (set-gua data)
