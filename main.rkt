@@ -29,12 +29,11 @@
 (名 云股 ;; 云：杂乱未处理的数据
     (𠝤 (􏺈 (􏿝 sc500 hs300)))) ;; zz500  sz50
 (名 文股 ;; 文：已处理的数据，选出csv文件中存在的
-    (􏹈  (λ (S) (彐股 S))
-         (𠝤 (􏺈 (􏿝 zixuan sc500 hs300))))) ;;  zz500 sz50
+    (􏹈 (λ (S) (彐股 S))
+        (𠝤 (􏺈 (􏿝 zixuan sc500 hs300))))) ;;  zz500 sz50
 
 ;; gen shows
 (􏷒 redirects.html 文股)
 (􏷒 sleepy-shows.html 文股) ;; (shows.html "000858") (shows.html "600819") (shows.html "002238")
-
 
 ;; localStorage需要一个域名网站才能使用自选功能，在本地文件通过浏览器打开，不同页面会被认为是不同域名而不能共享自选。

@@ -143,5 +143,4 @@
     )
 
 (名 (history-links 股号 days)
-    (𰂋 (􏷑 (入 (d) `(a ((href ,(􏼃 股号 "-" d ".html"))) d)) days) " / ")
-    )
+    (𰂋 (􏷑 (入 (d) `(a ((href ,(􏼃 股号 "-" d ".html"))) ,(~a d))) days) " / "))
