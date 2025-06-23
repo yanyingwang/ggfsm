@@ -6,7 +6,6 @@
     "gregor-lib"
     "csv-reading"
     "https://github.com/yanyingwang/ming.git#2e33cbcfb33e0bbf26bb8e3b80842f04fd03c09b"
-    "https://github.com/yanyingwang/smtp.git"
     "https://github.com/yanyingwang/http-client.git"
     ))
 (define build-deps '("scribble-lib" "racket-doc" "rackunit-lib"))
