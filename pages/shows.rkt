@@ -154,3 +154,4 @@
 ;; (shows.html "600819")
 ;; (shows.html "002238")
 ;; (shows.html "603259")
+;; (shows.html "600750")

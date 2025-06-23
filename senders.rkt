@@ -5,11 +5,12 @@
 
 
 (define icon
-  "https://raw.githubusercontent.com/yanyingwang/ggfsm/master/stock.png")
+  "https://raw.githubusercontent.com/yanyingwang/ggfsm/refs/heads/master/styles/stock.png")
 (define xr-api
   (http-connection (getenv "API_DAY_IPHXR")
                    (hasheq)
-                   (hasheq 'icon icon)))
+                   (hasheq 'icon icon)
+                   (hasheq 'group "GGFSM")))
 (define (bark-xr title content)
   (http-get xr-api
             #:path (~a title  "/" content))
