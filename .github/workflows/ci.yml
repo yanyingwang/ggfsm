@@ -38,6 +38,7 @@ jobs:
         run: cp -a styles/* public/ && ./main.rkt
         env:
           CI_BUILDING: "true"
+          API_DAY_IPHXR: ${{ secrets.API_DAY_IPHXR }}
 
       - name: Deploy to GitHub Pages
         if: success()
