@@ -39,6 +39,7 @@ jobs:
         env:
           CI_BUILDING: "true"
           API_DAY_IPHXR: ${{ secrets.API_DAY_IPHXR }}
+          API_NTFY: ${{ secrets.API_NTFY }}
 
       - name: Deploy to GitHub Pages
         if: success()
