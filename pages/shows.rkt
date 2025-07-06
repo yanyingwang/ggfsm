@@ -69,7 +69,7 @@
                                      (td ,(量价解析 (􏷜 文))))
                                  (tr (td ([class "text-nowrap"]) "交易提醒：")
                                      ,(丫 (戈 (􏷂=? 标 '3md) (􏷂=? 标 '6md) (􏷂=? 标 '1yd))
-                                          `(td ([class "text-info"]) ,(预警 代码 (􏷜 文)))
+                                          `(td ([class "text-info"]) ,(预警 标 代码 (􏷜 文)))
                                           `(td "当前日期不提醒")))
                                  ))))
                (div ([class "row text-center justify-content-center"])
