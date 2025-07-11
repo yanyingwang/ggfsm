@@ -75,14 +75,14 @@
                (div ((class "collapse navbar-collapse") (id "navbarSupportedContent"))
                     (ul ((class "navbar-nav me-auto mb-2 mb-lg-0"))
                         (li ((class "nav-item"))
-                            (a ((aria-current "page") (class "nav-link active") (href "index.html")) "自选"))
+                            (a ((aria-current "page") (class "nav-link active") (href "index.html")) "WL"))
                         (li ((class "nav-item dropdown"))
                             (a ((aria-expanded "false")
                                 (class "nav-link dropdown-toggle")
                                 (data-bs-toggle "dropdown")
                                 (href "#")
                                 (role "button"))
-                               "索引")
+                               "Indexes")
                             (ul ((class "dropdown-menu"))
                                 (li (a ((class "dropdown-item") (href "hs300.html")) "沪深300"))
                                 (li (a ((class "dropdown-item") (href "zz500.html")) "中证500"))
@@ -90,16 +90,16 @@
                                 (li (a ((class "dropdown-item") (href "sz50.html")) "上证50"))
                                 (li (a ((class "dropdown-item") (href "sc500.html")) "深成500"))))
                         (li ((class "nav-item"))
-                            (a ((class "nav-link text-black-50") (href "about.html")) "关于")))
+                            (a ((class "nav-link text-black-50") (href "about.html")) "About")))
                     (div ([class "d-flex mb-0"]  [method "get"])
                          (input ([class "form-control me-2"]
                                  [id "topbar-input-jsoc"]
                                  [name "url"] [type "text"]
-                                 [placeholder "输入股票代码或简称"]
+                                 [placeholder "stock code or short name"]
                                  [list "topbar-input-options"]))
                          ,topbar-input-options
                          (button ([onclick "window.location.href = document.getElementById('topbar-input-jsoc').value.split('（').shift() + '.html'"]
-                                  [class "btn btn-outline-success"]) "入")
+                                  [class "btn btn-outline-success"]) "Click")
                          )
                     )
                ))
