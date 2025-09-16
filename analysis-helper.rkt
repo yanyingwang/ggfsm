@@ -105,13 +105,13 @@
 
 (名 (风险 d)
     (当
-     [(超量超价? d) "⚠️ 风险提示：超量超价(多方买入)。"]
-     [(天量地价? d) "✅ 买入信号：天量地价(超强买入)，可以入场。"]
-     [(天价地量? d) "⚠️ 风险提示：天价地量，需密切关注，如已购入，建议减仓。"]
+     [(超量超价? d) "⚠️ RISK: Above average volume and price, market overheating."]
+     [(天量地价? d) "✅ BUY-IN: High volume with low price, market activing."]
+     [(天价地量? d) "⚠️ RISK: High price with low volume, market declining."]
      ;; [(高价缩量? d) "🔻 卖出信号：高价缩量(卖出信号)。"]
      ;; [(低价起量? d) "✅ 买入信号：低价起量(一般买入)。"]
-     [(低价低量? d) "🔍 观望市场：低价低量(市场低靡), 不建议操作。"]
-     [夬 "系统暂无建议。"]))
+     [(低价低量? d) "🔍 On-HOLD: Low price and low volume, no chance to trade here."]
+     [夬 "No hint."]))
 
 (名 (风险? d)
     (戈 (超量超价? d)

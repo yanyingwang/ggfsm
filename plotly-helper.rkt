@@ -237,7 +237,7 @@
              ;; 'gridwidth 1
              )
      'shapes  (􏿝 八卦线 八卦条)
-     'title "卦势图"
+     'title "Gua graph"
      ;; 'font (􏿰 'size 12)
      'showlegend #t
      'height 1200

@@ -42,7 +42,7 @@
                       [onload "popDataToZixuan()"]
                       [id "zixuan"])
                      (div ([class "col-2 my-2"])
-                          (a ([class "link-underline-light"] [href "#"]) "请添加自选"))
+                          (a ([class "link-underline-light"] [href "#"]) "Please fill in your WL"))
                      )
                 )
            ,(gen-zixuan-divs "Watching List 2")

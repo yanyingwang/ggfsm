@@ -22,7 +22,7 @@ function getStockNC() {
   return document.getElementById('stock-name-code')
 }
 function getStockNCText() {
-  return getStockNC().textContent.replace("加自选", "").replace("删自选", "")
+  return getStockNC().textContent.replace("add to WL", "").replace("delete from WL", "")
 }
 function zixuanAddItem() {
   localStorage['zixuan'] = zixuan().concat(getStockNCText());
@@ -35,11 +35,11 @@ function zixuanDelItem() {
 function zixuanShow() {
   if (zixuan().includes(getStockNCText())) {
     // document.getElementById("zixuan-add-item-button").setAttribute("disabled", "true")
-    document.getElementById("zixuan-add-item-button").textContent = "删自选"
+    document.getElementById("zixuan-add-item-button").textContent = "delete from WL"
     document.getElementById("zixuan-add-item-button").classList = "btn btn-danger"
     document.getElementById("zixuan-add-item-button").setAttribute('onclick', 'zixuanDelItem()')
   } else {
-    document.getElementById("zixuan-add-item-button").textContent = "加自选"
+    document.getElementById("zixuan-add-item-button").textContent = "add to WL"
     document.getElementById("zixuan-add-item-button").classList = "btn btn-success"
     document.getElementById("zixuan-add-item-button").setAttribute('onclick', 'zixuanAddItem()')
   }
