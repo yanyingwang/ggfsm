@@ -57,7 +57,7 @@
                (div ([id ,(~a 标)])))
          `(div ([class "container mt-4"])
                (div ([class "row text-center justify-content-center"])
-                    (h2 "Analysis for ")
+                    (h2 "Today's analysis")
                     (div ([class "col-md-10"])
                          (table ([class "table table-hover"])
                                 (tbody

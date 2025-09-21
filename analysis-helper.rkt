@@ -122,7 +122,7 @@
         ))
 
 (名 (概览 d)
-    @~a{the average price is @(􏹔 (􏿰弔 d 'avg-price))￥，trade volume is @(􏹓 (/ (句化米 (􏿰弔 d 'volume)) 1000))k lots.})
+    @~a{the average price is ￥@(􏹔 (􏿰弔 d 'avg-price)), trade volume is @(􏹓 (/ (句化米 (􏿰弔 d 'volume)) 1000))k lots.})
 
 (名 (预警 标 股码 d)
     (名 云 (风险 d))

@@ -125,12 +125,12 @@
 
 (名 (nav-tabs 股号 active)
     (名 AL (􏿳
-            '3md "三月/日"
-            '6md "六月/日"
-            '1yd "一年/日"
-            '2yw "两年/周"
-            '3yw "三年/周"
-            '5yw "五年/周"))
+            '3md "3M/D"
+            '6md "6M/D"
+            '1yd "1Y/D"
+            '2yw "2Y/W"
+            '3yw "3Y/W"
+            '5yw "5Y/W"))
     `(ul ([class "nav nav-pills justify-content-center"])
          ,@(􏷑 (λ (AP)
                  `(li ([class "nav-item"])
