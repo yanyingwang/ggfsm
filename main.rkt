@@ -34,8 +34,8 @@
 
 ;; gen shows
 (􏷒 redirects.html 文股)
-;; (􏷒 sleepy-shows.html 文股)
-(shows.html "000858")
+(􏷒 sleepy-shows.html 文股)
+;; (shows.html "000858")
 ;; (shows.html "600819")
 ;; (shows.html "002238")
 ;; (shows.html "603259")
