@@ -57,22 +57,22 @@
         文))
 
 (名 (ts/量 文)
-    (􏷑 (λ (H) (~a (􏹓 (/ (句化米 (􏿰弔 H 'volume)) 10000)) "万手"))
+    (􏷑 (λ (H) (~a (􏹓 (/ (句化米 (􏿰弔 H 'volume)) 10000)) "0K lots"))
         文))
 
 (名 (ts/并卦 文)
     (􏷑 (λ (H)
-          (~a (􏹔 (􏿰弔 H 'avg-price)) "元"
+          (~a "￥" (􏹔 (􏿰弔 H 'avg-price))
               "/"
-              (􏹓 (/ (句化米 (􏿰弔 H 'volume)) 10000)) "万手"
+              (􏹓 (/ (句化米 (􏿰弔 H 'volume)) 10000)) "0K lots"
               ))
         文))
 
 
 (名 (plotly-data 文)
-    (􏿴 (gen-trace "量" (xs 文) (ys/量卦 文) (ts/量 文) 1)
-        (gen-trace "价" (xs 文) (ys/价卦 文) (ts/均价 文) 1 (ts/其他价 文))
-        (gen-trace "并" (xs 文) (ys/并卦 文) (ts/并卦 文) #;(ts/复卦数 文))
+    (􏿴 (gen-trace "Volume" (xs 文) (ys/量卦 文) (ts/量 文) 1)
+        (gen-trace "Price" (xs 文) (ys/价卦 文) (ts/均价 文) 1 (ts/其他价 文))
+        (gen-trace "Merged" (xs 文) (ys/并卦 文) (ts/并卦 文) #;(ts/复卦数 文))
         ))
 
 (名 (plotly-script div 文)

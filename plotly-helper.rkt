@@ -188,7 +188,8 @@
     (􏿰
      ;; 'scrollZoom #t
      'responsive #t
-     ;;locale "zh-CN"
+     ;; 'locale "zh-CN"
+     'locale "en-US"
      ;; 'editable #t
      ))
 
@@ -196,7 +197,7 @@
     (􏿰
      ;; 'hovermode "closest"
      'xaxis (􏿰
-             'title "时"
+             'title "Hours"
              'hoverformat "%Y-%m-%d(%a)"
              'tickformat "%Y-%m-%d"
              ;; 'gridcolor "lightGray"
@@ -223,7 +224,7 @@
              'type "date"
              )
      'yaxis (􏿰
-             'title "卦"
+             'title "Gua"
              'range: '(-32 32)
              ;; 'tickmode "linear"
              ;; 'tick0: 0
