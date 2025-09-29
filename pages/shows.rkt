@@ -54,7 +54,7 @@
                ,(compinfo 所 代码 简称 英文全称 上市日期))
          `(div ([class "container-fluid mt-3"])
                ,(nav-tabs 代码 标)
-               (div ([id ,(~a 标)])))
+               (div ([style "min-width: 1200px; overflow-x:scroll;"] [id ,(~a 标)])))
          `(div ([class "container mt-4"])
                (div ([class "row text-center justify-content-center"])
                     (h2 "Today's analysis")
