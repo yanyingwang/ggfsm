@@ -70,7 +70,7 @@
                                  (tr (td ([class "text-nowrap"]) "volum-price jumps：")
                                      (td ([class "text-nowrap"]) ,(量价激变预警 标 代码 (􏷜 文) (􏷛 文) (􏷚 文))))
                                  (tr (td ([class "text-nowrap"]) "Trade hint：")
-                                     (td ([class "text-info"]) ,(风险 标 代码 (􏷜 文))))
+                                     (td ([class "text-info"]) ,(风险 (􏷜 文))))
                                  ))))
                )
          (plotly-script 标 文)
