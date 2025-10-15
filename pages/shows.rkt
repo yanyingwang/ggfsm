@@ -68,9 +68,9 @@
                                  (tr (td ([class "text-nowrap"]) "Volume-Price Analysis：")
                                      (td ,(量价解析 (􏷜 文))))
                                  (tr (td ([class "text-nowrap"]) "volum-price jumps：")
-                                     (td ([class "text-nowrap"]) ,(量价激变解析 (􏷜 文) (􏷛 文) (􏷚 文))))
+                                     (td ([class "text-nowrap"]) ,(量价激变预警 标 代码 (􏷜 文) (􏷛 文) (􏷚 文))))
                                  (tr (td ([class "text-nowrap"]) "Trade hint：")
-                                     (td ([class "text-info"]) ,(预警 标 代码 (􏷜 文))))
+                                     (td ([class "text-info"]) ,(风险 标 代码 (􏷜 文))))
                                  ))))
                )
          (plotly-script 标 文)
@@ -99,7 +99,7 @@
      (sleep 2)))
 
 ;; (名 股号 "600750") "002238"
-;; (shows.html "600819")
+;; (shows.html "600819") ;玻璃
 ;; (shows.html "002238")
 ;; (shows.html "603259")
 ;; (shows.html "600750")
