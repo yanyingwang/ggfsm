@@ -112,7 +112,7 @@
         ))
 
 (名 (概览 d)
-    @~a{Price: ￥@(􏹔 (􏿰弔 d 'avg-price)){(􏿰弔 d 'high)-(􏿰弔 d 'low)(􏿰弔 d 'open)-(􏿰弔 d 'close)}, Volume: @(􏹓 (/ (句化米 (􏿰弔 d 'volume)) 10000)) 0k lots.})
+    @~a{Price: ￥@(􏹔 (􏿰弔 d 'avg-price)), ↑↓@(􏿰弔 d 'high)-@(􏿰弔 d 'low), ←→@(􏿰弔 d 'open)-@(􏿰弔 d 'close), Volume: @(􏹓 (/ (句化米 (􏿰弔 d 'volume)) 10000)) 0k lots.})
 
 (名 (激变预警 标 股码 d1 d2 d3)
     (名 云 (激变解析 d1 d2 d3))
