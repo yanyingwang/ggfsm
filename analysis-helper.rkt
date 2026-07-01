@@ -8,8 +8,8 @@
          "senders.rkt"
          "zixuan.rkt")
 (provide 天价地量? 天量地价? 高价缩量? 低价起量? 低价低量? 超量超价?
-         get-days 卦象解析 量价解析 概览 当日风险 当日风险? 当日预警
-         价格激变 易量激变 量价激变? 激变解析 激变预警)
+         get-days 卦象 量价 量价解析 当日风险 当日风险? 当日预警
+         价格激变 易量激变 量价激变? 激变解析 量价跃迁)
 
 (名 (量价激变? d1 d2 d3)
     (并 (> (􏹚 (价格激变 d1 d2 d3)) 1)
@@ -76,32 +76,32 @@
     (􏷑  (lambda (d) (􏿰弔 d 'day))
         (􏹈 proced dn)))
 
-(名 (卦象解析 复卦)
+(名 (卦象 复卦)
     (令 ([上卦 (之上单卦 复卦)]
          [下卦 (之下单卦 复卦)])
-        @~a{Merged:  @|复卦| @(化卦符/64 复卦) @(化卦数/64 复卦)，Volumes：@|上卦| @(化卦符/8 上卦) @(化卦数/8 上卦)； Price：@|下卦| @(化卦符/8 下卦) @(化卦数/8 下卦)。}))
+        @~a{@|复卦| @(化卦符/64 复卦) @(化卦数/64 复卦)，量：@|上卦| @(化卦符/8 上卦) @(化卦数/8 上卦)； 价：@|下卦| @(化卦符/8 下卦) @(化卦数/8 下卦)。}))
 
 (名 (量价解析 d)
     (名 (置 data key)
         (肖 (􏿰弔 data key)
-            [(5 6 7) "High"]
-            [(3 4) "Medium"]
-            [(0 1 2) "Low"]
+            [(5 6 7) "高"]
+            [(3 4) "中"]
+            [(0 1 2) "低"]
             [夬 #f]))
-    @~a{Trading volumes is in @(置 d 'lgua-n) position, and price is in @(置 d 'jgua-n) position.})
+    @~a{交易量在@(置 d 'lgua-n)位, and 价格在@(置 d 'jgua-n)位。})
 
 (名 (当日风险 d)
     (当
-     [(超量超价? d) "⚠️ RISK: Above average volume and price, market overheating."]
-     [(天量地价? d) "✅ BUY-IN: High volume with low price, market activing."]
-     [(天价地量? d) "⚠️ RISK: High price with low volume, market declining."]
+     [(超量超价? d) "⚠️ RISK: 均量均价以上，市场过热。"]
+     [(天量地价? d) "✅ BUY-IN: 高量低价，市场激活。"]
+     [(天价地量? d) "⚠️ RISK: 高价低量，市场衰退。"]
      ;; [(高价缩量? d) "🔻 卖出信号：高价缩量(卖出信号)。"]
      ;; [(低价起量? d) "✅ 买入信号：低价起量(一般买入)。"]
      ;; [(低价低量? d) "🔍 On-HOLD: Low price and low volume, no chance to trade here."]
      [夬 "No hint."]))
 
 (名 (激变解析 d1 d2 d3)
-    @~a{Recent 3 days, price changed in @(价格激变 d1 d2 d3) Gua, volume changed in @(易量激变 d1 d2 d3) Gua.})
+    @~a{近三日，价易@(价格激变 d1 d2 d3)卦, 量易@(易量激变 d1 d2 d3)卦。})
 
 (名 (当日风险? d)
     (戈 (超量超价? d)
@@ -111,10 +111,10 @@
         ;; (低价起量? d)
         ))
 
-(名 (概览 d)
-    @~a{Price: ￥@(􏹔 (􏿰弔 d 'avg-price)), ↑↓@(􏿰弔 d 'high)-@(􏿰弔 d 'low), ←→@(􏿰弔 d 'open)-@(􏿰弔 d 'close), Volume: @(􏹓 (/ (句化米 (􏿰弔 d 'volume)) 10000)) 0k lots.})
+(名 (量价 d)
+    @~a{价: ￥@(􏹔 (􏿰弔 d 'avg-price)), ↑@(􏿰弔 d 'high)-@(􏿰弔 d 'low)↓, ←@(􏿰弔 d 'open)-@(􏿰弔 d 'close)↓, 量: @(􏹓 (/ (句化米 (􏿰弔 d 'volume)) 10000))万手。})
 
-(名 (激变预警 标 股码 d1 d2 d3)
+(名 (量价跃迁 标 股码 d1 d2 d3)
     (名 云 (激变解析 d1 d2 d3))
     (名 股 (􏹉 股码 自选))
     (􏸣 (并 (量价激变? d1 d2 d3) 股)
