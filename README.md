@@ -5,3 +5,8 @@ Gua Graph For Stock Market
 
 
 ![Gua Graph](https://github.com/yanyingwang/ggfsm/blob/master/shotcut.png)
+
+
+# 编程实践规则汇总：
+1. 通俗的编程语言中的常用变量“数据”（data），在名语言中使用“云”一字。进而的，针对不同类型的数据，比如list，使用"􏵞"字做变量名，“􏵝”表示“hash”变量名，依次类推还有“􏵜”、“􏵛”、“􏵚”、“􏵗”等等。但若在编程语言中已经使用了“云”做变量，进而在对其的循环中可以使用“􏵖”来表示“云”集合中的其中之一。
+
