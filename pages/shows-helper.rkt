@@ -15,11 +15,12 @@
          thslink gstlink
          compinfo nav-tabs
          history-links
+         state-links
          )
 
 
 (名 (xs 文)
-    (􏷑 (λ (e) (􏿰弔 e 'day)) 文))
+    (􏷑 (λ (e) (date->iso8601 (􏿰弔 e 'day))) 文))
 
 (名 (n-to-y n)
     (名 n1 (- n 32))
@@ -29,47 +30,47 @@
 
 (名 (ys/并卦 文)
     (􏷑 (λ (H)
-          (n-to-y (弓 六十四卦 (􏿰弔 H 'bgua))))
+          (n-to-y (弓 六十四卦 (􏿰弔 H 'mgua))))
         文))
 
 (名 (ys/价卦 文)
     (􏷑 (λ (H)
-          (n-to-y (弓 六十四卦 (􏿰弔 H 'jgua))))
+          (n-to-y (弓 六十四卦 (􏿰弔 H 'pgua))))
         文))
 
 (名 (ys/量卦 文)
     (􏷑 (λ (H)
-          (n-to-y (弓 六十四卦 (􏿰弔 H 'lgua))))
+          (n-to-y (弓 六十四卦 (􏿰弔 H 'vgua))))
         文))
 
 (名 (ts/其他价 文)
     (􏷑 (λ (H)
           (􏿴
-           (􏹔 (句化米 (􏿰弔 H 'open)))
-           (􏹔 (句化米 (􏿰弔 H 'close)))
-           (􏹔 (句化米 (􏿰弔 H 'high)))
-           (􏹔 (句化米 (􏿰弔 H 'low)))
+           (􏿰弔 H 'open)
+           (􏿰弔 H 'close)
+           (􏿰弔 H 'high)
+           (􏿰弔 H 'low)
            ))
         文))
 
 (名 (ts/终价 文)
     (􏷑 (λ (H)
-          (􏹔 (􏿰弔 H 'avg-price)))
+         (􏿰弔 H 'avg-price))
         文))
 (名 (ts/均价 文)
     (􏷑 (λ (H)
-          (􏹔 (􏿰弔 H 'avg-price)))
+         (􏿰弔 H 'avg-price))
         文))
 
 (名 (ts/量 文)
-    (􏷑 (λ (H) (~a (􏹓 (/ (句化米 (􏿰弔 H 'volume)) 10000)) "0K lots"))
+    (􏷑 (λ (H) (~a (􏹓 (/ (􏿰弔 H 'volume) 10000)) "万手"))
         文))
 
 (名 (ts/并卦 文)
     (􏷑 (λ (H)
-          (~a "￥" (􏹔 (􏿰弔 H 'avg-price))
+         (~a "￥" (􏿰弔 H 'avg-price)
               "/"
-              (􏹓 (/ (句化米 (􏿰弔 H 'volume)) 10000)) "0K lots"
+              (􏹓 (/ (􏿰弔 H 'volume) 10000)) "万手"
               ))
         文))
 
@@ -149,3 +150,10 @@
 
 (名 (history-links 股号 days)
     (𰂋 (􏷑 (入 (d) `(a ((href ,(􏼃 股号 "-" d ".html"))) ,(~a d))) days) " / "))
+
+(名 (state-links L)
+    (𰂋
+     (􏷑 (入 (l)
+            `(a ((href "") (title ,(~a (􏷙 l) "，" (􏷘 l)))) ,(~a  (􏷛 l) (􏷚 l))))
+        L)
+     " / "))

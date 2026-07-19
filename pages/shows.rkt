@@ -15,6 +15,8 @@
          "../gu-helper.rkt"
          "../gua-helper.rkt"
          "../analysis-helper.rkt"
+         "../states.rkt"
+         "../states-helper.rkt"
          "../senders.rkt"
          "shows-helper.rkt")
 
@@ -43,20 +45,20 @@
     (名 日文/三年1 (攸以卦 日文/三年0))
     (名 日文/六月1 (攸以卦 日文/六月0))
     (名 日文/三月1 (攸以卦 日文/三月0))
-    (名 日文/一年 (攸以跃 日文/一年1))
-    (名 日文/三年 (攸以跃 日文/三年1))
-    (名 日文/六月 (攸以跃 日文/六月1))
-    (名 日文/三月 (攸以跃 日文/三月1))
+    (名 日文/一年 (􏾛 (攸以跃 日文/一年1)))
+    (名 日文/三年 (􏾛 (攸以跃 日文/三年1)))
+    (名 日文/六月 (􏾛 (攸以跃 日文/六月1)))
+    (名 日文/三月 (􏾛 (攸以跃 日文/三月1)))
 
-    (名 周文/五年 (􏷑 正型化 (取周文/五年 所号))) ;; 280
-    (名 周文/三年 (􏾝 (􏾛 周文/五年) 0 165))
-    (名 周文/两年 (􏾝 (􏾛 周文/五年) 0 110))
-    (名 周文/五年0 (攸以卦 周文/五年))
-    (名 周文/三年0 (攸以卦 周文/三年))
-    (名 周文/两年0 (攸以卦 周文/两年))
-    (名 周文/五年 (攸以跃 周文/五年0))
-    (名 周文/三年 (攸以跃 周文/三年0))
-    (名 周文/两年 (攸以跃 周文/两年0))
+    (名 周文/五年0 (􏷑 正型化 (取周文/五年 所号))) ;; 280
+    (名 周文/三年0 (􏾝 (􏾛 周文/五年0) 0 165))
+    (名 周文/两年0 (􏾝 (􏾛 周文/五年0) 0 110))
+    (名 周文/五年1 (攸以卦 周文/五年0))
+    (名 周文/三年1 (攸以卦 周文/三年0))
+    (名 周文/两年1 (攸以卦 周文/两年0))
+    (名 周文/五年 (􏾛 (攸以跃 周文/五年1)))
+    (名 周文/三年 (􏾛 (攸以跃 周文/三年1)))
+    (名 周文/两年 (􏾛 (攸以跃 周文/两年1)))
 
     ;; 㞢 艸 芔 芒 芠 㓙 are chars that means: raw data, processed data, formal data, a bunch of data
     (名 (html 标 文)
@@ -73,16 +75,18 @@
                     (div ([class "col-md-10"])
                          (table ([class "table table-hover"])
                                 (tbody
-                                 (tr (td ([class "text-nowrap"]) "卦象")
+                                 (tr (td ([class "text-nowrap"]) "卦象详情")
                                      (td ,(卦象 (􏿰弔 (􏷜 文) 'mgua))))
-                                 (tr (td ([class "text-nowrap"]) "量价")
+                                 (tr (td ([class "text-nowrap"]) "量价详情")
                                      (td ,(量价 (􏷜 文))))
-                                 (tr (td ([class "text-nowrap"]) "量价解析")
-                                     (td ,(量价解析 (􏷜 文)) ,(当日风险 (􏷜 文))))
                                  (tr (td ([class "text-nowrap"]) "量价跃迁")
-                                     (td ([class "text-nowrap"]) ,(量价跃迁 标 代码 (􏷜 文) (􏷛 文) (􏷚 文))))
+                                     (td ([class "text-nowrap"]) ,(激变解析 (􏷜 文) (􏷛 文) (􏷚 文))))
+                                 (tr (td ([class "text-nowrap"]) "观测指标")
+                                     (td ,@(state-links (用规 WCHs 文))))
                                  (tr (td ([class "text-nowrap"]) "交易提示")
-                                     (td ([class "text-info"]) ,(当日预警 标 代码 (􏷜 文))))
+                                     (td ([class "text-info"]) ,@(state-links (用规 BSs 文))))
+                                 (tr (td ([class "text-nowrap"]) "风险提示")
+                                     (td ,@(state-links (用规 RSKs 文))))
                                  ))))
                )
          (plotly-script 标 文)
