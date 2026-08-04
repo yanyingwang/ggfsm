@@ -3,7 +3,7 @@
 (require ming ming/list
          "rules.rkt")
 (provide Ts VPs Es Ds BOs Cs Bs Ss
-         BOSs WCHs ;; RSKs
+         BSs WCHs ;; RSKs
          )
 
 ;; ID	中文	English	具体判断条件
