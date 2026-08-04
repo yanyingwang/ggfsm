@@ -1,22 +1,28 @@
 #lang racket/base
 
-(require ming ming/list ming/string ming/number net/uri-codec
+(require ming ming/list ming/string ming/number
          racket/format
-         "gua-helper.rkt"
-         "8gua.rkt"
-         "64gua.rkt"
-         "senders.rkt"
-         "zixuan.rkt")
-(provide T1 T2 T3 T4 T5 T6 T7
-         VP1 VP2 VP3 VP4 VP5 VP6 VP7 VP8
-         E1 E2 E3 E4 E5 E6 E7 E8
-         D1 D2 ;;D3 D4
-         C1 C2 C3 C4 C5
+         "rules-helper.rkt")
+(provide T1 T2 T3 T4 T5 T6 T7 T8 T9 T10 T11
+         VP1 VP2 VP3 VP4 VP5 VP6 VP7 VP8 VP9 VP10 VP11 VP12
+         E1 E2 E3 E4 E5 E6 E7 E8 E9 E10 E11 E12 E13 E14
+         D1 D2 D3 D4
+         C1 C2 C3 C4 C5 C6 C7
+         BO1 BO2 BO3 BO4 BO5 BO6
          B1 B2 B3 B4 B5 B6 B7
-         S1 S2 S3 S4 S5 S6 S7
-         R1 R2 R3 R4 R5
+         S1 S2 S3 S4 S5 S6 S7 S8
+         ;; R1 R2 R3 R4 R5
          )
 ;; 􏵞: 0707，0706，0705，0704，0703。通常需要逆序，亦即(􏾛 􏵞)
+
+;; Table 1. Window Parameters
+;; 参数	数值	说明
+;; W-TREND	3	短期趋势判断
+;; W-RANGE	5	横盘、压缩判断
+;; W-DIV	10	结构性背离观察窗口
+;; W-HIGHLOW	20	局部高低点观察窗口
+;; W-CONFIRM	2	突破确认窗口
+
 ;; Trend States
 (名 (T1 L)
     (并 (> (dPt L) 0)
@@ -31,10 +37,10 @@
     (并 (< (dpt L) 0)
         (< (dpt1 L) 0)))
 (名 (T5 L)
-    (并 (<= (— (maxP L 5)
+    (并 (<= (- (maxP L 5)
                (minP L 5))
             1)
-        (<= (— (maxp L 5)
+        (<= (- (maxp L 5)
                (minp L 5))
             8)))
 (名 (T6 L)
@@ -46,11 +52,11 @@
         (< (pt L) (minp L 5 1))
         (< (dpt L) 0)))
 (名 (T8 L)
-    (>= (巨 (dps+ L 3)) 2)
-    (>= (巨 (dvs+ L 3)) 2))
+    (并 (>= (巨 (dps+ L 3)) 2)
+        (>= (巨 (dvs+ L 3)) 2)))
 (名 (T9 L)
-    (>= (巨 (dps- L 3)) 2)
-    (>= (巨 (dps+ L 3)) 2))
+    (并 (>= (巨 (dps- L 3)) 2)
+        (>= (巨 (dps+ L 3)) 2)))
 (名 (T10 L)
     (并 (>= (Pt L) 6)
         (= (dPt L) 0)
@@ -62,7 +68,7 @@
 
 ;; Price–Volume States
 (名 (VP1 L)
-    (并 (> (dPt1 L) 0)
+    (并 (> (dPt L) 0)
         (> (dVt L) 0)))
 (名 (VP2 L)
     (并 (> (dpt L) 0)
@@ -169,22 +175,22 @@
             (<= (maxV L) 2))))
 (名 (C2 L)
     (令 ([L (􏾝 L 5)]
-         [条件? (>= n 6)])
+         [条件? (λ (n) (>= n 6))])
         (并 (>= (巨 (Ps 条件? L)) 4)
-            (<= (— (maxp L) (minp L)) 8))))
+            (<= (- (maxp L) (minp L)) 8))))
 (名 (C3 L)
     (令 ([L (􏾝 L 5)]
-         [条件? (<= n 1)])
+         [条件? (λ (n) (<= n 1))])
         (并 (>= (巨 (Ps 条件? L)) 4)
-            (<= (— (maxp L) (minp L)) 8))))
+            (<= (- (maxp L) (minp L)) 8))))
 (名 (C4 L)
     (令 ([L (􏾝 L 3)])
         (并 (>= (巨 (dvs+ L)) 2)
-            (<= (— (maxp L) (minp L)) 8))))
+            (<= (- (maxp L) (minp L)) 8))))
 (名 (C5 L)
     (令 ([L (􏾝 L 3)])
         (并 (>= (巨 (dvs- L)) 2)
-            (<= (— (maxp L) (minp L)) 8))))
+            (<= (- (maxp L) (minp L)) 8))))
 (名 (C6 L)
     (并 (>= (Pt L) 6)
         (>= (巨 (dvs- L 3)) 2)
@@ -220,7 +226,7 @@
 (名 (B3 L)
     (并 (>= (巨 (dps+ L 3)) 2)
         (< (dpt L) 0)
-        (<= (dpv L) 0)
+        (<= (dvt L) 0)
         (> (pt L) (minp L 3 1))))
 (名 (B4 L)
     (并 (D4 L) (> (dpt L) 0)))
@@ -243,7 +249,7 @@
 (名 (S2 L)
     (并 (D3 L) (< (dpt L) 0)))
 (名 (S3 L)
-    (并 (>= (dps+ L 3) 2)
+    (并 (>= (巨 (dps+ L 3)) 2)
         (< (dpt L) 0)
         (< (pt L) (minp L 3 1))))
 (名 (S4 L) (BO5 L))

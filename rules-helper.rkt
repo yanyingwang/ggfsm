@@ -1,11 +1,14 @@
 #lang racket/base
 
 (require ming ming/list ming/string ming/number
-         racket/format)
+         racket/format
+         gregor/period)
 (provide P V p v
          dP dV dp dp
          Pt pt Pt1 pt1
          dPt dpt dPt1 dpt1
+         Vt vt Vt1 vt1
+         dVt dvt dVt1 dvt1
          day day差
          p峰? p谷? v峰? v谷?
          p峰L3L p谷L3L v峰L3L v谷L3L
@@ -60,6 +63,23 @@
     (dp (􏷜 L)))
 (名 (dpt1 L)
     (dp (􏷛 L)))
+
+(名 (Vt L)
+    (V (􏷜 L)))
+(名 (vt L)
+    (v (􏷜 L)))
+(名 (Vt1 L)
+    (V (􏷛 L)))
+(名 (vt1 L)
+    (v (􏷛 L)))
+(名 (dVt L)
+    (dV (􏷜 L)))
+(名 (dVt1 L)
+    (dP (􏷛 L)))
+(名 (dvt L)
+    (dv (􏷜 L)))
+(名 (dvt1 L)
+    (dv (􏷛 L)))
 
 
 (名 (p峰? L)
@@ -126,7 +146,7 @@
     (􏷑 p (p谷LL L)))
 (名 (v峰s L)
     (􏷑 v (v峰LL L)))
-(名 (p谷s L)
+(名 (v谷s L)
     (􏷑 v (v谷LL L)))
 
 
@@ -134,9 +154,9 @@
 (名 (maxP L [b +inf.0] [a 0])
     (用 􏺗 (􏷑 P (􏾝 L a b))))
 (名 (maxp L [b +inf.0] [a 0])
-    (用 􏺗 (􏷑 P (􏾝 L a b))))
+    (用 􏺗 (􏷑 p (􏾝 L a b))))
 (名 (minP L [b +inf.0] [a 0])
-    (用 􏺘 (􏷑 P (􏾝 L a b))))
+    (用 􏺘 (􏷑 p (􏾝 L a b))))
 (名 (minp L [b +inf.0] [a 0])
     (用 􏺘 (􏷑 P (􏾝 L a b))))
 
@@ -150,7 +170,7 @@
     (用 􏺘 (􏷑 v (􏾝 L a b))))
 
 (名 (avgV L [b +inf.0] [a 0])
-    (/ (􏷎 + 0 (􏷑 V (􏾝 a b))) (— b a)))
+    (/ (􏷎 + 0 (􏷑 V (􏾝 L a b))) (- b a)))
 ;; (􏹈dp (L prd)
 ;;       (􏹈 (λ (H)
 ;;             (prd (dp H)))
@@ -167,7 +187,7 @@
 (名 (dps prd L)
       (􏹈 prd (􏷑 dp L)))
 (名 (dvs prd L)
-     (􏹈 prd (􏷑 dv L)))
+    (􏹈 prd (􏷑 dv L)))
 (名 (dps+ L [b +inf.0] [a 0])
       (dps 􏻛? (􏾝 L a b)))
 (名 (dps- L [b +inf.0] [a 0])

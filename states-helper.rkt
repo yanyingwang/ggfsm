@@ -4,8 +4,7 @@
          "states.rkt")
 (provide 用规)
 
-(名 (用规 ss L)
+(名 (用规 states 􏵞)
     (􏹈 (λ (s)
-          ((􏷜 s) L))
-        ss))
-
+          ((􏷜 s) 􏵞))
+        states))

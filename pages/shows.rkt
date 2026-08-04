@@ -20,7 +20,7 @@
          "../senders.rkt"
          "shows-helper.rkt")
 
-;; (名 股号 "600750") "002238"
+;; (名 股号 "600819")
 ;; (shows.html "600819") ;玻璃
 ;; (shows.html "002238")
 ;; (shows.html "603259")
@@ -85,7 +85,7 @@
                                      (td ,@(state-links (用规 WCHs 文))))
                                  (tr (td ([class "text-nowrap"]) "交易提示")
                                      (td ([class "text-info"]) ,@(state-links (用规 BSs 文))))
-                                 (tr (td ([class "text-nowrap"]) "风险提示")
+                                 #;(tr (td ([class "text-nowrap"]) "风险提示")
                                      (td ,@(state-links (用规 RSKs 文))))
                                  ))))
                )
@@ -113,4 +113,3 @@
      (printf "股号：~a~n" 股号)
      (shows.html 股号)
      (sleep 2)))
-

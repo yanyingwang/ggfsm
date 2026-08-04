@@ -16,7 +16,7 @@
     )
 
 (名 (public/ . Ss)
-    (􏸵 (𡊤 ~a (双 public-path Ss)))
+    (􏸵 (用 ~a (双 public-path Ss)))
     )
 
 (名 (styles/ S)
