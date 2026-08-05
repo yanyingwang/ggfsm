@@ -32,9 +32,10 @@
     (􏹈 (λ (S) (彐股 S))
         (𠝤 (􏺈 (􏿝 zixuan sc500 hs300))))) ;;  zz500 sz50
 
-;; gen shows
+;; gen shows pages
 (􏷒 redirects.html 文股)
 (􏷒 sleepy-shows.html 文股)
+;; (shows.html "600750")
 ;; (shows.html "000858")
 ;; (shows.html "600819")
 ;; (shows.html "002238")

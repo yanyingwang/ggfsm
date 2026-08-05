@@ -17,10 +17,9 @@
          "../analysis-helper.rkt"
          "../states.rkt"
          "../states-helper.rkt"
-         "../senders.rkt"
          "shows-helper.rkt")
 
-;; (名 股号 "600819")
+;; (名 股号 "600750")
 ;; (shows.html "600819") ;玻璃
 ;; (shows.html "002238")
 ;; (shows.html "603259")
@@ -84,7 +83,10 @@
                                  (tr (td ([class "text-nowrap"]) "观测指标")
                                      (td ,@(state-links (用规 WCHs 文))))
                                  (tr (td ([class "text-nowrap"]) "交易提示")
-                                     (td ([class "text-info"]) ,@(state-links (用规 BSs 文))))
+                                     ;; (td ([class "text-info"]) ,@(state-links (用规ntfy BSs 文 标 代码 简称)))
+                                     (td ([class "text-info"]) ,@(state-links (用规并发送 BSs 文 标 代码 简称)))
+                                     )
+
                                  #;(tr (td ([class "text-nowrap"]) "风险提示")
                                      (td ,@(state-links (用规 RSKs 文))))
                                  ))))
