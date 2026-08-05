@@ -5,7 +5,7 @@
     "at-exp-lib"
     "gregor-lib"
     "csv-reading"
-    "https://github.com/yanyingwang/ming.git#61e7a5eb8bfe7e2691a4df8f70ae5577ac4f10ac"
+    "https://github.com/yanyingwang/ming.git#e61188d6e8df507be827863db965b68fd167e195"
     "https://github.com/yanyingwang/http-client.git"
     ))
 (define build-deps '("scribble-lib" "racket-doc" "rackunit-lib"))
