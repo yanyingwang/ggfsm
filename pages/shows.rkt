@@ -1,4 +1,4 @@
-#lang at-exp racket/base
+#lang racket/base
 
 (provide shows.html
          sleepy-shows.html)
@@ -15,11 +15,12 @@
          "../gu-helper.rkt"
          "../gua-helper.rkt"
          "../analysis-helper.rkt"
-         "../states.rkt"
-         "../states-helper.rkt"
+         "../rules.rkt"
+         "../rules-helper.rkt"
+         "../backend-helper.rkt"
          "shows-helper.rkt")
 
-;; (名 股号 "600750")
+;; (名 股号 "000858")
 ;; (shows.html "600819") ;玻璃
 ;; (shows.html "002238")
 ;; (shows.html "603259")
@@ -75,16 +76,18 @@
                          (table ([class "table table-hover"])
                                 (tbody
                                  (tr (td ([class "text-nowrap"]) "卦象详情")
-                                     (td ,(卦象 (􏿰弔 (􏷜 文) 'mgua))))
+                                     (td ,(卦象详情 (􏷜 文))))
                                  (tr (td ([class "text-nowrap"]) "量价详情")
-                                     (td ,(量价 (􏷜 文))))
-                                 (tr (td ([class "text-nowrap"]) "量价跃迁")
-                                     (td ([class "text-nowrap"]) ,(激变解析 (􏷜 文) (􏷛 文) (􏷚 文))))
+                                     (td ,(量价详情 (􏷜 文))))
+                                 (tr (td ([class "text-nowrap"]) "量价解析")
+                                     (td ,(量价解析 (􏷜 文))))
+                                 (tr (td ([class "text-nowrap"]) "激变解析")
+                                     (td ,(激变解析 文)))
                                  (tr (td ([class "text-nowrap"]) "观测指标")
-                                     (td ,@(state-links (用规 WCHs 文))))
+                                     (td ,@(state-links (用规 WCs 文))))
                                  (tr (td ([class "text-nowrap"]) "交易提示")
-                                     ;; (td ([class "text-info"]) ,@(state-links (用规ntfy BSs 文 标 代码 简称)))
-                                     (td ([class "text-info"]) ,@(state-links (用规并发送 BSs 文 标 代码 简称)))
+                                     (td ([class "text-info"]) ,@(state-links (用规 BSs 文)))
+                                     (td ([style "display: none;"]) ,(~a (发送提醒 文 标 代码 简称)))
                                      )
 
                                  #;(tr (td ([class "text-nowrap"]) "风险提示")
