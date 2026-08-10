@@ -26,7 +26,7 @@
 (名 (量价解析 H)
     @~a{
         P：@(P H)，V：@(V H)，p: @(p H)，v：@(v H)。
-        ΔP：@(dP )，ΔV：@(dV H)，Δp：@(dp H)，Δv：@(dv H)。
+        ΔP：@(dP H)，ΔV：@(dV H)，Δp：@(dp H)，Δv：@(dv H)。
         }
     )
 
