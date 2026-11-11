@@ -29,7 +29,7 @@ jobs:
         run: |
           #sudo apt-get -y install language-pack-zh*
           #sudo apt-get -y install chinese*
-          sudo apt-get install ttf-wqy-microhei ttf-wqy-zenhei
+          sudo apt-get install font-wqy-microhei font-wqy-zenhei
 
       - name: install deps
         run: raco pkg install --auto
