@@ -124,7 +124,7 @@
                        (tr (td ,(~a "stock exchange：" 所))
                            (td ,(~a "IPO date：" 上市日期)))
                        (tr (td ,(~a "sector：" (板块 股号)))
-                           (td ,(~a "stock indexes：" (􏿴􏵷句 (股指 股号) "/")))
+                           (td ,(~a "stock indexes：" (􏴼 (股指 股号) "/")))
                            ))))
           )
     )
